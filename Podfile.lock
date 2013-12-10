@@ -1,0 +1,17 @@
+PODS:
+  - ddcli (1.2)
+  - RaptureXML (1.0.1)
+
+DEPENDENCIES:
+  - ddcli (from `~/Documents/ddcli`)
+  - RaptureXML (~> 1.0.1)
+
+EXTERNAL SOURCES:
+  ddcli:
+    :local: ~/Documents/ddcli
+
+SPEC CHECKSUMS:
+  ddcli: e37bb1047c1a2d1838956d838b308a6dc8be4366
+  RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
+
+COCOAPODS: 0.28.0
