@@ -2,7 +2,7 @@
 # platform :ios, "6.0"
 
 target "seguecode" do
-    pod 'ddcli', :local => '~/Documents/ddcli'
+    pod 'ddcli', :git => 'https://github.com/yoiang/ddcli'
     pod 'RaptureXML', '~> 1.0.1'
 end
 

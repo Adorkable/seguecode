@@ -1,17 +1,17 @@
 PODS:
-  - ddcli (1.2)
+  - ddcli (1.3)
   - RaptureXML (1.0.1)
 
 DEPENDENCIES:
-  - ddcli (from `~/Documents/ddcli`)
+  - ddcli (from `https://github.com/yoiang/ddcli`)
   - RaptureXML (~> 1.0.1)
 
 EXTERNAL SOURCES:
   ddcli:
-    :local: ~/Documents/ddcli
+    :git: https://github.com/yoiang/ddcli
 
 SPEC CHECKSUMS:
-  ddcli: e37bb1047c1a2d1838956d838b308a6dc8be4366
+  ddcli: 0bc12ad28372851afe88a28bf6429744effa39d9
   RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
 
 COCOAPODS: 0.28.0
