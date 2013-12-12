@@ -15,7 +15,7 @@
 @interface SegueDefinition : NSObject
 
 + (instancetype)definitionFrom:(RXMLElement *)definitionElement andSource:(ViewControllerDefinition *)source;
-- (void)setupDestinationFrom:(NSMutableDictionary *)destinationDefinitions;
+- (void)setupDestinationFrom:(NSDictionary *)destinationDefinitions;
 
 @property (readonly) NSString *id;
 @property (readonly) NSString *identifier;
@@ -24,5 +24,8 @@
 @property (weak, readonly) ViewControllerDefinition *destination;
 @property (readonly) NSString *kind;
 @property (readonly) NSString *customClass;
+
+- (NSString *)constantDeclaration;
+- (NSString *)constantDefinition;
 
 @end

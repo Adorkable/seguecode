@@ -47,15 +47,9 @@
     return [ [SegueDefinition alloc] initWithDefinition:definitionElement andSource:source];
 }
 
-- (void)setupDestinationFrom:(NSMutableDictionary *)destinationDefinitions
+- (void)setupDestinationFrom:(NSDictionary *)destinationDefinitions
 {
     _destination = [destinationDefinitions objectForKey:self.destinationID];
-    [self dumpLog];
-}
-
-- (void)dumpLog
-{
-    NSLog(@"From%@%@To%@", self.source.storyboardIdentifier, self.identifier, self.destination.storyboardIdentifier);
 }
 
 XMLMappedProperty(id, @"id");
@@ -63,5 +57,42 @@ XMLMappedProperty(identifier, @"identifier");
 XMLMappedProperty(destinationID, @"destination");
 XMLMappedProperty(kind, @"kind");
 XMLMappedProperty(customClass, @"customClass");
+    
+- (NSString *)constantName
+{
+    return [NSString stringWithFormat:@"From%@%@To%@",
+            self.source.storyboardIdentifier,
+            self.identifier,
+            self.destination.storyboardIdentifier];
+}
+
+- (NSString *)constantValue
+{
+    return self.identifier;
+}
+    
+#define DefaultConstantDeclarationTemplate @"\
+extern const NSString *<#(ConstantName)#>;"
+    
+#define DefaultConstantDefinitionTemplate @"\
+const NSString *<#(ConstantName)#> = @\"<#(ConstantValue)#>\";"
+    
+- (NSString *)constantDeclaration
+{
+    return [DefaultConstantDeclarationTemplate segueCodeTemplateFromDict:[self templateMap] ];
+}
+
+- (NSString *)constantDefinition
+{
+    return [DefaultConstantDefinitionTemplate segueCodeTemplateFromDict:[self templateMap] ];
+}
+    
+- (NSDictionary *)templateMap
+{
+    return @{
+             @"ConstantName" : self.constantName,
+             @"ConstantValue" : self.constantValue
+             };
+}
 
 @end

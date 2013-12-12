@@ -13,6 +13,8 @@
 
 #import "StoryboardFile.h"
 
+#import "HeaderTemplate.h"
+
 #define SegueCodeAppVersion @"1.0"
 
 @interface SeguecodeApp ()
@@ -44,36 +46,18 @@
 - (void)printUsage
 {
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
-/*    printf("\n"
-           "  -m, --model MODEL             Path to model\n"
-           "  -C, --configuration CONFIG    Only consider entities included in the named configuration\n"
-           "      --base-class CLASS        Custom base class\n"
-           "      --base-class-import TEXT        Imports base class as #import TEXT\n"
-           "      --base-class-force CLASS  Same as --base-class except will force all entities to have the specified base class. Even if a super entity exists\n"
-           "      --includem FILE           Generate aggregate include file for .m files for both human and machine generated source files\n"
-           "      --includeh FILE           Generate aggregate include file for .h files for human generated source files only\n"
-           "      --template-path PATH      Path to templates (absolute or relative to model path)\n"
-           "      --template-group NAME     Name of template group\n"
-           "      --template-var KEY=VALUE  A key-value pair to pass to the template file. There can be many of these.\n"
-           "  -O, --output-dir DIR          Output directory\n"
-           "  -M, --machine-dir DIR         Output directory for machine files\n"
-           "  -H, --human-dir DIR           Output directory for human files\n"
-           "      --list-source-files       Only list model-related source files\n"
-           "      --orphaned                Only list files whose entities no longer exist\n"
-           "      --version                 Display version and exit\n"
-           "  -h, --help                    Display this help and exit\n"
-           "\n"
-           "Implements generation gap codegen pattern for Core Data.\n"
-           "Inspired by eogenerator.\n");
- */
+    ddprintf(@"  -o, --output-dir DIR         Output directory\n"
+             @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
+             @"  -v, --version                Display version and exit\n"
+             @"  -h, --help                   Display this help and exit\n");
 }
 
 - (BOOL)exportStoryboardFile:(NSString *)fileName
 {
-    BOOL error = NO;
+    BOOL result = NO;
     
     NSString *pathFileName;
-    if ( [fileName length] > 0 && [fileName characterAtIndex:0] )
+    if ( [fileName length] > 0 && [fileName characterAtIndex:0] == '/' )
     {
         pathFileName = fileName;
     } else
@@ -82,14 +66,25 @@
         pathFileName = [NSString stringWithFormat:@"%@/%@", path, fileName];
     }
 
+    NSString *outputPath;
+    if ( [self.outputDir length] > 0 && [self.outputDir characterAtIndex:0] == '/' )
+    {
+        outputPath = self.outputDir;
+    } else
+    {
+        NSString *path = [ [NSFileManager defaultManager] currentDirectoryPath];
+        outputPath = [NSString stringWithFormat:@"%@/%@", path, self.outputDir];
+    }
     StoryboardFile *storyboardFile = [StoryboardFile storyboardFileAtPathFileName:pathFileName];
     if (storyboardFile != nil)
     {
+        [storyboardFile exportTo:outputPath withTemplateHeader:DefaultTemplateHeader andSource:DefaultTemplateSource];
+        result = YES;
     } else
     {
-        error = YES;
+        result = NO;
     }
-    return error;
+    return result;
 }
 
 - (int)application:(DDCliApplication *)app runWithArguments:(NSArray *)arguments
@@ -111,7 +106,7 @@
     {
         if ( [obj isKindOfClass:[NSString class] ] )
         {
-            if ( [self exportStoryboardFile:(NSString *)obj] )
+            if ( ![self exportStoryboardFile:(NSString *)obj] )
             {
                 error = YES;
             }

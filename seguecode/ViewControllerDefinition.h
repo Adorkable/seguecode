@@ -22,4 +22,7 @@
 
 @property (readonly) NSDictionary *segues;
 
+- (NSArray *)segueConstantDeclarations;
+- (NSArray *)segueConstantDefinitions;
+
 @end

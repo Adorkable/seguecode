@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-o SegueCodeExample"
+            argument = "-o ${PROJECT_DIR}/SegueCodeExample/Generated"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

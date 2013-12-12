@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02919032306C426B8C27FF0D /* libPods-seguecode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */; };
+		3C63F14D1859690C00041011 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63F14C1859690B00041011 /* Utility.m */; };
 		3CE464451856B24A002F423D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE464441856B24A002F423D /* Foundation.framework */; };
 		3CE464481856B24A002F423D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464471856B24A002F423D /* main.m */; };
 		3CE4644C1856B24A002F423D /* seguecode.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CE4644B1856B24A002F423D /* seguecode.1 */; };
@@ -42,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C63F14B18595E3200041011 /* HeaderTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderTemplate.h; sourceTree = "<group>"; };
+		3C63F14C1859690B00041011 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		3CE464411856B24A002F423D /* seguecode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = seguecode; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE464441856B24A002F423D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3CE464471856B24A002F423D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				3CE464A21856EB75002F423D /* SegueDefinition.h */,
 				3CE464A31856EB75002F423D /* SegueDefinition.m */,
 				3CE464A51856F376002F423D /* Utility.h */,
+				3C63F14C1859690B00041011 /* Utility.m */,
+				3C63F14B18595E3200041011 /* HeaderTemplate.h */,
 			);
 			path = seguecode;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				3CE464A11856E8B8002F423D /* ViewControllerDefinition.m in Sources */,
 				3CE464A41856EB75002F423D /* SegueDefinition.m in Sources */,
 				3CE464481856B24A002F423D /* main.m in Sources */,
+				3C63F14D1859690C00041011 /* Utility.m in Sources */,
 				3CE4649E1856DF78002F423D /* StoryboardFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +530,7 @@
 				3CE464911856CB3A002F423D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -70,5 +70,33 @@ XMLMappedProperty(id, @"id");
 XMLMappedProperty(storyboardIdentifier, @"storyboardIdentifier");
 XMLMappedProperty(customClass, @"customClass");
 XMLMappedProperty(sceneMemberID, @"sceneMemberID");
+    
+- (NSArray *)segueConstantDeclarations
+{
+    NSMutableArray *result = [NSMutableArray array];
+    for (id object in [self.segues allValues] )
+    {
+        if ( [object isKindOfClass:[SegueDefinition class] ] )
+        {
+            SegueDefinition* segueDefinition = (SegueDefinition *)object;
+            [result addObject:[segueDefinition constantDeclaration] ];
+        }
+    }
+    return result;
+}
+    
+- (NSArray *)segueConstantDefinitions
+{
+    NSMutableArray *result = [NSMutableArray array];
+    for (id object in [self.segues allValues] )
+    {
+        if ( [object isKindOfClass:[SegueDefinition class] ] )
+        {
+            SegueDefinition* segueDefinition = (SegueDefinition *)object;
+            [result addObject:[segueDefinition constantDefinition] ];
+        }
+    }
+    return result;
+}
 
 @end

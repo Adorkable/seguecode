@@ -13,7 +13,18 @@
 #import "ViewControllerDefinition.h"
 #import "SegueDefinition.h"
 
+#import "Utility.h"
+
+@interface StoryboardFile ()
+{
+    NSMutableDictionary *_viewControllers;
+}
+
+@end
+
 @implementation StoryboardFile
+    
+    @synthesize viewControllers = _viewControllers;
 
 - (instancetype)initWithXMLRoot:(RXMLElement *)root
 {
@@ -38,6 +49,11 @@
         RXMLElement *rootXML = [ [RXMLElement alloc] initFromXMLFilePath:pathFileName];
 
         self = [self initWithXMLRoot:rootXML];
+        if (self)
+        {
+            self.name = [ [pathFileName lastPathComponent] stringByDeletingPathExtension];
+            NSLog(@"Loaded Storyboard with name %@", self.name);
+        }
     } else
     {
         NSLog(@"Unable to find storyboard file %@", pathFileName);
@@ -71,18 +87,18 @@
         [self parseScene:scene];
     }];*/
     
-    __block NSMutableDictionary *viewControllers = [NSMutableDictionary dictionary];
+    _viewControllers = [NSMutableDictionary dictionary];
     
     [root iterateWithRootXPath:@"/document/scenes/scene/objects/viewController" usingBlock:^(RXMLElement *viewController)
     {
         ViewControllerDefinition *definition = [ViewControllerDefinition definitionFrom:viewController];
         if (definition)
         {
-            [viewControllers setObject:definition forKey:definition.id];
+            [_viewControllers setObject:definition forKey:definition.id];
         }
     }];
     
-    for (id object in [viewControllers allValues] )
+    for (id object in [_viewControllers allValues] )
     {
         if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
         {
@@ -92,11 +108,109 @@
                 if ( [segueObject isKindOfClass:[SegueDefinition class] ] )
                 {
                     SegueDefinition *segueDefinition = (SegueDefinition *)segueObject;
-                    [segueDefinition setupDestinationFrom:viewControllers];
+                    [segueDefinition setupDestinationFrom:_viewControllers];
                 }
             }
         }
     }
+}
+    
+- (void)exportTo:(NSString *)outputPath
+withTemplateHeader:(NSString *)templateHeader
+       andSource:(NSString *)templateSource
+{
+    NSError *error;
+    [ [NSFileManager defaultManager] createDirectoryAtPath:outputPath
+                               withIntermediateDirectories:YES
+                                                attributes:nil
+                                                     error:&error];
+    if (error)
+    {
+        NSLog(@"Error when trying to create output directory %@: %@", outputPath, error);
+    //    result = NO;
+    }
+    
+    NSDictionary *templateMap = [self templateMap];
+    NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
+    NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
+    
+    NSString *headerPathFileName = [NSString stringWithFormat:@"%@/%@.h", outputPath, self.name];
+    [header writeToFile:headerPathFileName
+             atomically:NO
+               encoding:NSUTF8StringEncoding
+                  error:&error];
+    if (error)
+    {
+        NSLog(@"Error when exporting header for %@: %@", self.name, error);
+    }
+    
+    NSString *sourcePathFileName = [NSString stringWithFormat:@"%@/%@.m", outputPath, self.name];
+    [source writeToFile:sourcePathFileName
+             atomically:NO
+               encoding:NSUTF8StringEncoding
+                  error:&error];
+    if (error)
+    {
+        NSLog(@"Error when exporting source for %@: %@", self.name, error);
+    }
+    NSLog(@"Exported files for %@ to %@", self.name, outputPath);
+}
+    
+- (NSString *)segueConstantDeclarations
+{
+    NSMutableString *result = [NSMutableString string];
+    
+    for (id object in [_viewControllers allValues] )
+    {
+        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
+            NSArray *constantDeclarations = [vcDefinition segueConstantDeclarations];
+            NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
+            if ( [result length] == 0)
+            {
+                [result appendString:constantDeclarationsString];
+            } else
+            {
+                [result appendFormat:@"\n%@", constantDeclarationsString];
+            }
+        }
+    }
+    
+    return result;
+}
+    
+- (NSString *)segueConstantDefinitions
+{
+    NSMutableString *result = [NSMutableString string];
+    
+    for (id object in [_viewControllers allValues] )
+    {
+        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
+            NSArray *constantDefinitions = [vcDefinition segueConstantDefinitions];
+            NSString *constantDefinitionsString = [constantDefinitions componentsJoinedByString:@"\n"];
+            if ( [result length] == 0)
+            {
+                [result appendString:constantDefinitionsString];
+            } else
+            {
+                [result appendFormat:@"\n%@", constantDefinitionsString];
+            }
+        }
+    }
+    
+    return result;
+}
+    
+- (NSDictionary *)templateMap
+{
+    return @{
+             @"StoryboardName" : self.name,
+             @"SegueConstantDeclarations" : self.segueConstantDeclarations,
+             @"SegueConstantDefinitions" : self.segueConstantDefinitions
+             };
 }
 
 @end

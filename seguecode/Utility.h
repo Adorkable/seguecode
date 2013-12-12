@@ -13,3 +13,11 @@
 { \
     return [self.element attribute:attributeName]; \
 }
+
+#import <CCTemplate/CCTemplate.h>
+
+@interface NSString (seguecode)
+
+- (NSString *)segueCodeTemplateFromDict:(NSDictionary *)dict;
+
+@end

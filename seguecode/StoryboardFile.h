@@ -11,5 +11,13 @@
 @interface StoryboardFile : NSObject
 
 + (instancetype)storyboardFileAtPathFileName:(NSString*)pathFileName;
+    
+@property (strong, readwrite) NSString *name;
+
+@property (readonly) NSDictionary *viewControllers;
+    
+- (void)exportTo:(NSString *)outputPath
+withTemplateHeader:(NSString *)templateHeader
+       andSource:(NSString *)templateSource;
 
 @end
