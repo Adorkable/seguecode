@@ -47,7 +47,7 @@
 {
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
     ddprintf(@"  -o, --output-dir DIR         Output directory\n"
-             @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
+//           @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
              @"  -v, --version                Display version and exit\n"
              @"  -h, --help                   Display this help and exit\n");
 }
