@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 Adorkable. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FirstViewController.h"
 
-@interface ViewController ()
+#import "Main_iPhone.h"
+
+@interface FirstViewController ()
 
 @end
 
-@implementation ViewController
+@implementation FirstViewController
 
 - (void)viewDidLoad
 {
@@ -24,6 +26,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)segueToSecond:(id)sender
+{
+    [self performSegueWithIdentifier:FromFirstForwardToSecond sender:nil];
 }
 
 @end

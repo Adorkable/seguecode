@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		02919032306C426B8C27FF0D /* libPods-seguecode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */; };
 		3C63F14D1859690C00041011 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63F14C1859690B00041011 /* Utility.m */; };
+		3C7D8FA5185ACA2400D329C7 /* Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D8FA4185ACA2400D329C7 /* Main_iPhone.m */; };
+		3C7D8FA8185ACB1B00D329C7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D8FA7185ACB1B00D329C7 /* SecondViewController.m */; };
 		3CE464451856B24A002F423D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE464441856B24A002F423D /* Foundation.framework */; };
 		3CE464481856B24A002F423D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464471856B24A002F423D /* main.m */; };
 		3CE4644C1856B24A002F423D /* seguecode.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CE4644B1856B24A002F423D /* seguecode.1 */; };
@@ -20,7 +22,7 @@
 		3CE4646C1856CB3A002F423D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4646B1856CB3A002F423D /* main.m */; };
 		3CE464701856CB3A002F423D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4646F1856CB3A002F423D /* AppDelegate.m */; };
 		3CE464731856CB3A002F423D /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE464711856CB3A002F423D /* Main_iPhone.storyboard */; };
-		3CE464791856CB3A002F423D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464781856CB3A002F423D /* ViewController.m */; };
+		3CE464791856CB3A002F423D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464781856CB3A002F423D /* FirstViewController.m */; };
 		3CE4647B1856CB3A002F423D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE4647A1856CB3A002F423D /* Images.xcassets */; };
 		3CE4649A1856CB96002F423D /* TestCustomReverseSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464971856CB96002F423D /* TestCustomReverseSegue.m */; };
 		3CE4649B1856CB96002F423D /* TestCustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464991856CB96002F423D /* TestCustomSegue.m */; };
@@ -45,6 +47,10 @@
 /* Begin PBXFileReference section */
 		3C63F14B18595E3200041011 /* HeaderTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderTemplate.h; sourceTree = "<group>"; };
 		3C63F14C1859690B00041011 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		3C7D8FA3185ACA2400D329C7 /* Main_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Main_iPhone.h; sourceTree = "<group>"; };
+		3C7D8FA4185ACA2400D329C7 /* Main_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main_iPhone.m; sourceTree = "<group>"; };
+		3C7D8FA6185ACB1B00D329C7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		3C7D8FA7185ACB1B00D329C7 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3CE464411856B24A002F423D /* seguecode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = seguecode; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE464441856B24A002F423D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3CE464471856B24A002F423D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,8 +68,8 @@
 		3CE4646E1856CB3A002F423D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CE4646F1856CB3A002F423D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3CE464721856CB3A002F423D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		3CE464771856CB3A002F423D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3CE464781856CB3A002F423D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3CE464771856CB3A002F423D /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		3CE464781856CB3A002F423D /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		3CE4647A1856CB3A002F423D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3CE464811856CB3A002F423D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3CE464961856CB96002F423D /* TestCustomReverseSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCustomReverseSegue.h; sourceTree = "<group>"; };
@@ -104,6 +110,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C7D8FA2185ACA2400D329C7 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				3C7D8FA3185ACA2400D329C7 /* Main_iPhone.h */,
+				3C7D8FA4185ACA2400D329C7 /* Main_iPhone.m */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		3CE464381856B24A002F423D = {
 			isa = PBXGroup;
 			children = (
@@ -168,14 +183,17 @@
 		3CE464651856CB39002F423D /* SegueCodeExample */ = {
 			isa = PBXGroup;
 			children = (
+				3C7D8FA2185ACA2400D329C7 /* Generated */,
 				3CE464951856CB96002F423D /* Segues */,
 				3CE4646E1856CB3A002F423D /* AppDelegate.h */,
 				3CE4646F1856CB3A002F423D /* AppDelegate.m */,
 				3CE464711856CB3A002F423D /* Main_iPhone.storyboard */,
-				3CE464771856CB3A002F423D /* ViewController.h */,
-				3CE464781856CB3A002F423D /* ViewController.m */,
 				3CE4647A1856CB3A002F423D /* Images.xcassets */,
 				3CE464661856CB3A002F423D /* Supporting Files */,
+				3CE464771856CB3A002F423D /* FirstViewController.h */,
+				3CE464781856CB3A002F423D /* FirstViewController.m */,
+				3C7D8FA6185ACB1B00D329C7 /* SecondViewController.h */,
+				3C7D8FA7185ACB1B00D329C7 /* SecondViewController.m */,
 			);
 			path = SegueCodeExample;
 			sourceTree = "<group>";
@@ -333,11 +351,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CE464791856CB3A002F423D /* ViewController.m in Sources */,
+				3CE464791856CB3A002F423D /* FirstViewController.m in Sources */,
 				3CE464701856CB3A002F423D /* AppDelegate.m in Sources */,
 				3CE4646C1856CB3A002F423D /* main.m in Sources */,
+				3C7D8FA8185ACB1B00D329C7 /* SecondViewController.m in Sources */,
 				3CE4649A1856CB96002F423D /* TestCustomReverseSegue.m in Sources */,
 				3CE4649B1856CB96002F423D /* TestCustomSegue.m in Sources */,
+				3C7D8FA5185ACA2400D329C7 /* Main_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

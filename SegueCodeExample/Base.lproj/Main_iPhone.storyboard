@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="First" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="First" id="vXZ-lx-hvc" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wj1-Jc-Roe"/>
                         <viewControllerLayoutGuide type="bottom" id="4Yu-SC-m1R"/>
@@ -19,6 +19,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KB0-FH-jHd">
                                 <rect key="frame" x="128" y="252" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98813183110000002" green="1" blue="0.74592510899999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="UVa-xb-iM1"/>
                                     <constraint firstAttribute="width" constant="64" id="aFf-3e-iOA"/>
@@ -26,9 +27,12 @@
                                 <state key="normal" title="1">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="segueToSecond:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AIc-dR-GzA"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.82013609470000004" green="1" blue="0.78875693599999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="KB0-FH-jHd" secondAttribute="centerX" id="gLM-3I-zXk"/>
                             <constraint firstAttribute="centerY" secondItem="KB0-FH-jHd" secondAttribute="centerY" id="hLj-Lo-ghq"/>
@@ -43,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="592" y="111"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="Jl1-yD-Z6Z">
             <objects>
-                <viewController storyboardIdentifier="Second" id="rvK-U1-dp3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Second" id="rvK-U1-dp3" customClass="SecondViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wwU-Mk-0WF"/>
                         <viewControllerLayoutGuide type="bottom" id="y52-Nb-hJG"/>
@@ -54,7 +58,28 @@
                     <view key="view" contentMode="scaleToFill" id="rHe-Rx-5jH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dST-Bg-ne2">
+                                <rect key="frame" x="128" y="252" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.82013609470000004" green="1" blue="0.78875693599999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="RJL-sx-Ajj"/>
+                                    <constraint firstAttribute="width" constant="64" id="fxI-UG-pTp"/>
+                                </constraints>
+                                <state key="normal" title="2">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="segueToFirst:" destination="rvK-U1-dp3" eventType="touchUpInside" id="Fh5-Ah-GeL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98813183110000002" green="1" blue="0.74592510899999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="dST-Bg-ne2" secondAttribute="centerX" id="9oY-YJ-dQ4"/>
+                            <constraint firstAttribute="centerY" secondItem="dST-Bg-ne2" secondAttribute="centerY" id="hQz-0b-Xdm"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="custom" identifier="Back" customClass="TestCustomReverseSegue" id="u3S-KG-G4y"/>
