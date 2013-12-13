@@ -72,10 +72,10 @@ XMLMappedProperty(customClass, @"customClass");
 }
     
 #define DefaultConstantDeclarationTemplate @"\
-extern const NSString *<#(ConstantName)#>;"
+extern NSString * const <#(ConstantName)#>;"
     
 #define DefaultConstantDefinitionTemplate @"\
-const NSString *<#(ConstantName)#> = @\"<#(ConstantValue)#>\";"
+NSString * const <#(ConstantName)#> = @\"<#(ConstantValue)#>\";"
     
 - (NSString *)constantDeclaration
 {
