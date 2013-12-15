@@ -167,13 +167,8 @@ withTemplateHeader:(NSString *)templateHeader
             ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
             NSArray *constantDeclarations = [vcDefinition segueConstantDeclarations];
             NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
-            if ( [result length] == 0)
-            {
-                [result appendString:constantDeclarationsString];
-            } else
-            {
-                [result appendFormat:@"\n%@", constantDeclarationsString];
-            }
+            
+            [result appendString:constantDeclarationsString joinedWith:@"\n"];
         }
     }
     
@@ -191,13 +186,27 @@ withTemplateHeader:(NSString *)templateHeader
             ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
             NSArray *constantDefinitions = [vcDefinition segueConstantDefinitions];
             NSString *constantDefinitionsString = [constantDefinitions componentsJoinedByString:@"\n"];
-            if ( [result length] == 0)
-            {
-                [result appendString:constantDefinitionsString];
-            } else
-            {
-                [result appendFormat:@"\n%@", constantDefinitionsString];
-            }
+            
+            [result appendString:constantDefinitionsString joinedWith:@"\n"];
+        }
+    }
+    
+    return result;
+}
+
+- (NSString *)addTemplateSection:(NSString *)templateSection
+{
+    NSMutableString *result = [templateSection mutableCopy];
+    
+    if ( [result length] > 0)
+    {
+        if ( [result characterAtIndex:0] != '\n')
+        {
+            [result insertString:@"\n" atIndex:0];
+        }
+        if ( [result characterAtIndex:[result length] - 1] != '\n')
+        {
+            [result appendString:@"\n"];
         }
     }
     
@@ -208,8 +217,8 @@ withTemplateHeader:(NSString *)templateHeader
 {
     return @{
              @"StoryboardName" : self.name,
-             @"SegueConstantDeclarations" : self.segueConstantDeclarations,
-             @"SegueConstantDefinitions" : self.segueConstantDefinitions
+             @"SegueConstantDeclarations" : [self addTemplateSection:self.segueConstantDeclarations],
+             @"SegueConstantDefinitions" : [self addTemplateSection:self.segueConstantDefinitions]
              };
 }
 

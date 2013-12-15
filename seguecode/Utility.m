@@ -19,3 +19,18 @@
 }
     
 @end
+
+@implementation NSMutableString (seguecode)
+
+- (void)appendString:(NSString *)aString joinedWith:(NSString *)joinString
+{
+    if ( [self length] == 0)
+    {
+        [self appendString:aString];
+    } else
+    {
+        [self appendFormat:@"%@%@", joinString, aString];
+    }
+}
+
+@end

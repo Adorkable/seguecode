@@ -21,3 +21,9 @@
 - (NSString *)segueCodeTemplateFromDict:(NSDictionary *)dict;
 
 @end
+
+@interface NSMutableString (seguecode)
+
+- (void)appendString:(NSString *)aString joinedWith:(NSString *)joinString;
+
+@end
