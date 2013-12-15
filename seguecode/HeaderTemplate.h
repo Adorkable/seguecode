@@ -25,3 +25,10 @@
 #import \"<#(StoryboardName)#>.h\"\n\
 <#(SegueConstantDefinitions)#>\
 "
+
+
+#define DefaultSegueConstantDeclarationTemplate @"\
+extern NSString * const <#(ConstantName)#>;"
+
+#define DefaultSegueConstantDefinitionTemplate @"\
+NSString * const <#(ConstantName)#> = @\"<#(ConstantValue)#>\";"

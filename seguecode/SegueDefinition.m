@@ -14,6 +14,8 @@
 
 #import "Utility.h"
 
+#import "HeaderTemplate.h"
+
 @interface SegueDefinition ()
 
 @property (strong) RXMLElement *element;
@@ -71,20 +73,14 @@ XMLMappedProperty(customClass, @"customClass");
     return self.identifier;
 }
     
-#define DefaultConstantDeclarationTemplate @"\
-extern NSString * const <#(ConstantName)#>;"
-    
-#define DefaultConstantDefinitionTemplate @"\
-NSString * const <#(ConstantName)#> = @\"<#(ConstantValue)#>\";"
-    
 - (NSString *)constantDeclaration
 {
-    return [DefaultConstantDeclarationTemplate segueCodeTemplateFromDict:[self templateMap] ];
+    return [DefaultSegueConstantDeclarationTemplate segueCodeTemplateFromDict:[self templateMap] ];
 }
 
 - (NSString *)constantDefinition
 {
-    return [DefaultConstantDefinitionTemplate segueCodeTemplateFromDict:[self templateMap] ];
+    return [DefaultSegueConstantDefinitionTemplate segueCodeTemplateFromDict:[self templateMap] ];
 }
     
 - (NSDictionary *)templateMap
