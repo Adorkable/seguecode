@@ -4,11 +4,13 @@ PODS:
   - RaptureXML (1.0.1)
 
 DEPENDENCIES:
-  - CCTemplate (~> 0.2.0)
+  - CCTemplate (from `https://github.com/yoiang/CocoaTemplateEngine`)
   - ddcli (from `https://github.com/yoiang/ddcli`)
   - RaptureXML (~> 1.0.1)
 
 EXTERNAL SOURCES:
+  CCTemplate:
+    :git: https://github.com/yoiang/CocoaTemplateEngine
   ddcli:
     :git: https://github.com/yoiang/ddcli
 

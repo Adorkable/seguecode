@@ -4,6 +4,6 @@
 target "seguecode" do
     pod 'ddcli', :git => 'https://github.com/yoiang/ddcli'
     pod 'RaptureXML', '~> 1.0.1'
-    pod 'CCTemplate', '~> 0.2.0'
+    pod 'CCTemplate', :git => 'https://github.com/yoiang/CocoaTemplateEngine'
 end
 
