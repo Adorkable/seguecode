@@ -62,10 +62,7 @@ XMLMappedProperty(customClass, @"customClass");
     
 - (NSString *)constantName
 {
-    return [NSString stringWithFormat:@"From%@%@To%@",
-            self.source.storyboardIdentifier,
-            self.identifier,
-            self.destination.storyboardIdentifier];
+    return [DefaultSegueConstant segueCodeTemplateFromDict:[self templateMapBySkipping:@[@"ConstantName"] ] ];
 }
 
 - (NSString *)constantValue
@@ -83,12 +80,38 @@ XMLMappedProperty(customClass, @"customClass");
     return [DefaultSegueConstantDefinitionTemplate segueCodeTemplateFromDict:[self templateMap] ];
 }
     
+- (NSString *)selectorDeclarations
+{
+    return [DefaultSegueSelectorDeclaration segueCodeTemplateFromDict:[self templateMap] ];
+}
+
+- (NSString *)selectorDefinitions
+{
+    return [DefaultSegueSelectorDefinition segueCodeTemplateFromDict:[self templateMap] ];
+}
+
 - (NSDictionary *)templateMap
 {
-    return @{
-             @"ConstantName" : self.constantName,
-             @"ConstantValue" : self.constantValue
-             };
+    return [self templateMapBySkipping:nil];
+}
+
+#define addIfNotSkipped(result, key, value, skipArray) \
+    if ( ![skipArray containsObject:key] ) \
+    {\
+        [result setValue:value forKey:key];\
+    }
+
+- (NSDictionary *)templateMapBySkipping:(NSArray *)skipFields
+{
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+
+    addIfNotSkipped(result, @"SegueName", self.identifier, skipFields);
+    addIfNotSkipped(result, @"ConstantName", self.constantName, skipFields);
+    addIfNotSkipped(result, @"ConstantValue", self.constantValue, skipFields);
+    addIfNotSkipped(result, @"SourceViewControllerName", self.source.storyboardIdentifier, skipFields);
+    addIfNotSkipped(result, @"DestinationViewControllerName", self.destination.storyboardIdentifier, skipFields);
+    
+    return result;
 }
 
 @end

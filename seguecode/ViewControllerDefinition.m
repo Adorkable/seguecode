@@ -14,6 +14,8 @@
 
 #import "Utility.h"
 
+#import "HeaderTemplate.h"
+
 @interface ViewControllerDefinition ()
 {
     NSMutableDictionary *_segues;
@@ -97,6 +99,66 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
         }
     }
     return result;
+}
+
+- (NSString *)categoryDeclarations:(NSString *)categoryName
+{
+    NSString *result;
+    if (self.customClass)
+    {
+        result = [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
+    }
+    return result;
+}
+
+- (NSString *)categoryDefinitions:(NSString *)categoryName
+{
+    NSString *result;
+    if (self.customClass)
+    {
+        result = [DefaultControllerCategoryDefinition segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
+    }
+    return result;
+}
+
+- (NSString *)segueSelectorDeclarations
+{
+    NSMutableString *result = [NSMutableString string];
+    for (id object in [self.segues allValues] )
+    {
+        if ( [object isKindOfClass:[SegueDefinition class] ] )
+        {
+            SegueDefinition* segueDefinition = (SegueDefinition *)object;
+            [result appendString:[segueDefinition selectorDeclarations]
+                      joinedWith:@"\n"];
+        }
+    }
+    return result;
+}
+
+- (NSString *)segueSelectorDefinitions
+{
+    NSMutableString *result = [NSMutableString string];
+    for (id object in [self.segues allValues] )
+    {
+        if ( [object isKindOfClass:[SegueDefinition class] ] )
+        {
+            SegueDefinition* segueDefinition = (SegueDefinition *)object;
+            [result appendString:[segueDefinition selectorDefinitions]
+                      joinedWith:@"\n"];
+        }
+    }
+    return result;
+}
+
+- (NSDictionary *)categoryTemplateMap:(NSString *)categoryName
+{
+    return @{
+             @"ViewControllerName" : self.customClass
+             , @"StoryboardName" : categoryName
+             , @"SegueSelectorDeclarations" : self.segueSelectorDeclarations
+             , @"SegueSelectorDefinitions" : self.segueSelectorDefinitions
+             };
 }
 
 @end

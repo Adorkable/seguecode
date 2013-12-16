@@ -28,4 +28,7 @@
 - (NSString *)constantDeclaration;
 - (NSString *)constantDefinition;
 
+- (NSString *)selectorDeclarations;
+- (NSString *)selectorDefinitions;
+
 @end

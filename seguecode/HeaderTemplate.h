@@ -15,6 +15,7 @@
 \n\
 #pragma once\n\
 <#(SegueConstantDeclarations)#>\
+<#(ControllerCategoryDeclarations)#>\
 "
 
 #define DefaultTemplateSource @"\
@@ -24,11 +25,48 @@
 \n\
 #import \"<#(StoryboardName)#>.h\"\n\
 <#(SegueConstantDefinitions)#>\
+<#(ControllerCategoryDefinitions)#>\
 "
 
+/////////////////////////////////////////////
 
 #define DefaultSegueConstantDeclarationTemplate @"\
 extern NSString * const <#(ConstantName)#>;"
 
 #define DefaultSegueConstantDefinitionTemplate @"\
 NSString * const <#(ConstantName)#> = @\"<#(ConstantValue)#>\";"
+
+#define DefaultSegueConstant @"\
+From<#(SourceViewControllerName)#><#(SegueName)#>To<#(DestinationViewControllerName)#>\
+"
+
+////////////////////////////////////////////////
+
+#define DefaultControllerCategoryDeclaration @"\
+#import \"<#(ViewControllerName)#>.h\"\n\
+@interface <#(ViewControllerName)#> (<#(StoryboardName)#>)\n\
+<#(SegueSelectorDeclarations)#>\n\
+@end\
+"
+#define DefaultControllerCategoryDefinition @"\
+@implementation <#(ViewControllerName)#> (<#(StoryboardName)#>)\n\
+<#(SegueSelectorDefinitions)#>\n\
+@end\
+"
+
+#define DefaultSegueSelectorDeclaration @"\
+- (IBAction)go<#(SegueName)#>To<#(DestinationViewControllerName)#>;\n\
+- (void)go<#(SegueName)#>To<#(DestinationViewControllerName)#>WithInfo:(id)info;\
+"
+
+#define DefaultSegueSelectorDefinition @"\
+- (IBAction)go<#(SegueName)#>To<#(DestinationViewControllerName)#>\n\
+{\n\
+    [self go<#(SegueName)#>To<#(DestinationViewControllerName)#>WithInfo:nil];\n\
+}\n\
+\n\
+- (void)go<#(SegueName)#>To<#(DestinationViewControllerName)#>WithInfo:(id)info\n\
+{\n\
+     [self performSegueWithIdentifier:<#(ConstantName)#> sender:info];\n\
+}\n\
+"

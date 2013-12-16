@@ -194,6 +194,38 @@ withTemplateHeader:(NSString *)templateHeader
     return result;
 }
 
+- (NSString *)controllerCategoryDeclarations
+{
+    NSMutableString *result = [NSMutableString string];
+    
+    for (id object in [_viewControllers allValues] )
+    {
+        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
+            [result appendString:[vcDefinition categoryDeclarations:self.name] joinedWith:@"\n\n"];
+        }
+    }
+    
+    return result;
+}
+
+- (NSString *)controllerCategoryDefinitions
+{
+    NSMutableString *result = [NSMutableString string];
+    
+    for (id object in [_viewControllers allValues] )
+    {
+        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
+            [result appendString:[vcDefinition categoryDefinitions:self.name] joinedWith:@"\n\n"];
+        }
+    }
+    
+    return result;
+}
+
 - (NSString *)addTemplateSection:(NSString *)templateSection
 {
     NSMutableString *result = [templateSection mutableCopy];
@@ -212,13 +244,16 @@ withTemplateHeader:(NSString *)templateHeader
     
     return result;
 }
-    
+
 - (NSDictionary *)templateMap
 {
     return @{
              @"StoryboardName" : self.name,
              @"SegueConstantDeclarations" : [self addTemplateSection:self.segueConstantDeclarations],
              @"SegueConstantDefinitions" : [self addTemplateSection:self.segueConstantDefinitions]
+             
+             , @"ControllerCategoryDeclarations" : [self addTemplateSection:self.controllerCategoryDeclarations]
+             , @"ControllerCategoryDefinitions" : [self addTemplateSection:self.controllerCategoryDefinitions]
              };
 }
 

@@ -25,4 +25,7 @@
 - (NSArray *)segueConstantDeclarations;
 - (NSArray *)segueConstantDefinitions;
 
+- (NSString *)categoryDeclarations:(NSString *)categoryName;
+- (NSString *)categoryDefinitions:(NSString *)categoryName;
+
 @end
