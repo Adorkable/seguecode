@@ -28,7 +28,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="segueToSecond:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AIc-dR-GzA"/>
+                                    <action selector="goForwardToSecond" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BbI-AU-eok"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -71,7 +71,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="segueToFirst:" destination="rvK-U1-dp3" eventType="touchUpInside" id="Fh5-Ah-GeL"/>
+                                    <action selector="goBackToFirst" destination="rvK-U1-dp3" eventType="touchUpInside" id="vxY-pV-0Ny"/>
                                 </connections>
                             </button>
                         </subviews>

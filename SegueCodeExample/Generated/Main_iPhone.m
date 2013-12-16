@@ -6,3 +6,29 @@
 
 NSString * const FromFirstForwardToSecond = @"Forward";
 NSString * const FromSecondBackToFirst = @"Back";
+
+@implementation FirstViewController (Main_iPhone)
+- (IBAction)goForwardToSecond
+{
+    [self goForwardToSecondWithInfo:nil];
+}
+
+- (void)goForwardToSecondWithInfo:(id)info
+{
+     [self performSegueWithIdentifier:FromFirstForwardToSecond sender:info];
+}
+
+@end
+
+@implementation SecondViewController (Main_iPhone)
+- (IBAction)goBackToFirst
+{
+    [self goBackToFirstWithInfo:nil];
+}
+
+- (void)goBackToFirstWithInfo:(id)info
+{
+     [self performSegueWithIdentifier:FromSecondBackToFirst sender:info];
+}
+
+@end

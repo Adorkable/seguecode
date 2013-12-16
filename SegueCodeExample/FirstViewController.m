@@ -30,7 +30,7 @@
 
 - (IBAction)segueToSecond:(id)sender
 {
-    [self performSegueWithIdentifier:FromFirstForwardToSecond sender:nil];
+    [self goForwardToSecond];
 }
 
 @end

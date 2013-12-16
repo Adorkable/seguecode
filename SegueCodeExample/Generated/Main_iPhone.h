@@ -7,3 +7,14 @@
 extern NSString * const FromFirstForwardToSecond;
 extern NSString * const FromSecondBackToFirst;
 
+#import "FirstViewController.h"
+@interface FirstViewController (Main_iPhone)
+- (IBAction)goForwardToSecond;
+- (void)goForwardToSecondWithInfo:(id)info;
+@end
+
+#import "SecondViewController.h"
+@interface SecondViewController (Main_iPhone)
+- (IBAction)goBackToFirst;
+- (void)goBackToFirstWithInfo:(id)info;
+@end
