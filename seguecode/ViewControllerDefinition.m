@@ -16,6 +16,8 @@
 
 #import "HeaderTemplate.h"
 
+#import <TypeForKey/NSDictionary+TypeForKey.h>
+
 @interface ViewControllerDefinition ()
 {
     NSMutableDictionary *_segues;
@@ -103,12 +105,28 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
 
 - (NSString *)categoryDeclarations:(NSString *)categoryName
 {
-    return [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
+    NSString *result;
+    NSDictionary *templateMap = [self categoryTemplateMap:categoryName];
+    
+    if ( [ [templateMap stringForKey:@"SegueSelectorDeclarations"] length] > 0)
+    {
+        result = [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
+    }
+    
+    return result;
 }
 
 - (NSString *)categoryDefinitions:(NSString *)categoryName
 {
-    return [DefaultControllerCategoryDefinition segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
+    NSString *result;
+    NSDictionary *templateMap = [self categoryTemplateMap:categoryName];
+
+    if ( [ [templateMap stringForKey:@"SegueSelectorDefinitions"] length] > 0)
+    {
+        result = [DefaultControllerCategoryDefinition segueCodeTemplateFromDict:templateMap ];
+    }
+    
+    return result;
 }
 
 - (NSString *)segueSelectorDeclarations
