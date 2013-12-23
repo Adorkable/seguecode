@@ -103,22 +103,12 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
 
 - (NSString *)categoryDeclarations:(NSString *)categoryName
 {
-    NSString *result;
-    if (self.customClass)
-    {
-        result = [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
-    }
-    return result;
+    return [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
 }
 
 - (NSString *)categoryDefinitions:(NSString *)categoryName
 {
-    NSString *result;
-    if (self.customClass)
-    {
-        result = [DefaultControllerCategoryDefinition segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
-    }
-    return result;
+    return [DefaultControllerCategoryDefinition segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
 }
 
 - (NSString *)segueSelectorDeclarations
@@ -153,8 +143,13 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
 
 - (NSDictionary *)categoryTemplateMap:(NSString *)categoryName
 {
+    NSString *viewControllerName = self.customClass;
+    if (!viewControllerName)
+    {
+        viewControllerName = @"UIViewController";
+    }
     return @{
-             @"ViewControllerName" : self.customClass
+             @"ViewControllerName" : viewControllerName
              , @"StoryboardName" : categoryName
              , @"SegueSelectorDeclarations" : self.segueSelectorDeclarations
              , @"SegueSelectorDefinitions" : self.segueSelectorDefinitions
