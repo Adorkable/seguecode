@@ -24,12 +24,15 @@
 
 - (void)appendString:(NSString *)aString joinedWith:(NSString *)joinString
 {
-    if ( [self length] == 0)
+    if ( [aString length] > 0)
     {
-        [self appendString:aString];
-    } else
-    {
-        [self appendFormat:@"%@%@", joinString, aString];
+        if ( [self length] == 0)
+        {
+            [self appendString:aString];
+        } else
+        {
+            [self appendFormat:@"%@%@", joinString, aString];
+        }
     }
 }
 
