@@ -8,15 +8,13 @@ DEPENDENCIES:
   - CCTemplate (from `https://github.com/yoiang/CocoaTemplateEngine`)
   - ddcli (from `https://github.com/yoiang/ddcli`)
   - RaptureXML (~> 1.0.1)
-  - TypeForKey (from `https://github.com/yoiang/TypeForKey`)
+  - TypeForKey
 
 EXTERNAL SOURCES:
   CCTemplate:
     :git: https://github.com/yoiang/CocoaTemplateEngine
   ddcli:
     :git: https://github.com/yoiang/ddcli
-  TypeForKey:
-    :git: https://github.com/yoiang/TypeForKey
 
 SPEC CHECKSUMS:
   CCTemplate: e7301a501c44267c35cd5306da39ee3ec8a02132
