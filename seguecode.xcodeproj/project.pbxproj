@@ -31,6 +31,16 @@
 		3CE464A41856EB75002F423D /* SegueDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464A31856EB75002F423D /* SegueDefinition.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3C18179B18ABBD310038222F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CE464391856B24A002F423D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CE464401856B24A002F423D;
+			remoteInfo = seguecode;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		3CE4643F1856B24A002F423D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -246,6 +256,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CE4648F1856CB3A002F423D /* Build configuration list for PBXNativeTarget "SegueCodeExample" */;
 			buildPhases = (
+				3C18179A18ABBD050038222F /* ShellScript */,
 				3CE4645B1856CB39002F423D /* Sources */,
 				3CE4645C1856CB39002F423D /* Frameworks */,
 				3CE4645D1856CB39002F423D /* Resources */,
@@ -253,6 +264,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3C18179C18ABBD310038222F /* PBXTargetDependency */,
 			);
 			name = SegueCodeExample;
 			productName = SegueCodeExample;
@@ -301,6 +313,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C18179A18ABBD050038222F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$BUILT_PRODUCTS_DIR/../$CONFIGURATION/seguecode -o $SRCROOT/SegueCodeExample/Generated/ $SRCROOT/SegueCodeExample/Base.lproj/Main_iPhone.storyboard";
+		};
 		3D67C46884674C64B5358D3D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +387,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C18179C18ABBD310038222F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CE464401856B24A002F423D /* seguecode */;
+			targetProxy = 3C18179B18ABBD310038222F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3CE464681856CB3A002F423D /* InfoPlist.strings */ = {
