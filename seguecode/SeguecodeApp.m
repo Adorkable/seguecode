@@ -19,6 +19,8 @@
 
 @interface SeguecodeApp ()
 {
+    BOOL _separateVc;
+    
     BOOL _help;
     BOOL _version;
 }
@@ -34,6 +36,8 @@
         // Long         Short   Argument options
         {"output-dir",     'o',    DDGetoptRequiredArgument},
         
+        {"separate-vc", 's', DDGetoptNoArgument},
+        
         {"const-prefix",   'p',    DDGetoptOptionalArgument},
         
         {"help",       'h',    DDGetoptNoArgument},
@@ -47,6 +51,7 @@
 {
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
     ddprintf(@"  -o, --output-dir DIR         Output directory\n"
+             @"  -s, --separate-vc            Store UIViewController subclass categories in individual files for each class"
 //           @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
              @"  -v, --version                Display version and exit\n"
              @"  -h, --help                   Display this help and exit\n");
@@ -78,6 +83,8 @@
     StoryboardFile *storyboardFile = [StoryboardFile storyboardFileAtPathFileName:pathFileName];
     if (storyboardFile != nil)
     {
+        storyboardFile.exportViewControllersSeparately = _separateVc;
+        
         [storyboardFile exportTo:outputPath withTemplateHeader:DefaultTemplateHeader andSource:DefaultTemplateSource];
         result = YES;
     } else

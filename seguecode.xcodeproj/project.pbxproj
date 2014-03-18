@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		02919032306C426B8C27FF0D /* libPods-seguecode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */; };
-		3C63F14D1859690C00041011 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63F14C1859690B00041011 /* Utility.m */; };
 		3C7D8FA5185ACA2400D329C7 /* Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D8FA4185ACA2400D329C7 /* Main_iPhone.m */; };
+		3C40A8B418D8BFB400963EDD /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8B318D8BFB400963EDD /* Utility.m */; };
+		3C40A8B718D8C02C00963EDD /* NSMutableDictionary+NilSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8B618D8C02C00963EDD /* NSMutableDictionary+NilSafe.m */; };
+		3C40A8BA18D8C09E00963EDD /* NSString+seguecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8B918D8C09E00963EDD /* NSString+seguecode.m */; };
+		3C40A8C018D8C10000963EDD /* NSMutableString+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8BF18D8C10000963EDD /* NSMutableString+Utility.m */; };
 		3C7D8FA8185ACB1B00D329C7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D8FA7185ACB1B00D329C7 /* SecondViewController.m */; };
 		3CE464451856B24A002F423D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE464441856B24A002F423D /* Foundation.framework */; };
 		3CE464481856B24A002F423D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE464471856B24A002F423D /* main.m */; };
@@ -55,8 +58,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C40A8B218D8BFB400963EDD /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		3C40A8B318D8BFB400963EDD /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		3C40A8B518D8C02C00963EDD /* NSMutableDictionary+NilSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+NilSafe.h"; sourceTree = "<group>"; };
+		3C40A8B618D8C02C00963EDD /* NSMutableDictionary+NilSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+NilSafe.m"; sourceTree = "<group>"; };
+		3C40A8B818D8C09E00963EDD /* NSString+seguecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+seguecode.h"; sourceTree = "<group>"; };
+		3C40A8B918D8C09E00963EDD /* NSString+seguecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+seguecode.m"; sourceTree = "<group>"; };
+		3C40A8BE18D8C10000963EDD /* NSMutableString+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utility.h"; sourceTree = "<group>"; };
+		3C40A8BF18D8C10000963EDD /* NSMutableString+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utility.m"; sourceTree = "<group>"; };
 		3C63F14B18595E3200041011 /* HeaderTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderTemplate.h; sourceTree = "<group>"; };
-		3C63F14C1859690B00041011 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		3C7D8FA3185ACA2400D329C7 /* Main_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Main_iPhone.h; sourceTree = "<group>"; };
 		3C7D8FA4185ACA2400D329C7 /* Main_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main_iPhone.m; sourceTree = "<group>"; };
 		3C7D8FA6185ACB1B00D329C7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -92,7 +102,6 @@
 		3CE464A01856E8B8002F423D /* ViewControllerDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDefinition.m; sourceTree = "<group>"; };
 		3CE464A21856EB75002F423D /* SegueDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegueDefinition.h; sourceTree = "<group>"; };
 		3CE464A31856EB75002F423D /* SegueDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegueDefinition.m; sourceTree = "<group>"; };
-		3CE464A51856F376002F423D /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-seguecode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D7C8CE4E8542C7A5393BA8 /* Pods-seguecode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecode.xcconfig"; path = "Pods/Pods-seguecode.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +129,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C40A8B118D8BFB400963EDD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				3C40A8B218D8BFB400963EDD /* Utility.h */,
+				3C40A8B318D8BFB400963EDD /* Utility.m */,
+				3C40A8B518D8C02C00963EDD /* NSMutableDictionary+NilSafe.h */,
+				3C40A8B618D8C02C00963EDD /* NSMutableDictionary+NilSafe.m */,
+				3C40A8B818D8C09E00963EDD /* NSString+seguecode.h */,
+				3C40A8B918D8C09E00963EDD /* NSString+seguecode.m */,
+				3C40A8BE18D8C10000963EDD /* NSMutableString+Utility.h */,
+				3C40A8BF18D8C10000963EDD /* NSMutableString+Utility.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		3C7D8FA2185ACA2400D329C7 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +188,7 @@
 		3CE464461856B24A002F423D /* seguecode */ = {
 			isa = PBXGroup;
 			children = (
+				3C40A8B118D8BFB400963EDD /* Utility */,
 				3CE464471856B24A002F423D /* main.m */,
 				3CE4644B1856B24A002F423D /* seguecode.1 */,
 				3CE464491856B24A002F423D /* Supporting Files */,
@@ -175,8 +200,6 @@
 				3CE464A01856E8B8002F423D /* ViewControllerDefinition.m */,
 				3CE464A21856EB75002F423D /* SegueDefinition.h */,
 				3CE464A31856EB75002F423D /* SegueDefinition.m */,
-				3CE464A51856F376002F423D /* Utility.h */,
-				3C63F14C1859690B00041011 /* Utility.m */,
 				3C63F14B18595E3200041011 /* HeaderTemplate.h */,
 			);
 			path = seguecode;
@@ -367,8 +390,11 @@
 				3CE464A11856E8B8002F423D /* ViewControllerDefinition.m in Sources */,
 				3CE464A41856EB75002F423D /* SegueDefinition.m in Sources */,
 				3CE464481856B24A002F423D /* main.m in Sources */,
-				3C63F14D1859690C00041011 /* Utility.m in Sources */,
+				3C40A8B718D8C02C00963EDD /* NSMutableDictionary+NilSafe.m in Sources */,
+				3C40A8B418D8BFB400963EDD /* Utility.m in Sources */,
+				3C40A8BA18D8C09E00963EDD /* NSString+seguecode.m in Sources */,
 				3CE4649E1856DF78002F423D /* StoryboardFile.m in Sources */,
+				3C40A8C018D8C10000963EDD /* NSMutableString+Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

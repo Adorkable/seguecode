@@ -63,6 +63,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--separate-vc"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "${PROJECT_DIR}/SegueCodeExample/Base.lproj/Main_iPhone.storyboard"
             isEnabled = "YES">
          </CommandLineArgument>

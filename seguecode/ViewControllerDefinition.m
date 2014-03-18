@@ -70,11 +70,21 @@
     }];
 }
 
-XMLMappedProperty(id, @"id");
+XMLMappedProperty(viewControllerID, @"id");
 XMLMappedProperty(storyboardIdentifier, @"storyboardIdentifier");
 XMLMappedProperty(customClass, @"customClass");
 XMLMappedProperty(sceneMemberID, @"sceneMemberID");
-    
+
+- (NSString *)customOrDefaultClass
+{
+    NSString *result = self.customClass;
+    if (result.length == 0)
+    {
+        result = @"UIViewController";
+    }
+    return result;
+}
+
 - (NSArray *)segueConstantDeclarations
 {
     NSMutableArray *result = [NSMutableArray array];

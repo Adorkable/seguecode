@@ -15,6 +15,9 @@
 @property (strong, readwrite) NSString *name;
 
 @property (readonly) NSDictionary *viewControllers;
+@property (readwrite) BOOL exportViewControllersSeparately;
+
+@property (readonly) NSString *categoryName;
     
 - (void)exportTo:(NSString *)outputPath
 withTemplateHeader:(NSString *)templateHeader

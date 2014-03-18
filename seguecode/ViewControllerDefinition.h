@@ -14,9 +14,10 @@
 
 + (instancetype)definitionFrom:(RXMLElement *)definitionElement;
 
-@property (readonly) NSString *id;
+@property (readonly) NSString *viewControllerID;
 @property (readonly) NSString *storyboardIdentifier;
 @property (readonly) NSString *customClass;
+@property (readonly) NSString *customOrDefaultClass;
 
 @property (readonly) NSString *sceneMemberID;
 

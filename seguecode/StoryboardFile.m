@@ -15,6 +15,15 @@
 
 #import "Utility.h"
 
+#define FileNameKey @"FileName"
+
+#define StoryboardNameKey @"StoryboardName"
+#define SegueConstantDeclarationsKey @"SegueConstantDeclarations"
+#define SegueConstantDefinitionsKey @"SegueConstantDefinitions"
+
+#define ControllerCategoryDeclarationsKey @"ControllerCategoryDeclarations"
+#define ControllerCategoryDefinitionsKey @"ControllerCategoryDefinitions"
+
 @interface StoryboardFile ()
 {
     NSMutableDictionary *_viewControllers;
@@ -24,7 +33,7 @@
 
 @implementation StoryboardFile
     
-    @synthesize viewControllers = _viewControllers;
+@synthesize viewControllers = _viewControllers;
 
 - (instancetype)initWithXMLRoot:(RXMLElement *)root
 {
@@ -80,13 +89,18 @@
     return result;
 }
 
++ (NSString *)separateViewControllerFileName:(NSString *)viewControllerName withCategory:(NSString *)category
+{
+    return [NSString stringWithFormat:@"%@+%@", viewControllerName, category];
+}
+
+- (NSString *)categoryName
+{
+    return self.name;
+}
+
 - (void)parseDocument:(RXMLElement *)root
 {
-/*    [root iterateWithRootXPath:@"/scenes/scene" usingBlock:^(RXMLElement *scene)
-    {
-        [self parseScene:scene];
-    }];*/
-    
     _viewControllers = [NSMutableDictionary dictionary];
     
     [root iterateWithRootXPath:@"/document/scenes/scene/objects/viewController" usingBlock:^(RXMLElement *viewController)
@@ -94,7 +108,7 @@
         ViewControllerDefinition *definition = [ViewControllerDefinition definitionFrom:viewController];
         if (definition)
         {
-            [_viewControllers setObject:definition forKey:definition.id];
+            [_viewControllers setObject:definition forKey:definition.viewControllerID];
         }
     }];
     
@@ -114,6 +128,36 @@
 withTemplateHeader:(NSString *)templateHeader
        andSource:(NSString *)templateSource
 {
+    if (self.exportViewControllersSeparately)
+    {
+        [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+            NSDictionary *templateMap = [self templateMapForViewController:definition.viewControllerID];
+            NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
+            NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
+            
+            NSString *fileName = [StoryboardFile separateViewControllerFileName:definition.customOrDefaultClass withCategory:self.categoryName];
+            [StoryboardFile exportHeader:header
+                               andSource:source
+                                  toPath:outputPath
+                             andFileName:fileName];
+        }];
+    } else
+    {
+        NSDictionary *templateMap = [self templateMap];
+        NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
+        NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
+        
+        [StoryboardFile exportHeader:header
+                           andSource:source
+                              toPath:outputPath
+                         andFileName:self.name];
+    }
+    
+    NSLog(@"Exported files for %@ to %@", self.name, outputPath);
+}
+
++ (void)exportHeader:(NSString *)header andSource:(NSString *)source toPath:(NSString *)outputPath andFileName:(NSString *)fileName
+{
     NSError *error;
     [ [NSFileManager defaultManager] createDirectoryAtPath:outputPath
                                withIntermediateDirectories:YES
@@ -122,35 +166,32 @@ withTemplateHeader:(NSString *)templateHeader
     if (error)
     {
         NSLog(@"Error when trying to create output directory %@: %@", outputPath, error);
-    //    result = NO;
+        //    result = NO;
     }
     
-    NSDictionary *templateMap = [self templateMap];
-    NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
-    NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
-    
-    NSString *headerPathFileName = [NSString stringWithFormat:@"%@/%@.h", outputPath, self.name];
+    error = nil;
+    NSString *headerPathFileName = [NSString stringWithFormat:@"%@/%@.h", outputPath, fileName];
     [header writeToFile:headerPathFileName
              atomically:NO
                encoding:NSUTF8StringEncoding
                   error:&error];
     if (error)
     {
-        NSLog(@"Error when exporting header for %@: %@", self.name, error);
+        NSLog(@"Error when exporting header %@: %@", fileName, error);
     }
     
-    NSString *sourcePathFileName = [NSString stringWithFormat:@"%@/%@.m", outputPath, self.name];
+    error = nil;
+    NSString *sourcePathFileName = [NSString stringWithFormat:@"%@/%@.m", outputPath, fileName];
     [source writeToFile:sourcePathFileName
              atomically:NO
                encoding:NSUTF8StringEncoding
                   error:&error];
     if (error)
     {
-        NSLog(@"Error when exporting source for %@: %@", self.name, error);
+        NSLog(@"Error when exporting source %@: %@", fileName, error);
     }
-    NSLog(@"Exported files for %@ to %@", self.name, outputPath);
 }
-    
+
 - (NSString *)segueConstantDeclarations
 {
     NSMutableString *result = [NSMutableString string];
@@ -201,7 +242,7 @@ withTemplateHeader:(NSString *)templateHeader
     return result;
 }
 
-- (NSString *)addTemplateSection:(NSString *)templateSection
++ (NSString *)prepareTemplateSectionFromString:(NSString *)templateSection
 {
     NSMutableString *result = [templateSection mutableCopy];
     
@@ -218,6 +259,12 @@ withTemplateHeader:(NSString *)templateHeader
     }
     
     return result;
+}
+
++ (NSString *)prepareTemplateSectionFromArray:(NSArray *)templateSection
+{
+    NSString *fromString = [templateSection componentsJoinedByString:@"\n"];
+    return [self prepareTemplateSectionFromString:fromString];
 }
 
 - (void)enumerateViewControllers:(void (^)(ViewControllerDefinition *definition, BOOL *stop))block
@@ -243,14 +290,38 @@ withTemplateHeader:(NSString *)templateHeader
 
 - (NSDictionary *)templateMap
 {
-    return @{
-             @"StoryboardName" : self.name,
-             @"SegueConstantDeclarations" : [self addTemplateSection:self.segueConstantDeclarations],
-             @"SegueConstantDefinitions" : [self addTemplateSection:self.segueConstantDefinitions]
-             
-             , @"ControllerCategoryDeclarations" : [self addTemplateSection:self.controllerCategoryDeclarations]
-             , @"ControllerCategoryDefinitions" : [self addTemplateSection:self.controllerCategoryDefinitions]
-             };
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    
+    [result setObjectNilSafe:self.name forKey:FileNameKey];
+    [result setObjectNilSafe:self.name forKey:StoryboardNameKey];
+    
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.segueConstantDeclarations] forKey:SegueConstantDeclarationsKey];
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.segueConstantDefinitions] forKey:SegueConstantDefinitionsKey];
+    
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.controllerCategoryDeclarations] forKey:ControllerCategoryDeclarationsKey];
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.controllerCategoryDefinitions] forKey:ControllerCategoryDefinitionsKey];
+    
+    return result;
+}
+
+- (NSDictionary *)templateMapForViewController:(NSString *)viewControllerName
+{
+    ViewControllerDefinition *definition = [self.viewControllers objectForKey:viewControllerName];
+    
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    
+    NSString *fileName = [StoryboardFile separateViewControllerFileName:definition.customOrDefaultClass withCategory:self.categoryName];
+    
+    [result setObjectNilSafe:fileName forKey:FileNameKey];
+    [result setObjectNilSafe:self.name forKey:StoryboardNameKey];
+    
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromArray:definition.segueConstantDeclarations] forKey:SegueConstantDeclarationsKey];
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromArray:definition.segueConstantDefinitions] forKey:SegueConstantDefinitionsKey];
+    
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDeclarations:self.name] ] forKey:ControllerCategoryDeclarationsKey];
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDefinitions:self.name] ] forKey:ControllerCategoryDefinitionsKey];
+    
+    return result;
 }
 
 @end

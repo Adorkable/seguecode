@@ -14,16 +14,6 @@
     return [self.element attribute:attributeName]; \
 }
 
-#import <CCTemplate/CCTemplate.h>
-
-@interface NSString (seguecode)
-
-- (NSString *)segueCodeTemplateFromDict:(NSDictionary *)dict;
-
-@end
-
-@interface NSMutableString (seguecode)
-
-- (void)appendString:(NSString *)aString joinedWith:(NSString *)joinString;
-
-@end
+#import "NSString+seguecode.h"
+#import "NSMutableString+seguecode.h"
+#import "NSMutableDictionary+NilSafe.h"
