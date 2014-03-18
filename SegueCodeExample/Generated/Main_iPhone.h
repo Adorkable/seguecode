@@ -4,6 +4,8 @@
 
 #pragma once
 
+#import <UIKit/UIKit.h>
+
 extern NSString * const FromFirstForwardToSecond;
 extern NSString * const FromSecondBackToFirst;
 
