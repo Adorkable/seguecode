@@ -98,23 +98,18 @@
         }
     }];
     
-    for (id object in [_viewControllers allValues] )
-    {
-        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+        for (id segueObject in [ [definition segues] allValues] )
         {
-            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
-            for (id segueObject in [ [vcDefinition segues] allValues] )
+            if ( [segueObject isKindOfClass:[SegueDefinition class] ] )
             {
-                if ( [segueObject isKindOfClass:[SegueDefinition class] ] )
-                {
-                    SegueDefinition *segueDefinition = (SegueDefinition *)segueObject;
-                    [segueDefinition setupDestinationFrom:_viewControllers];
-                }
+                SegueDefinition *segueDefinition = (SegueDefinition *)segueObject;
+                [segueDefinition setupDestinationFrom:_viewControllers];
             }
         }
-    }
+    }];
 }
-    
+
 - (void)exportTo:(NSString *)outputPath
 withTemplateHeader:(NSString *)templateHeader
        andSource:(NSString *)templateSource
@@ -160,68 +155,48 @@ withTemplateHeader:(NSString *)templateHeader
 {
     NSMutableString *result = [NSMutableString string];
     
-    for (id object in [_viewControllers allValues] )
-    {
-        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
-        {
-            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
-            NSArray *constantDeclarations = [vcDefinition segueConstantDeclarations];
-            NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
-            
-            [result appendString:constantDeclarationsString joinedWith:@"\n"];
-        }
-    }
+    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+        NSArray *constantDeclarations = [definition segueConstantDeclarations];
+        NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
+        
+        [result appendString:constantDeclarationsString joinedWith:@"\n"];
+    }];
     
     return result;
 }
     
 - (NSString *)segueConstantDefinitions
 {
-    NSMutableString *result = [NSMutableString string];
+    __block NSMutableString *result = [NSMutableString string];
     
-    for (id object in [_viewControllers allValues] )
-    {
-        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
-        {
-            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
-            NSArray *constantDefinitions = [vcDefinition segueConstantDefinitions];
-            NSString *constantDefinitionsString = [constantDefinitions componentsJoinedByString:@"\n"];
-            
-            [result appendString:constantDefinitionsString joinedWith:@"\n"];
-        }
-    }
+    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+        NSArray *constantDefinitions = [definition segueConstantDefinitions];
+        NSString *constantDefinitionsString = [constantDefinitions componentsJoinedByString:@"\n"];
+        
+        [result appendString:constantDefinitionsString joinedWith:@"\n"];
+    }];
     
     return result;
 }
 
 - (NSString *)controllerCategoryDeclarations
 {
-    NSMutableString *result = [NSMutableString string];
+    __block NSMutableString *result = [NSMutableString string];
     
-    for (id object in [_viewControllers allValues] )
-    {
-        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
-        {
-            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
-            [result appendString:[vcDefinition categoryDeclarations:self.name] joinedWith:@"\n\n"];
-        }
-    }
+    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+        [result appendString:[definition categoryDeclarations:self.name] joinedWith:@"\n\n"];
+    }];
     
     return result;
 }
 
 - (NSString *)controllerCategoryDefinitions
 {
-    NSMutableString *result = [NSMutableString string];
+    __block NSMutableString *result = [NSMutableString string];
     
-    for (id object in [_viewControllers allValues] )
-    {
-        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
-        {
-            ViewControllerDefinition *vcDefinition = (ViewControllerDefinition *)object;
-            [result appendString:[vcDefinition categoryDefinitions:self.name] joinedWith:@"\n\n"];
-        }
-    }
+    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+        [result appendString:[definition categoryDefinitions:self.name] joinedWith:@"\n\n"];
+    }];
     
     return result;
 }
@@ -243,6 +218,27 @@ withTemplateHeader:(NSString *)templateHeader
     }
     
     return result;
+}
+
+- (void)enumerateViewControllers:(void (^)(ViewControllerDefinition *definition, BOOL *stop))block
+{
+    if (block)
+    {
+        for (id object in [_viewControllers allValues] )
+        {
+            if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+            {
+                BOOL stop = NO;
+                ViewControllerDefinition *definition = object;
+                block(definition, &stop);
+                
+                if (stop)
+                {
+                    break;
+                }
+            }
+        }
+    }
 }
 
 - (NSDictionary *)templateMap
