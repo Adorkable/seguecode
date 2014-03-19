@@ -17,6 +17,8 @@
 
 #define SegueCodeAppVersion @"1.0"
 
+static SeguecodeApp *staticSharedDelegate;
+
 @interface SeguecodeApp ()
 {
     BOOL _separateVc;
@@ -29,8 +31,15 @@
 
 @implementation SeguecodeApp
 
++ (SeguecodeApp *)sharedDelegate
+{
+    return staticSharedDelegate;
+}
+
 - (void)application:(DDCliApplication *)app willParseOptions:(DDGetoptLongParser *)optionsParser
 {
+    staticSharedDelegate = self;
+    
     DDGetoptOption optionTable[] =
     {
         // Long         Short   Argument options

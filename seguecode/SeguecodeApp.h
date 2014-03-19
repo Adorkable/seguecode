@@ -10,6 +10,8 @@
 
 @interface SeguecodeApp : NSObject< DDCliApplicationDelegate >
 
++ (SeguecodeApp *)sharedDelegate;
+
 @property (readwrite, assign) NSString *outputDir;
 @property (readwrite, assign) NSString *constPrefix;
 
