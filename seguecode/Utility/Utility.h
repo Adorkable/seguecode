@@ -16,4 +16,5 @@
 
 #import "NSString+seguecode.h"
 #import "NSMutableString+seguecode.h"
+#import "NSMutableString+Utility.h"
 #import "NSMutableDictionary+NilSafe.h"

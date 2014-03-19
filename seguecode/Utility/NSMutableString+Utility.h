@@ -10,6 +10,7 @@
 
 @interface NSMutableString (Utility)
 
+- (void)appendStringNilSafe:(NSString *)aString;
 - (void)appendString:(NSString *)aString joinedWith:(NSString *)joinString;
 
 @end

@@ -116,7 +116,7 @@
         }
     }];
     
-    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
+    [self enumerateViewControllerDefinitionsByStoryboardID:^(ViewControllerDefinition *definition) {
         for (id segueObject in [ [definition segues] allValues] )
         {
             if ( [segueObject isKindOfClass:[SegueDefinition class] ] )
@@ -167,9 +167,9 @@ withTemplateHeader:(NSString *)templateHeader
 {
     if (self.exportViewControllersSeparately)
     {
-        [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
-            NSDictionary *templateMap = [self templateMapForViewController:definition.viewControllerID];
-            NSString *fileName = [StoryboardFile separateViewControllerFileName:definition.customOrDefaultClass withCategory:self.categoryName];
+        [self enumerateViewControllerClassNames:^(NSString *className, NSArray *definitions) {
+            NSDictionary *templateMap = [self templateMapForViewController:className];
+            NSString *fileName = [StoryboardFile separateViewControllerFileName:className withCategory:self.categoryName];
             
             [StoryboardFile exportTo:outputPath
                   withTemplateHeader:templateHeader
@@ -246,26 +246,48 @@ andTemplateSource:(NSString *)templateSource
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
-        NSArray *constantDeclarations = [definition segueConstantDeclarations];
-        NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
-        
-        [result appendString:constantDeclarationsString joinedWith:@"\n"];
+    [self enumerateViewControllerClassNames:^(NSString *className, NSArray *definitions) {
+        [result appendString:[self segueConstantDeclarationsForViewControllerClassName:className] joinedWith:@"\n"];
     }];
     
     return result;
 }
+
+- (NSString *)segueConstantDeclarationsForViewControllerClassName:(NSString *)className
+{
+    __block NSMutableString *result = [NSMutableString string];
     
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition) {
+        NSArray *constantDeclarations = [definition segueConstantDeclarations];
+        NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
+        
+        [result appendString:constantDeclarationsString joinedWith:@"\n"];
+    } withClassName:className];
+    
+    return result;
+}
+
 - (NSString *)segueConstantDefinitions
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
-        NSArray *constantDefinitions = [definition segueConstantDefinitions];
-        NSString *constantDefinitionsString = [constantDefinitions componentsJoinedByString:@"\n"];
-        
-        [result appendString:constantDefinitionsString joinedWith:@"\n"];
+    [self enumerateViewControllerClassNames:^(NSString *className, NSArray *definitions) {
+        [result appendString:[self segueConstantDefinitionsForViewControllerClassName:className] joinedWith:@"\n"];
     }];
+    
+    return result;
+}
+
+- (NSString *)segueConstantDefinitionsForViewControllerClassName:(NSString *)className
+{
+    __block NSMutableString *result = [NSMutableString string];
+    
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition) {
+        NSArray *constantDeclarations = [definition segueConstantDefinitions];
+        NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
+        
+        [result appendString:constantDeclarationsString joinedWith:@"\n"];
+    } withClassName:className];
     
     return result;
 }
@@ -274,22 +296,34 @@ andTemplateSource:(NSString *)templateSource
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
-        [result appendString:[definition categoryDeclarations:self.name] joinedWith:@"\n\n"];
+    [self enumerateViewControllerClassNames:^(NSString *className, NSArray *definitions) {
+        [result appendString:[self controllerCategoryDeclarationsForViewControllerClassName:className] joinedWith:@"\n"];
     }];
     
     return result;
+}
+
+- (NSString *)controllerCategoryDeclarationsForViewControllerClassName:(NSString *)className
+{
+    return [ViewControllerDefinition categoryDeclarations:[self categoryName]
+                                    forDefinitions:[self getViewControllersByClassName:className] ];
 }
 
 - (NSString *)controllerCategoryDefinitions
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
-        [result appendString:[definition categoryDefinitions:self.name] joinedWith:@"\n\n"];
+    [self enumerateViewControllerClassNames:^(NSString *className, NSArray *definitions) {
+        [result appendString:[self controllerCategoryDefinitionsForViewControllerClassName:className] joinedWith:@"\n"];
     }];
     
     return result;
+}
+
+- (NSString *)controllerCategoryDefinitionsForViewControllerClassName:(NSString *)className
+{
+    return [ViewControllerDefinition categoryDefinitions:[self categoryName]
+                                          forDefinitions:[self getViewControllersByClassName:className] ];
 }
 
 + (NSString *)prepareTemplateSectionFromString:(NSString *)templateSection
@@ -317,7 +351,7 @@ andTemplateSource:(NSString *)templateSource
     return [self prepareTemplateSectionFromString:fromString];
 }
 
-- (void)enumerateViewControllerClassNames:(void (^)(NSString *className, NSArray *definitions, BOOL *stop))block
+- (void)enumerateViewControllerClassNames:(void (^)(NSString *className, NSArray *definitions))block
 {
     if (block)
     {
@@ -328,19 +362,43 @@ andTemplateSource:(NSString *)templateSource
                 NSString *className = classNameID;
                 NSArray *definitions = [self getViewControllersByClassName:className];
                 
-                BOOL stop = NO;
-                block(className, definitions, &stop);
-                
-                if (stop)
-                {
-                    break;
-                }
+                block(className, definitions);
             }
         }
     }
 }
 
-- (void)enumerateViewControllerDefinitions:(void (^)(ViewControllerDefinition *definition, BOOL *stop))block
++ (void)enumerateViewControllerDefinitions:(NSArray *)definitions withBlock:(void (^)(ViewControllerDefinition *definition))block
+{
+    [definitions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ( [obj isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *definition = obj;
+            block(definition);
+        }
+    }];
+}
+
+- (void)enumerateViewControllerDefinitions:(void (^)(ViewControllerDefinition *definition))block withClassName:(NSString *)className
+{
+    if (block)
+    {
+        NSArray *definitions = [self getViewControllersByClassName:className];
+        [StoryboardFile enumerateViewControllerDefinitions:definitions withBlock:block];
+    }
+}
+
+- (void)enumerateViewControllerDefinitionsByClassName:(void (^)(ViewControllerDefinition *definition))block
+{
+    if (block)
+    {
+        [self enumerateViewControllerClassNames:^(NSString *enumeratedClassName, NSArray *definitions) {
+            [StoryboardFile enumerateViewControllerDefinitions:definitions withBlock:block];
+        }];
+    }
+}
+
+- (void)enumerateViewControllerDefinitionsByStoryboardID:(void (^)(ViewControllerDefinition *definition))block
 {
     if (block)
     {
@@ -350,13 +408,7 @@ andTemplateSource:(NSString *)templateSource
             {
                 ViewControllerDefinition *definition = object;
                 
-                BOOL stop = NO;
-                block(definition, &stop);
-                
-                if (stop)
-                {
-                    break;
-                }
+                block(definition);
             }
         }
     }
@@ -369,33 +421,36 @@ andTemplateSource:(NSString *)templateSource
     [result setObjectNilSafe:self.name forKey:FileNameKey];
     [result setObjectNilSafe:self.name forKey:StoryboardNameKey];
     
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.segueConstantDeclarations] forKey:SegueConstantDeclarationsKey];
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.segueConstantDefinitions] forKey:SegueConstantDefinitionsKey];
-    
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.controllerCategoryDeclarations] forKey:ControllerCategoryDeclarationsKey];
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:self.controllerCategoryDefinitions] forKey:ControllerCategoryDefinitionsKey];
+    [StoryboardFile addTo:result asTemplateSection:[self segueConstantDeclarations] forKey:SegueConstantDeclarationsKey];
+    [StoryboardFile addTo:result asTemplateSection:[self segueConstantDefinitions] forKey:SegueConstantDefinitionsKey];
+
+    [StoryboardFile addTo:result asTemplateSection:[self controllerCategoryDeclarations] forKey:ControllerCategoryDeclarationsKey];
+    [StoryboardFile addTo:result asTemplateSection:[self controllerCategoryDefinitions] forKey:ControllerCategoryDefinitionsKey];
     
     return result;
 }
 
 - (NSDictionary *)templateMapForViewController:(NSString *)viewControllerName
 {
-    ViewControllerDefinition *definition = [self.viewControllersByStoryboardID objectForKey:viewControllerName];
-    
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
-    NSString *fileName = [StoryboardFile separateViewControllerFileName:definition.customOrDefaultClass withCategory:self.categoryName];
+    NSString *fileName = [StoryboardFile separateViewControllerFileName:viewControllerName withCategory:self.categoryName];
     
     [result setObjectNilSafe:fileName forKey:FileNameKey];
     [result setObjectNilSafe:self.name forKey:StoryboardNameKey];
     
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromArray:definition.segueConstantDeclarations] forKey:SegueConstantDeclarationsKey];
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromArray:definition.segueConstantDefinitions] forKey:SegueConstantDefinitionsKey];
-    
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDeclarations:[self categoryName] ] ] forKey:ControllerCategoryDeclarationsKey];
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDefinitions:[self categoryName] ] ] forKey:ControllerCategoryDefinitionsKey];
-    
+    [StoryboardFile addTo:result asTemplateSection:[self segueConstantDeclarationsForViewControllerClassName:viewControllerName] forKey:SegueConstantDeclarationsKey];
+    [StoryboardFile addTo:result asTemplateSection:[self segueConstantDefinitionsForViewControllerClassName:viewControllerName] forKey:SegueConstantDefinitionsKey];
+
+    [StoryboardFile addTo:result asTemplateSection:[self controllerCategoryDeclarationsForViewControllerClassName:viewControllerName] forKey:ControllerCategoryDeclarationsKey];
+    [StoryboardFile addTo:result asTemplateSection:[self controllerCategoryDefinitionsForViewControllerClassName:viewControllerName] forKey:ControllerCategoryDefinitionsKey];
+  
     return result;
+}
+
++ (void)addTo:(NSMutableDictionary *)templateMap asTemplateSection:(NSString *)section forKey:(NSString *)key
+{
+    [templateMap setObject:[StoryboardFile prepareTemplateSectionFromString:section] forKey:key];
 }
 
 @end

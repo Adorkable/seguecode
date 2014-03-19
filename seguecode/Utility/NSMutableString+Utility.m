@@ -10,13 +10,21 @@
 
 @implementation NSMutableString (Utility)
 
+- (void)appendStringNilSafe:(NSString *)aString
+{
+    if (aString.length > 0)
+    {
+        [self appendString:aString];
+    }
+}
+
 - (void)appendString:(NSString *)aString joinedWith:(NSString *)joinString
 {
     if ( [aString length] > 0)
     {
         if ( [self length] == 0)
         {
-            [self appendString:aString];
+            [self appendStringNilSafe:aString];
         } else
         {
             [self appendFormat:@"%@%@", joinString, aString];

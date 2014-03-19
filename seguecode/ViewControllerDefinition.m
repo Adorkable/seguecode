@@ -113,14 +113,80 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
     return result;
 }
 
+- (NSString *)categoryDeclarationImport:(NSString *)categoryName
+{
+    NSString *result;
+    if (self.customClass)
+    {
+        result = [DefaultControllerCategoryDeclarationImport segueCodeTemplateFromDict:[self templateMap:categoryName] ];
+    }
+    return result;
+}
+
 - (NSString *)categoryDeclarations:(NSString *)categoryName
 {
     NSString *result;
-    NSDictionary *templateMap = [self categoryTemplateMap:categoryName];
+    NSDictionary *templateMap = [self templateMap:categoryName];
     
     if ( [ [templateMap stringForKey:@"SegueSelectorDeclarations"] length] > 0)
     {
-        result = [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self categoryTemplateMap:categoryName] ];
+        result = [DefaultControllerCategoryDeclaration segueCodeTemplateFromDict:[self templateMap:categoryName] ];
+    }
+    
+    return result;
+}
+
++ (NSString *)categorySection:(NSString *)sectionTemplate withCategoryName:(NSString *)categoryName forDefinitions:(NSArray *)definitions
+{
+    NSString *result;
+    
+    if (definitions.count > 0)
+    {
+        NSMutableString *segueSelectorDefinitions = [NSMutableString string];
+        NSMutableString *segueSelectorDeclarations = [NSMutableString string];
+        
+        for (id object in definitions)
+        {
+            if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+            {
+                ViewControllerDefinition *definition = object;
+                [segueSelectorDeclarations appendString:[definition segueSelectorDeclarations] joinedWith:@"\n"];
+                [segueSelectorDefinitions appendString:[definition segueSelectorDefinitions] joinedWith:@"\n"];
+            }
+        }
+        
+        id object = [definitions firstObject];
+        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *definition = object;
+            NSMutableDictionary *templateMap = [ [definition templateMap:categoryName] mutableCopy];
+            
+            [templateMap setObject:segueSelectorDeclarations forKey:@"SegueSelectorDeclarations"];
+            [templateMap setObject:segueSelectorDefinitions forKey:@"SegueSelectorDefinitions"];
+            
+            result = [sectionTemplate segueCodeTemplateFromDict:templateMap];
+        }
+    }
+    
+    return result;
+}
+
++ (NSString *)categoryDeclarations:(NSString *)categoryName forDefinitions:(NSArray *)definitions
+{
+    NSMutableString *result = [NSMutableString string];
+    
+    if (definitions.count > 0)
+    {
+        id object = [definitions firstObject];
+        if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
+        {
+            ViewControllerDefinition *definition = object;
+            
+            [result appendStringNilSafe:[definition categoryDeclarationImport:categoryName] ];
+            
+            [result appendString:[self categorySection:DefaultControllerCategoryDeclaration withCategoryName:categoryName forDefinitions:definitions] joinedWith:@"\n"];
+
+        }
     }
     
     return result;
@@ -129,7 +195,7 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
 - (NSString *)categoryDefinitions:(NSString *)categoryName
 {
     NSString *result;
-    NSDictionary *templateMap = [self categoryTemplateMap:categoryName];
+    NSDictionary *templateMap = [self templateMap:categoryName];
 
     if ( [ [templateMap stringForKey:@"SegueSelectorDefinitions"] length] > 0)
     {
@@ -137,6 +203,11 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
     }
     
     return result;
+}
+
++ (NSString *)categoryDefinitions:(NSString *)categoryName forDefinitions:(NSArray *)definitions
+{
+    return [self categorySection:DefaultControllerCategoryDefinition withCategoryName:categoryName forDefinitions:definitions];
 }
 
 - (NSString *)segueSelectorDeclarations
@@ -169,15 +240,10 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
     return result;
 }
 
-- (NSDictionary *)categoryTemplateMap:(NSString *)categoryName
+- (NSDictionary *)templateMap:(NSString *)categoryName
 {
-    NSString *viewControllerName = self.customClass;
-    if (!viewControllerName)
-    {
-        viewControllerName = @"UIViewController";
-    }
     return @{
-             @"ViewControllerName" : viewControllerName
+             @"ViewControllerName" : self.customOrDefaultClass
              , @"StoryboardName" : categoryName
              , @"SegueSelectorDeclarations" : self.segueSelectorDeclarations
              , @"SegueSelectorDefinitions" : self.segueSelectorDefinitions

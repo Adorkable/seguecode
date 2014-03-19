@@ -44,9 +44,11 @@ From<#(SourceViewControllerName)#><#(SegueName)#>To<#(DestinationViewControllerN
 
 ////////////////////////////////////////////////
 
-#define DefaultControllerCategoryDeclaration @"\
+#define DefaultControllerCategoryDeclarationImport @"\
 #import \"<#(ViewControllerName)#>.h\"\n\
-\n\
+"
+
+#define DefaultControllerCategoryDeclaration @"\
 @interface <#(ViewControllerName)#> (<#(StoryboardName)#>)\n\
 <#(SegueSelectorDeclarations)#>\n\
 @end\

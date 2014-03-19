@@ -26,7 +26,12 @@
 - (NSArray *)segueConstantDeclarations;
 - (NSArray *)segueConstantDefinitions;
 
+- (NSString *)categoryDeclarationImport:(NSString *)categoryName;
++ (NSString *)categoryDeclarations:(NSString *)categoryName forDefinitions:(NSArray *)definitions;
 - (NSString *)categoryDeclarations:(NSString *)categoryName;
++ (NSString *)categoryDefinitions:(NSString *)categoryName forDefinitions:(NSArray *)definitions;
 - (NSString *)categoryDefinitions:(NSString *)categoryName;
+
+- (NSDictionary *)templateMap:(NSString *)categoryName;
 
 @end
