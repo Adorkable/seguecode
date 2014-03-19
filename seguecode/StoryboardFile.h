@@ -14,7 +14,8 @@
     
 @property (strong, readwrite) NSString *name;
 
-@property (readonly) NSDictionary *viewControllers;
+@property (readonly) NSDictionary *viewControllersByStoryboardID;
+@property (readonly) NSDictionary *viewControllersByClassName;
 @property (readwrite) BOOL exportViewControllersSeparately;
 
 @property (readonly) NSString *categoryName;

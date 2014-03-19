@@ -26,14 +26,16 @@
 
 @interface StoryboardFile ()
 {
-    NSMutableDictionary *_viewControllers;
+    NSMutableDictionary *_viewControllersByStoryboardID;
+    NSMutableDictionary *_viewControllersByClassName;
 }
 
 @end
 
 @implementation StoryboardFile
     
-@synthesize viewControllers = _viewControllers;
+@synthesize viewControllersByStoryboardID = _viewControllersByStoryboardID;
+@synthesize viewControllersByClassName = _viewControllersByClassName;
 
 - (instancetype)initWithXMLRoot:(RXMLElement *)root
 {
@@ -101,27 +103,62 @@
 
 - (void)parseDocument:(RXMLElement *)root
 {
-    _viewControllers = [NSMutableDictionary dictionary];
+    _viewControllersByStoryboardID = [NSMutableDictionary dictionary];
+    _viewControllersByClassName = [NSMutableDictionary dictionary];
     
     [root iterateWithRootXPath:@"/document/scenes/scene/objects/viewController" usingBlock:^(RXMLElement *viewController)
     {
         ViewControllerDefinition *definition = [ViewControllerDefinition definitionFrom:viewController];
         if (definition)
         {
-            [_viewControllers setObject:definition forKey:definition.viewControllerID];
+            [_viewControllersByStoryboardID setObject:definition forKey:definition.viewControllerID];
+            [self addViewControllerByClassName:definition];
         }
     }];
     
-    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
         for (id segueObject in [ [definition segues] allValues] )
         {
             if ( [segueObject isKindOfClass:[SegueDefinition class] ] )
             {
                 SegueDefinition *segueDefinition = (SegueDefinition *)segueObject;
-                [segueDefinition setupDestinationFrom:_viewControllers];
+                [segueDefinition setupDestinationFrom:_viewControllersByStoryboardID];
             }
         }
     }];
+}
+
+- (void)addViewControllerByClassName:(ViewControllerDefinition *)definition
+{
+    if (definition)
+    {
+        if (!_viewControllersByClassName)
+        {
+            _viewControllersByClassName = [NSMutableDictionary dictionary];
+        }
+        
+        NSMutableArray *definitions = [_viewControllersByClassName objectForKey:definition.customOrDefaultClass];
+        if (!definitions)
+        {
+            definitions = [NSMutableArray array];
+            [_viewControllersByClassName setObject:definitions forKey:definition.customOrDefaultClass];
+        }
+        
+        [definitions addObject:definition];
+    }
+}
+
+- (NSArray *)getViewControllersByClassName:(NSString *)className
+{
+    NSArray *result;
+    
+    id object = [_viewControllersByClassName objectForKey:className];
+    if ( [object isKindOfClass:[NSArray class] ] )
+    {
+        result = object;
+    }
+    
+    return result;
 }
 
 - (void)exportTo:(NSString *)outputPath
@@ -130,7 +167,7 @@ withTemplateHeader:(NSString *)templateHeader
 {
     if (self.exportViewControllersSeparately)
     {
-        [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+        [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
             NSDictionary *templateMap = [self templateMapForViewController:definition.viewControllerID];
             NSString *fileName = [StoryboardFile separateViewControllerFileName:definition.customOrDefaultClass withCategory:self.categoryName];
             
@@ -207,9 +244,9 @@ andTemplateSource:(NSString *)templateSource
 
 - (NSString *)segueConstantDeclarations
 {
-    NSMutableString *result = [NSMutableString string];
+    __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
         NSArray *constantDeclarations = [definition segueConstantDeclarations];
         NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
         
@@ -223,7 +260,7 @@ andTemplateSource:(NSString *)templateSource
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
         NSArray *constantDefinitions = [definition segueConstantDefinitions];
         NSString *constantDefinitionsString = [constantDefinitions componentsJoinedByString:@"\n"];
         
@@ -237,7 +274,7 @@ andTemplateSource:(NSString *)templateSource
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
         [result appendString:[definition categoryDeclarations:self.name] joinedWith:@"\n\n"];
     }];
     
@@ -248,7 +285,7 @@ andTemplateSource:(NSString *)templateSource
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
+    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition, BOOL *stop) {
         [result appendString:[definition categoryDefinitions:self.name] joinedWith:@"\n\n"];
     }];
     
@@ -280,16 +317,40 @@ andTemplateSource:(NSString *)templateSource
     return [self prepareTemplateSectionFromString:fromString];
 }
 
-- (void)enumerateViewControllers:(void (^)(ViewControllerDefinition *definition, BOOL *stop))block
+- (void)enumerateViewControllerClassNames:(void (^)(NSString *className, NSArray *definitions, BOOL *stop))block
 {
     if (block)
     {
-        for (id object in [_viewControllers allValues] )
+        for (id classNameID in [_viewControllersByClassName allKeys] )
+        {
+            if ( [classNameID isKindOfClass:[NSString class] ] )
+            {
+                NSString *className = classNameID;
+                NSArray *definitions = [self getViewControllersByClassName:className];
+                
+                BOOL stop = NO;
+                block(className, definitions, &stop);
+                
+                if (stop)
+                {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+- (void)enumerateViewControllerDefinitions:(void (^)(ViewControllerDefinition *definition, BOOL *stop))block
+{
+    if (block)
+    {
+        for (id object in [_viewControllersByStoryboardID allValues] )
         {
             if ( [object isKindOfClass:[ViewControllerDefinition class] ] )
             {
-                BOOL stop = NO;
                 ViewControllerDefinition *definition = object;
+                
+                BOOL stop = NO;
                 block(definition, &stop);
                 
                 if (stop)
@@ -319,7 +380,7 @@ andTemplateSource:(NSString *)templateSource
 
 - (NSDictionary *)templateMapForViewController:(NSString *)viewControllerName
 {
-    ViewControllerDefinition *definition = [self.viewControllers objectForKey:viewControllerName];
+    ViewControllerDefinition *definition = [self.viewControllersByStoryboardID objectForKey:viewControllerName];
     
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
