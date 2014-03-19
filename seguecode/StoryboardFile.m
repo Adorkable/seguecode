@@ -15,6 +15,8 @@
 
 #import "Utility.h"
 
+#import "SeguecodeApp.h"
+
 #define FileNameKey @"FileName"
 
 #define StoryboardNameKey @"StoryboardName"
@@ -257,12 +259,16 @@ andTemplateSource:(NSString *)templateSource
 {
     __block NSMutableString *result = [NSMutableString string];
     
-    [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition) {
-        NSArray *constantDeclarations = [definition segueConstantDeclarations];
-        NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
-        
-        [result appendString:constantDeclarationsString joinedWith:@"\n"];
-    } withClassName:className];
+    if ( [SeguecodeApp sharedDelegate].exportConstants )
+    {
+    
+        [self enumerateViewControllerDefinitions:^(ViewControllerDefinition *definition) {
+            NSArray *constantDeclarations = [definition segueConstantDeclarations];
+            NSString *constantDeclarationsString = [constantDeclarations componentsJoinedByString:@"\n"];
+            
+            [result appendString:constantDeclarationsString joinedWith:@"\n"];
+        } withClassName:className];
+    }
     
     return result;
 }

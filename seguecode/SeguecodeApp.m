@@ -23,6 +23,8 @@ static SeguecodeApp *staticSharedDelegate;
 {
     BOOL _separateVc;
     
+    BOOL _exportConstants;
+    
     BOOL _help;
     BOOL _version;
 }
@@ -30,6 +32,8 @@ static SeguecodeApp *staticSharedDelegate;
 @end
 
 @implementation SeguecodeApp
+
+@synthesize exportConstants = _exportConstants;
 
 + (SeguecodeApp *)sharedDelegate
 {
@@ -47,6 +51,8 @@ static SeguecodeApp *staticSharedDelegate;
         
         {"separate-vc", 's', DDGetoptNoArgument},
         
+        {"export-constants", 'c', DDGetoptNoArgument},
+        
         {"const-prefix",   'p',    DDGetoptOptionalArgument},
         
         {"help",       'h',    DDGetoptNoArgument},
@@ -61,6 +67,7 @@ static SeguecodeApp *staticSharedDelegate;
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
     ddprintf(@"  -o, --output-dir DIR         Output directory\n"
              @"  -s, --separate-vc            Store UIViewController subclass categories in individual files for each class"
+             @"  -c, --export-constants       Include segue ID constants in the header"
 //           @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
              @"  -v, --version                Display version and exit\n"
              @"  -h, --help                   Display this help and exit\n");

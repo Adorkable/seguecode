@@ -15,4 +15,6 @@
 @property (readwrite, assign) NSString *outputDir;
 @property (readwrite, assign) NSString *constPrefix;
 
+@property (readonly) BOOL exportConstants;
+
 @end
