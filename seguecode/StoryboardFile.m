@@ -132,28 +132,41 @@ withTemplateHeader:(NSString *)templateHeader
     {
         [self enumerateViewControllers:^(ViewControllerDefinition *definition, BOOL *stop) {
             NSDictionary *templateMap = [self templateMapForViewController:definition.viewControllerID];
-            NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
-            NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
-            
             NSString *fileName = [StoryboardFile separateViewControllerFileName:definition.customOrDefaultClass withCategory:self.categoryName];
-            [StoryboardFile exportHeader:header
-                               andSource:source
-                                  toPath:outputPath
-                             andFileName:fileName];
+            
+            [StoryboardFile exportTo:outputPath
+                  withTemplateHeader:templateHeader
+                   andTemplateSource:templateSource
+                      andTemplateMap:templateMap
+                         andFileName:fileName];
         }];
     } else
     {
         NSDictionary *templateMap = [self templateMap];
-        NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
-        NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
         
-        [StoryboardFile exportHeader:header
-                           andSource:source
-                              toPath:outputPath
-                         andFileName:self.name];
+        [StoryboardFile exportTo:outputPath
+              withTemplateHeader:templateHeader
+               andTemplateSource:templateSource
+                  andTemplateMap:templateMap
+                     andFileName:self.name];
     }
     
     NSLog(@"Exported files for %@ to %@", self.name, outputPath);
+}
+
++ (void)exportTo:(NSString *)outputPath
+withTemplateHeader:(NSString *)templateHeader
+andTemplateSource:(NSString *)templateSource
+  andTemplateMap:(NSDictionary *)templateMap
+     andFileName:(NSString *)fileName
+{
+    NSString *header = [templateHeader segueCodeTemplateFromDict:templateMap];
+    NSString *source = [templateSource segueCodeTemplateFromDict:templateMap];
+    
+    [StoryboardFile exportHeader:header
+                       andSource:source
+                          toPath:outputPath
+                     andFileName:fileName];
 }
 
 + (void)exportHeader:(NSString *)header andSource:(NSString *)source toPath:(NSString *)outputPath andFileName:(NSString *)fileName
