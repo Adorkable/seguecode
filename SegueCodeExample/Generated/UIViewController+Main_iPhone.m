@@ -7,12 +7,12 @@
 NSString * const FromBackToFirstToFirst = @"BackToFirst";
 
 @implementation UIViewController (Main_iPhone)
-- (IBAction)goBackToFirstToFirst
+- (IBAction)segueBackToFirstFrom
 {
-    [self goBackToFirstToFirstWithInfo:nil];
+    [self segueBackToFirstFromWithInfo:nil];
 }
 
-- (void)goBackToFirstToFirstWithInfo:(id)info
+- (void)segueBackToFirstFromWithInfo:(id)info
 {
      [self performSegueWithIdentifier:FromBackToFirstToFirst sender:info];
 }

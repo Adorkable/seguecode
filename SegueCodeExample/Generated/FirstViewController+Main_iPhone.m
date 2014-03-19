@@ -9,32 +9,32 @@ NSString * const FromFirstForwardToUIVCTo = @"ForwardToUIVC";
 NSString * const FromFirstForwardTo1stSecondTo1stSecond = @"ForwardTo1stSecond";
 
 @implementation FirstViewController (Main_iPhone)
-- (IBAction)goForwardTo2ndSecondTo2ndSecond
+- (IBAction)segueForwardTo2ndSecondFromFirst
 {
-    [self goForwardTo2ndSecondTo2ndSecondWithInfo:nil];
+    [self segueForwardTo2ndSecondFromFirstWithInfo:nil];
 }
 
-- (void)goForwardTo2ndSecondTo2ndSecondWithInfo:(id)info
+- (void)segueForwardTo2ndSecondFromFirstWithInfo:(id)info
 {
      [self performSegueWithIdentifier:FromFirstForwardTo2ndSecondTo2ndSecond sender:info];
 }
 
-- (IBAction)goForwardToUIVCTo
+- (IBAction)segueForwardToUIVCFromFirst
 {
-    [self goForwardToUIVCToWithInfo:nil];
+    [self segueForwardToUIVCFromFirstWithInfo:nil];
 }
 
-- (void)goForwardToUIVCToWithInfo:(id)info
+- (void)segueForwardToUIVCFromFirstWithInfo:(id)info
 {
      [self performSegueWithIdentifier:FromFirstForwardToUIVCTo sender:info];
 }
 
-- (IBAction)goForwardTo1stSecondTo1stSecond
+- (IBAction)segueForwardTo1stSecondFromFirst
 {
-    [self goForwardTo1stSecondTo1stSecondWithInfo:nil];
+    [self segueForwardTo1stSecondFromFirstWithInfo:nil];
 }
 
-- (void)goForwardTo1stSecondTo1stSecondWithInfo:(id)info
+- (void)segueForwardTo1stSecondFromFirstWithInfo:(id)info
 {
      [self performSegueWithIdentifier:FromFirstForwardTo1stSecondTo1stSecond sender:info];
 }

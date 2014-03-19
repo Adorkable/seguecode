@@ -39,7 +39,7 @@
 
 - (IBAction)segueToFirst:(id)sender
 {
-    [self goBackToFirstFrom1stSecondToFirst];
+    [self segueBackToFirstFrom1stSecondFrom1stSecond];
 }
 
 @end

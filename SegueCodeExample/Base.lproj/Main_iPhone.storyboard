@@ -28,7 +28,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goForwardTo1stSecondTo1stSecond" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IGa-QZ-XCg"/>
+                                    <action selector="segueForwardTo1stSecondFromFirst" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w7J-2i-LAq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-tF-PuC">
@@ -43,7 +43,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goForwardToUIVCTo" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Rx-YU-pbv"/>
+                                    <action selector="segueForwardToUIVCFromFirst" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Caz-nd-sgY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -90,7 +90,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goBackToFirstToFirst" destination="qS1-Eh-nEV" eventType="touchUpInside" id="SQB-RA-Mt5"/>
+                                    <action selector="segueBackToFirstFrom" destination="qS1-Eh-nEV" eventType="touchUpInside" id="dRz-8h-XyG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -132,7 +132,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goBackToFirstFrom1stSecondToFirst" destination="rvK-U1-dp3" eventType="touchUpInside" id="YtC-TV-mQQ"/>
+                                    <action selector="segueBackToFirstFrom1stSecond" destination="rvK-U1-dp3" eventType="touchUpInside" id="mY7-Ac-aOQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -143,7 +143,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="custom" identifier="BackToFirstFrom1stSecond" customClass="TestCustomReverseSegue" id="u3S-KG-G4y"/>
+                        <segue destination="vXZ-lx-hvc" kind="custom" identifier="BackToFirst" customClass="TestCustomReverseSegue" id="u3S-KG-G4y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGI-4v-RML" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,7 +174,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goBackToFirstFrom2ndSecondToFirst" destination="5Gf-YU-RpM" eventType="touchUpInside" id="jP0-Oc-GRN"/>
+                                    <action selector="segueBackToFirstFrom2ndSecond" destination="5Gf-YU-RpM" eventType="touchUpInside" id="gDz-qq-hJA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -185,7 +185,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="custom" identifier="BackToFirstFrom2ndSecond" customClass="TestCustomReverseSegue" id="WAD-aS-FzW"/>
+                        <segue destination="vXZ-lx-hvc" kind="custom" identifier="BackToFirst" customClass="TestCustomReverseSegue" id="WAD-aS-FzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qeP-v1-7Xz" userLabel="First Responder" sceneMemberID="firstResponder"/>

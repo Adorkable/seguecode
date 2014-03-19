@@ -4,28 +4,28 @@
 
 #import "SecondViewController+Main_iPhone.h"
 
-NSString * const From1stSecondBackToFirstFrom1stSecondToFirst = @"BackToFirstFrom1stSecond";
-NSString * const From2ndSecondBackToFirstFrom2ndSecondToFirst = @"BackToFirstFrom2ndSecond";
+NSString * const From1stSecondBackToFirstToFirst = @"BackToFirst";
+NSString * const From2ndSecondBackToFirstToFirst = @"BackToFirst";
 
 @implementation SecondViewController (Main_iPhone)
-- (IBAction)goBackToFirstFrom1stSecondToFirst
+- (IBAction)segueBackToFirstFrom1stSecond
 {
-    [self goBackToFirstFrom1stSecondToFirstWithInfo:nil];
+    [self segueBackToFirstFrom1stSecondWithInfo:nil];
 }
 
-- (void)goBackToFirstFrom1stSecondToFirstWithInfo:(id)info
+- (void)segueBackToFirstFrom1stSecondWithInfo:(id)info
 {
-     [self performSegueWithIdentifier:From1stSecondBackToFirstFrom1stSecondToFirst sender:info];
+     [self performSegueWithIdentifier:From1stSecondBackToFirstToFirst sender:info];
 }
 
-- (IBAction)goBackToFirstFrom2ndSecondToFirst
+- (IBAction)segueBackToFirstFrom2ndSecond
 {
-    [self goBackToFirstFrom2ndSecondToFirstWithInfo:nil];
+    [self segueBackToFirstFrom2ndSecondWithInfo:nil];
 }
 
-- (void)goBackToFirstFrom2ndSecondToFirstWithInfo:(id)info
+- (void)segueBackToFirstFrom2ndSecondWithInfo:(id)info
 {
-     [self performSegueWithIdentifier:From2ndSecondBackToFirstFrom2ndSecondToFirst sender:info];
+     [self performSegueWithIdentifier:From2ndSecondBackToFirstToFirst sender:info];
 }
 
 @end

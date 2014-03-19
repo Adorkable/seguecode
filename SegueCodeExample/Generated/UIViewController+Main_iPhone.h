@@ -6,10 +6,8 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const FromBackToFirstToFirst;
-
 @interface UIViewController (Main_iPhone)
-- (IBAction)goBackToFirstToFirst;
-- (void)goBackToFirstToFirstWithInfo:(id)info;
+- (IBAction)segueBackToFirstFrom;
+- (void)segueBackToFirstFromWithInfo:(id)info;
 
 @end

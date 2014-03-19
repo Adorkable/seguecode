@@ -60,17 +60,17 @@ From<#(SourceViewControllerName)#><#(SegueName)#>To<#(DestinationViewControllerN
 "
 
 #define DefaultSegueSelectorDeclaration @"\
-- (IBAction)go<#(SegueName)#>To<#(DestinationViewControllerName)#>;\n\
-- (void)go<#(SegueName)#>To<#(DestinationViewControllerName)#>WithInfo:(id)info;\n\
+- (IBAction)segue<#(SegueName)#>From<#(SourceViewControllerName)#>;\n\
+- (void)segue<#(SegueName)#>From<#(SourceViewControllerName)#>WithInfo:(id)info;\n\
 "
 
 #define DefaultSegueSelectorDefinition @"\
-- (IBAction)go<#(SegueName)#>To<#(DestinationViewControllerName)#>\n\
+- (IBAction)segue<#(SegueName)#>From<#(SourceViewControllerName)#>\n\
 {\n\
-    [self go<#(SegueName)#>To<#(DestinationViewControllerName)#>WithInfo:nil];\n\
+    [self segue<#(SegueName)#>From<#(SourceViewControllerName)#>WithInfo:nil];\n\
 }\n\
 \n\
-- (void)go<#(SegueName)#>To<#(DestinationViewControllerName)#>WithInfo:(id)info\n\
+- (void)segue<#(SegueName)#>From<#(SourceViewControllerName)#>WithInfo:(id)info\n\
 {\n\
      [self performSegueWithIdentifier:<#(ConstantName)#> sender:info];\n\
 }\n\

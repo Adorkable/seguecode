@@ -6,16 +6,13 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const From1stSecondBackToFirstFrom1stSecondToFirst;
-extern NSString * const From2ndSecondBackToFirstFrom2ndSecondToFirst;
-
 #import "SecondViewController.h"
 
 @interface SecondViewController (Main_iPhone)
-- (IBAction)goBackToFirstFrom1stSecondToFirst;
-- (void)goBackToFirstFrom1stSecondToFirstWithInfo:(id)info;
+- (IBAction)segueBackToFirstFrom1stSecond;
+- (void)segueBackToFirstFrom1stSecondWithInfo:(id)info;
 
-- (IBAction)goBackToFirstFrom2ndSecondToFirst;
-- (void)goBackToFirstFrom2ndSecondToFirstWithInfo:(id)info;
+- (IBAction)segueBackToFirstFrom2ndSecond;
+- (void)segueBackToFirstFrom2ndSecondWithInfo:(id)info;
 
 @end
