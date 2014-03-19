@@ -331,8 +331,8 @@ andTemplateSource:(NSString *)templateSource
     [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromArray:definition.segueConstantDeclarations] forKey:SegueConstantDeclarationsKey];
     [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromArray:definition.segueConstantDefinitions] forKey:SegueConstantDefinitionsKey];
     
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDeclarations:self.name] ] forKey:ControllerCategoryDeclarationsKey];
-    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDefinitions:self.name] ] forKey:ControllerCategoryDefinitionsKey];
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDeclarations:[self categoryName] ] ] forKey:ControllerCategoryDeclarationsKey];
+    [result setObjectNilSafe:[StoryboardFile prepareTemplateSectionFromString:[definition categoryDefinitions:[self categoryName] ] ] forKey:ControllerCategoryDefinitionsKey];
     
     return result;
 }
