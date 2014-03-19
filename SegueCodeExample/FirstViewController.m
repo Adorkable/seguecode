@@ -8,7 +8,7 @@
 
 #import "FirstViewController.h"
 
-#import "Main_iPhone.h"
+#import "FirstViewController+Main_iPhone.h"
 
 @interface FirstViewController ()
 
@@ -30,7 +30,7 @@
 
 - (IBAction)segueToSecond:(id)sender
 {
-    [self goForwardToSecond];
+    [self goForwardTo1stSecondTo1stSecond];
 }
 
 @end
