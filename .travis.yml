@@ -1,3 +1,4 @@
 language: objective-c
 xcode_workspace: seguecode.xcworkspace
 xcode_scheme: seguecode
+before_install: gem install cocoapods
