@@ -15,7 +15,7 @@
 
 #import "HeaderTemplate.h"
 
-#define SegueCodeAppVersion @"1.0"
+#define SegueCodeAppVersion @"1.1"
 
 static SeguecodeApp *staticSharedDelegate;
 
@@ -66,8 +66,8 @@ static SeguecodeApp *staticSharedDelegate;
 {
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
     ddprintf(@"  -o, --output-dir DIR         Output directory\n"
-             @"  -s, --separate-vc            Store UIViewController subclass categories in individual files for each class"
-             @"  -c, --export-constants       Include segue ID constants in the header"
+             @"  -s, --separate-vc            Store UIViewController subclass categories in individual files for each class\n"
+             @"  -c, --export-constants       Include segue ID constants in the header\n"
 //           @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
              @"  -v, --version                Display version and exit\n"
              @"  -h, --help                   Display this help and exit\n");
@@ -120,7 +120,7 @@ static SeguecodeApp *staticSharedDelegate;
     
     if (_version)
     {
-        NSLog(@"%@ %@\n", DDCliApp, SegueCodeAppVersion);
+        ddprintf(@"%@ %@\n", DDCliApp, SegueCodeAppVersion);
         return EXIT_SUCCESS;
     }
     
