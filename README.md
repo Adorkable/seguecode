@@ -61,10 +61,10 @@ Xcode's autocorrect should help you out and fill in the name.
 ### Exporting Customization
 To further customize your export use the following parameters:
 
-* `-s` or `--separate-vc` - store UIViewController subclass categories in individual files for each class
-* `-c` or `--export-constants` - include segue ID constants in the header for direct usage
-* `-v` or `--version` - display **seguecode**'s version
-* `-h` or `--help` - display help
+* `-s` or `--squash-vcs` - Store all UIViewController and subclass categories in one file
+* `-c` or `--export-constants` - Include segue ID constants in the header for direct usage
+* `-v` or `--version` - Display **seguecode**'s version
+* `-h` or `--help` - Display help
 
 ## Contributing
 **seguecode** is a new project that will hopefully continue to grow in usefulness. If you have any ideas or suggestions on how it can better serve you please [create an issue](https://github.com/yoiang/seguecode/issues/new) labeled *feature* (check to see if the issue exists first please!). Or suggest a  pull request!

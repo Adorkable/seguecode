@@ -21,7 +21,7 @@ static SeguecodeApp *staticSharedDelegate;
 
 @interface SeguecodeApp ()
 {
-    BOOL _separateVc;
+    BOOL _squashVcs;
     
     BOOL _exportConstants;
     
@@ -46,14 +46,13 @@ static SeguecodeApp *staticSharedDelegate;
     
     DDGetoptOption optionTable[] =
     {
-        // Long         Short   Argument options
         {"output-dir",     'o',    DDGetoptRequiredArgument},
         
-        {"separate-vc", 's', DDGetoptNoArgument},
+        {"squash-vcs", 's', DDGetoptNoArgument},
         
         {"export-constants", 'c', DDGetoptNoArgument},
         
-        {"const-prefix",   'p',    DDGetoptOptionalArgument},
+//        {"const-prefix",   'p',    DDGetoptOptionalArgument},
         
         {"help",       'h',    DDGetoptNoArgument},
         {"version",    'v',    DDGetoptNoArgument},
@@ -66,7 +65,7 @@ static SeguecodeApp *staticSharedDelegate;
 {
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
     ddprintf(@"  -o, --output-dir DIR         (Required) Specify location to save generated files\n"
-             @"  -s, --separate-vc            Store UIViewController subclass categories in individual files for each class\n"
+             @"  -s, --squash-vcs             Store all UIViewController and subclass categories in one file\n"
              @"  -c, --export-constants       Include segue ID constants in the header\n"
 //           @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
              @"  -v, --version                Display seguecode's version\n"
@@ -99,7 +98,7 @@ static SeguecodeApp *staticSharedDelegate;
     StoryboardFile *storyboardFile = [StoryboardFile storyboardFileAtPathFileName:pathFileName];
     if (storyboardFile != nil)
     {
-        storyboardFile.exportViewControllersSeparately = _separateVc;
+        storyboardFile.exportViewControllersSeparately = !_squashVcs;
         
         [storyboardFile exportTo:outputPath withTemplateHeader:DefaultTemplateHeader andSource:DefaultTemplateSource];
         result = YES;

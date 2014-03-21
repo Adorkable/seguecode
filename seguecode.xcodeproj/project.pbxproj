@@ -357,7 +357,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$BUILT_PRODUCTS_DIR/../$CONFIGURATION/seguecode --separate-vc -o $SRCROOT/SegueCodeExample/Generated/ $SRCROOT/SegueCodeExample/Base.lproj/Main_iPhone.storyboard";
+			shellScript = "$BUILT_PRODUCTS_DIR/../$CONFIGURATION/seguecode -o $SRCROOT/SegueCodeExample/Generated/ $SRCROOT/SegueCodeExample/Base.lproj/Main_iPhone.storyboard";
 		};
 		3D67C46884674C64B5358D3D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
