@@ -32,12 +32,19 @@ seguecode -o OutputFolder/ ExportMe.storyboard
 
 The resulting header and source files will be exported with the same name as your storyboard file. To use them they should be included in your project and your target. 
 
+**Note**: at minimum **seguecode** expects an output location and at least one storyboard file
+
 ### Coding
-Your exported header and source files will contain constants that can be used in your `[viewController performSegueWithIdentifier:sender:]` call.
+Your exported header and source files will contain categories with selectors that describe your segue as well as optionally constants that can be used in your `[viewController performSegueWithIdentifier:sender:]` call.
 
-The resulting constants will depend on the segue *Identifier* and *Storyboard ID*s you used in your `UIStoryboard`.
+The resulting selectors and constants will depend on the segue *Identifier* and *Storyboard ID*s you used in your `UIStoryboard`.
 
-For example, if you give your segue the *Identifier* `MyHead`, the source view controller's *Storyboard ID* `Down` and the destination view controller's `MyToes` the result will be
+For example, if you give your segue the *Identifier* `MyHead`, the source view controller's *Storyboard ID* `Down` and the destination view controller's `MyToes` the results will be
+
+``` Objective-C
+- (IBAction)segueDownFromMyHead;
+- (void)segueDownFromMyHeadWithInfo:(id)info;
+```
 
 ``` Objective-C 
 NSString * const FromMyHeadDownToMyToes;
@@ -50,6 +57,14 @@ To use the constant simply include the header and call
 ```
 	
 Xcode's autocorrect should help you out and fill in the name.
+
+### Exporting Customization
+To further customize your export use the following parameters:
+
+* `-s` or `--separate-vc` - store UIViewController subclass categories in individual files for each class
+* `-c` or `--export-constants` - include segue ID constants in the header for direct usage
+* `-v` or `--version` - display **seguecode**'s version
+* `-h` or `--help` - display help
 
 ## Contributing
 **seguecode** is a new project that will hopefully continue to grow in usefulness. If you have any ideas or suggestions on how it can better serve you please [create an issue](https://github.com/yoiang/seguecode/issues/new) labeled *feature* (check to see if the issue exists first please!). Or suggest a  pull request!

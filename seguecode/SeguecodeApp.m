@@ -65,12 +65,12 @@ static SeguecodeApp *staticSharedDelegate;
 - (void)printUsage
 {
     ddprintf(@"%@: Usage [OPTIONS] <argument> first.storyboard [second.storyboard...]\n", DDCliApp);
-    ddprintf(@"  -o, --output-dir DIR         Output directory\n"
+    ddprintf(@"  -o, --output-dir DIR         (Required) Specify location to save generated files\n"
              @"  -s, --separate-vc            Store UIViewController subclass categories in individual files for each class\n"
              @"  -c, --export-constants       Include segue ID constants in the header\n"
 //           @"  -p, --const-prefix PREFIX    Prefix to prepend to constant names\n"
-             @"  -v, --version                Display version and exit\n"
-             @"  -h, --help                   Display this help and exit\n");
+             @"  -v, --version                Display seguecode's version\n"
+             @"  -h, --help                   Display help\n");
 }
 
 - (BOOL)exportStoryboardFile:(NSString *)fileName
