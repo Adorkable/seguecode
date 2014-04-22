@@ -80,7 +80,13 @@ XMLMappedProperty(sceneMemberID, @"sceneMemberID");
     NSString *result = self.customClass;
     if (result.length == 0)
     {
-        result = @"UIViewController";
+        if ( [self.element.tag isEqualToString:@"navigationController"] )
+        {
+            result = @"UINavigationController";
+        } else
+        {
+            result = @"UIViewController";
+        }
     }
     return result;
 }

@@ -117,6 +117,16 @@
             [self addViewControllerByClassName:definition];
         }
     }];
+
+    [root iterateWithRootXPath:@"/document/scenes/scene/objects/navigationController" usingBlock:^(RXMLElement *viewController)
+     {
+         ViewControllerDefinition *definition = [ViewControllerDefinition definitionFrom:viewController];
+         if (definition)
+         {
+             [_viewControllersByStoryboardID setObject:definition forKey:definition.viewControllerID];
+             [self addViewControllerByClassName:definition];
+         }
+     }];
     
     [self enumerateViewControllerDefinitionsByStoryboardID:^(ViewControllerDefinition *definition) {
         for (id segueObject in [ [definition segues] allValues] )

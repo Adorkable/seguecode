@@ -29,7 +29,7 @@
 
 - (instancetype)initWithDefinition:(RXMLElement *)definitionElement andSource:(ViewControllerDefinition *)source
 {
-    if (definitionElement)
+    if (definitionElement && ![ [definitionElement attribute:@"relationship"] isEqualToString:@"rootViewController"] )
     {
         self = [self init];
         if (self)
