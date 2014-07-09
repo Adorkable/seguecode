@@ -2,7 +2,11 @@
 **seguecode** is a support tool to use alongside `UIStoryboard` development. It provides compile-time (and eventually run-time) safeties around dealing with `UIStoryboard`s in an effort to create an error free workflow so you can focus on the important things.
 
 ## Installation
-Currently **seguecode** does not have an installation process, the only way to use it is to
+You can download the [latest release](https://github.com/yoiang/seguecode/releases/latest)
+
+or 
+
+You can make your own build:
 
 1. Clone the repo
 2. Install the appropriate **[cocoapods](http://cocoapods.org)** with `pod install`
