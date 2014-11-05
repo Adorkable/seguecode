@@ -15,6 +15,8 @@
 		3C40A8C518D8EE6A00963EDD /* FirstViewController+Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8C218D8EE6A00963EDD /* FirstViewController+Main_iPhone.m */; };
 		3C40A8C618D8EE6A00963EDD /* SecondViewController+Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8C418D8EE6A00963EDD /* SecondViewController+Main_iPhone.m */; };
 		3C40A8C918D8F50600963EDD /* UIViewController+Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8C818D8F50600963EDD /* UIViewController+Main_iPhone.m */; };
+		3C4109BF1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4109BE1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m */; };
+		3C4109C01A0AC7CA00688600 /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4109BE1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m */; };
 		3C6D391B1A0A9B9600ED24BA /* seguecode in Resources */ = {isa = PBXBuildFile; fileRef = 3C6D391A1A0A9B9600ED24BA /* seguecode */; };
 		3C6D39211A0A9E2600ED24BA /* NSNotification+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D39201A0A9E2600ED24BA /* NSNotification+Utility.m */; };
 		3C7D8FA8185ACB1B00D329C7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D8FA7185ACB1B00D329C7 /* SecondViewController.m */; };
@@ -88,6 +90,8 @@
 		3C40A8C418D8EE6A00963EDD /* SecondViewController+Main_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SecondViewController+Main_iPhone.m"; sourceTree = "<group>"; };
 		3C40A8C718D8F50600963EDD /* UIViewController+Main_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Main_iPhone.h"; sourceTree = "<group>"; };
 		3C40A8C818D8F50600963EDD /* UIViewController+Main_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Main_iPhone.m"; sourceTree = "<group>"; };
+		3C4109BD1A0AB2D900688600 /* NSMutableDictionary+RunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+RunConfig.h"; sourceTree = "<group>"; };
+		3C4109BE1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+RunConfig.m"; sourceTree = "<group>"; };
 		3C63F14B18595E3200041011 /* HeaderTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderTemplate.h; sourceTree = "<group>"; };
 		3C6D391A1A0A9B9600ED24BA /* seguecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = seguecode; sourceTree = "<group>"; };
 		3C6D391F1A0A9E2600ED24BA /* NSNotification+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+Utility.h"; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 				3CE464A21856EB75002F423D /* SegueDefinition.h */,
 				3CE464A31856EB75002F423D /* SegueDefinition.m */,
 				3C63F14B18595E3200041011 /* HeaderTemplate.h */,
+				3C4109BD1A0AB2D900688600 /* NSMutableDictionary+RunConfig.h */,
+				3C4109BE1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m */,
 			);
 			path = seguecode;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C90D00C1A0A848A0016C614 /* NSObject+Utility.m in Sources */,
+				3C4109C01A0AC7CA00688600 /* NSMutableDictionary+RunConfig.m in Sources */,
 				3C6D39211A0A9E2600ED24BA /* NSNotification+Utility.m in Sources */,
 				3CE2B9271A0A09DC00DF121D /* seguecodePlugin.m in Sources */,
 			);
@@ -539,6 +546,7 @@
 				3CE4645A1856C6BB002F423D /* SeguecodeApp.m in Sources */,
 				3CE464A11856E8B8002F423D /* ViewControllerDefinition.m in Sources */,
 				3CE464A41856EB75002F423D /* SegueDefinition.m in Sources */,
+				3C4109BF1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m in Sources */,
 				3CE464481856B24A002F423D /* main.m in Sources */,
 				3C40A8B718D8C02C00963EDD /* NSMutableDictionary+NilSafe.m in Sources */,
 				3C40A8B418D8BFB400963EDD /* Utility.m in Sources */,

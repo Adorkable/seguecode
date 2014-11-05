@@ -9,8 +9,9 @@
 #import "seguecodePlugin.h"
 
 #import "NSObject+Utility.h"
-
 #import "NSNotification+Utility.h"
+
+#import "NSMutableDictionary+RunConfig.h"
 
 static seguecodePlugin *sharedPlugin;
 
@@ -127,18 +128,66 @@ static seguecodePlugin *sharedPlugin;
     }
 }
 
+- (NSMutableDictionary *)getOrCreateRunConfigForStoryboardAtPath:(NSString *)storyboardPath
+{
+    NSMutableDictionary *result;
+
+    NSString *suffix = @".seguecode.json";
+    
+    NSString *configPath = [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], suffix];
+    
+    BOOL updateConfigFile = NO;
+
+    result = [NSMutableDictionary dictionaryWithContentsOfJSONFile:configPath];
+    if (!result)
+    {
+        result = [NSMutableDictionary dictionary];
+        result.exportConstants = NO;
+        result.squashVCS = NO;
+        updateConfigFile = YES;
+    }
+    
+    if (!result.outputDirectory)
+    {
+        result.outputDirectory = [NSString stringWithFormat:@"./Generated"];
+        updateConfigFile = YES;
+    }
+  
+    if (updateConfigFile)
+    {
+        [result writeContentsToJSONFile:configPath];
+    }
+    
+    return result;
+}
+
 - (BOOL)applyToStoryboardAtPath:(NSString *)storyboardPath
 {
     BOOL result = NO;
     if ( [self pathToSegueCode] )
     {
+        NSMutableDictionary *runConfig = [self getOrCreateRunConfigForStoryboardAtPath:storyboardPath];
+        
         NSPipe *pipe = [NSPipe pipe];
         
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [ [self pathToSegueCode] path];
 
-        NSString *outputFolder = [NSString stringWithFormat:@"%@/../Generated", [storyboardPath stringByDeletingLastPathComponent] ];
-        task.arguments = @[@"-o", outputFolder, storyboardPath];
+        NSString *outputFolder = [NSString stringWithFormat:@"%@/%@", [storyboardPath stringByDeletingLastPathComponent], runConfig.outputDirectory];
+        
+        NSMutableArray *arguments = [NSMutableArray array];
+        [arguments addObjectsFromArray:@[@"--output-dir", outputFolder] ];
+        if (runConfig.squashVCS)
+        {
+            [arguments addObject:@"--squash-vcs"];
+        }
+        if (runConfig.exportConstants)
+        {
+            [arguments addObject:@"--export-constants"];
+        }
+        [arguments addObject:storyboardPath];
+        task.arguments = arguments;
+        
         task.currentDirectoryPath = [storyboardPath stringByDeletingLastPathComponent];
         task.standardOutput = pipe;
         [task launch];
