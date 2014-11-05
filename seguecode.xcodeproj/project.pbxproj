@@ -92,6 +92,7 @@
 		3C40A8C818D8F50600963EDD /* UIViewController+Main_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Main_iPhone.m"; sourceTree = "<group>"; };
 		3C4109BD1A0AB2D900688600 /* NSMutableDictionary+RunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+RunConfig.h"; sourceTree = "<group>"; };
 		3C4109BE1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+RunConfig.m"; sourceTree = "<group>"; };
+		3C5DFEAA1A0AD9D600FF18DD /* seguecodePlugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = seguecodePlugin.xcodeproj; sourceTree = "<group>"; };
 		3C63F14B18595E3200041011 /* HeaderTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderTemplate.h; sourceTree = "<group>"; };
 		3C6D391A1A0A9B9600ED24BA /* seguecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = seguecode; sourceTree = "<group>"; };
 		3C6D391F1A0A9E2600ED24BA /* NSNotification+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+Utility.h"; sourceTree = "<group>"; };
@@ -187,6 +188,13 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		3C5DFEAB1A0AD9D600FF18DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3C6D39191A0A9B9600ED24BA /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +256,7 @@
 				3CE464431856B24A002F423D /* Frameworks */,
 				3CE464421856B24A002F423D /* Products */,
 				FF70987D59BCA2240346605D /* Pods */,
+				3C5DFEAA1A0AD9D600FF18DD /* seguecodePlugin.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -438,6 +447,12 @@
 			mainGroup = 3CE464381856B24A002F423D;
 			productRefGroup = 3CE464421856B24A002F423D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3C5DFEAB1A0AD9D600FF18DD /* Products */;
+					ProjectRef = 3C5DFEAA1A0AD9D600FF18DD /* seguecodePlugin.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3CE464401856B24A002F423D /* seguecode */,
