@@ -493,7 +493,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p ${SRCROOT}/bin\ncp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME} ${SRCROOT}/bin";
+			shellScript = "mkdir -p ${SRCROOT}/bin\ncp -f ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME} ${SRCROOT}/bin";
 		};
 		3D67C46884674C64B5358D3D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
