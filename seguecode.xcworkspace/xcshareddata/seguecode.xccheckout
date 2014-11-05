@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BB21261B-E6DA-404F-88F3-FDD70CC8EAB9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>seguecode</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>135769308420168AF7DDF8DC60BCB834AAD3928B</key>
+		<string>github.com:yoiang/seguecode.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>seguecode.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>135769308420168AF7DDF8DC60BCB834AAD3928B</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:yoiang/seguecode.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>135769308420168AF7DDF8DC60BCB834AAD3928B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>135769308420168AF7DDF8DC60BCB834AAD3928B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>seguecode</string>
+		</dict>
+	</array>
+</dict>
+</plist>
