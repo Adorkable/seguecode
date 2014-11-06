@@ -209,7 +209,7 @@ static seguecodePlugin *sharedPlugin;
         [ [editMenuItem submenu] addItem:[NSMenuItem separatorItem] ];
         
         NSMenuItem *storyboardEnabled = [ [NSMenuItem alloc] initWithTitle:@"Enable seguecode"
-                                                                    action:@selector(enableSeguecode:)
+                                                                    action:@selector(toggleEnabled:)
                                                              keyEquivalent:@""];
         [storyboardEnabled setTarget:self];
         [ [editMenuItem submenu] addItem:storyboardEnabled];
@@ -220,14 +220,24 @@ static seguecodePlugin *sharedPlugin;
     }
 }
 
-- (void)enableSeguecode:(id)sender
+- (void)toggleEnabled:(id)sender
 {
     if (self.currentlyEditingStoryboardFileName)
     {
-        [self createDefaultRunConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
-
+        if (![self enabledForStoryboardAtPath:self.currentlyEditingStoryboardFileName] )
+        {
+            [self createDefaultRunConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+        } else
+        {
+            [NSMutableDictionary removeRunConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+        }
         [self updateStoryboardEnabled];
     }
+}
+
+- (BOOL)enabledForStoryboardAtPath:(NSString *)storyboardPath
+{
+    return self.currentlyEditingStoryboardFileName && [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -235,7 +245,7 @@ static seguecodePlugin *sharedPlugin;
     BOOL result = YES;
     if (menuItem == self.storyboardEnabled)
     {
-        result = self.currentlyEditingStoryboardFileName != nil && [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName] == nil;
+        result = self.currentlyEditingStoryboardFileName != nil;
     }
     return result;
 }
@@ -244,13 +254,12 @@ static seguecodePlugin *sharedPlugin;
 {
     if (self.currentlyEditingStoryboardFileName)
     {
-        if ( [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName] )
+        [self.storyboardEnabled setEnabled:YES];
+        if ( [self enabledForStoryboardAtPath:self.currentlyEditingStoryboardFileName] )
         {
-            [self.storyboardEnabled setEnabled:NO];
             [self.storyboardEnabled setState:NSOnState];
         } else
         {
-            [self.storyboardEnabled setEnabled:YES];
             [self.storyboardEnabled setState:NSOffState];
         }
     } else

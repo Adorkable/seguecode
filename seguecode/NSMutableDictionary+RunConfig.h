@@ -23,4 +23,6 @@
 - (BOOL)writeContentsToJSONURL:(NSURL *)url;
 - (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath;
 
++ (BOOL)removeRunConfigForStoryboardAtPath:(NSString *)storyboardPath;
+
 @end

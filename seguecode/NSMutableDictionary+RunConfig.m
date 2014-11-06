@@ -12,6 +12,11 @@ NSString *const RunConfigSuffix = @".seguecode.json";
 
 @implementation NSMutableDictionary (RunConfig)
 
++ (NSString *)runConfigPathForStoryboardAtPath:(NSString *)storyboardPath
+{
+    return [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], RunConfigSuffix];
+}
+
 + (NSMutableDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path
 {
     return [self dictionaryWithContentsOfJSONURL:[ [NSURL alloc] initFileURLWithPath:path] ];
@@ -41,9 +46,7 @@ NSString *const RunConfigSuffix = @".seguecode.json";
 
 + (NSMutableDictionary *)runConfigForStoryboardAtPath:(NSString *)storyboardPath
 {
-    NSString *configPath = [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], RunConfigSuffix];
-    
-    return [NSMutableDictionary dictionaryWithContentsOfJSONFile:configPath];
+    return [NSMutableDictionary dictionaryWithContentsOfJSONFile:[self runConfigPathForStoryboardAtPath:storyboardPath] ];
 }
 
 - (BOOL)writeContentsToJSONFile:(NSString *)path
@@ -76,9 +79,7 @@ NSString *const RunConfigSuffix = @".seguecode.json";
 
 - (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath
 {
-    NSString *configPath = [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], RunConfigSuffix];
-    
-    return [self writeContentsToJSONFile:configPath];
+    return [self writeContentsToJSONFile:[NSMutableDictionary runConfigPathForStoryboardAtPath:storyboardPath] ];
 }
 
 + (NSString *)outputDirectoryKey
@@ -158,6 +159,11 @@ NSString *const RunConfigSuffix = @".seguecode.json";
     }
     
     return result;
+}
+
++ (BOOL)removeRunConfigForStoryboardAtPath:(NSString *)storyboardPath
+{
+    return [ [NSFileManager defaultManager] removeItemAtPath:[self runConfigPathForStoryboardAtPath:storyboardPath] error:nil];
 }
 
 @end
