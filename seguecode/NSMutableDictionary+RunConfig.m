@@ -8,6 +8,8 @@
 
 #import "NSMutableDictionary+RunConfig.h"
 
+NSString *const RunConfigSuffix = @".seguecode.json";
+
 @implementation NSMutableDictionary (RunConfig)
 
 + (NSMutableDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path
@@ -37,6 +39,13 @@
     return result;
 }
 
++ (NSMutableDictionary *)runConfigForStoryboardAtPath:(NSString *)storyboardPath
+{
+    NSString *configPath = [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], RunConfigSuffix];
+    
+    return [NSMutableDictionary dictionaryWithContentsOfJSONFile:configPath];
+}
+
 - (BOOL)writeContentsToJSONFile:(NSString *)path
 {
     return [self writeContentsToJSONURL:[ [NSURL alloc] initFileURLWithPath:path] ];
@@ -63,6 +72,13 @@
     }
     
     return result;
+}
+
+- (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath
+{
+    NSString *configPath = [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], RunConfigSuffix];
+    
+    return [self writeContentsToJSONFile:configPath];
 }
 
 + (NSString *)outputDirectoryKey

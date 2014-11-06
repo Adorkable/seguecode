@@ -13,11 +13,14 @@
 + (NSMutableDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path;
 + (NSMutableDictionary *)dictionaryWithContentsOfJSONURL:(NSURL *)url;
 
++ (NSMutableDictionary *)runConfigForStoryboardAtPath:(NSString *)storyboardPath;
+
 @property (readwrite) NSString *outputDirectory;
 @property (readwrite) BOOL squashVCS;
 @property (readwrite) BOOL exportConstants;
 
 - (BOOL)writeContentsToJSONFile:(NSString *)path;
 - (BOOL)writeContentsToJSONURL:(NSURL *)url;
+- (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath;
 
 @end

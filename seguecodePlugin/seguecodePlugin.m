@@ -21,6 +21,8 @@ static seguecodePlugin *sharedPlugin;
 
 @property (copy) NSString *currentlyEditingStoryboardFileName;
 
+@property (weak, readwrite) NSMenuItem *storyboardEnabled;
+
 @end
 
 @implementation seguecodePlugin
@@ -47,11 +49,17 @@ static seguecodePlugin *sharedPlugin;
     {
         self.bundle = plugin;
         
-        [self setupNotifications];
+        if ( [self pathToSegueCode] )
+        {
+            NSLog(@"seguecode found at %@", [self pathToSegueCode] );
+            
+            [self setupNotifications];
 
-        [self setupMenu];
-        
-        NSLog(@"seguecode found at %@", [self pathToSegueCode] );
+            [self setupMenu];
+        } else
+        {
+            NSLog(@"seguecode not found!");
+        }
     }
     return self;
 }
@@ -96,7 +104,10 @@ static seguecodePlugin *sharedPlugin;
         } else
         {
             NSLog(@"Unable to find file:// in %@", next);
+            self.currentlyEditingStoryboardFileName = nil;
         }
+        
+        [self updateStoryboardEnabled];
     } else
     {
         NSLog(@"Unexpected notification %@ sent to %@",
@@ -115,7 +126,17 @@ static seguecodePlugin *sharedPlugin;
         Class IBStoryboardDocument = NSClassFromString(@"IBStoryboardDocument");
         if ( [notificationObject isKindOfClass:IBStoryboardDocument] && self.currentlyEditingStoryboardFileName )
         {
-            [self applyToStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+            NSMutableDictionary *runConfig = [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+            
+            if (runConfig)
+            {
+                NSLog(@"Applying to %@", self.currentlyEditingStoryboardFileName);
+                [self applyToStoryboardAtPath:self.currentlyEditingStoryboardFileName
+                                withRunConfig:runConfig];
+            } else
+            {
+                NSLog(@"Skipping %@, not configured for usage", self.currentlyEditingStoryboardFileName);
+            }
         }
     }
 }
@@ -128,80 +149,50 @@ static seguecodePlugin *sharedPlugin;
     }
 }
 
-- (NSMutableDictionary *)getOrCreateRunConfigForStoryboardAtPath:(NSString *)storyboardPath
+- (BOOL)createDefaultRunConfigForStoryboardAtPath:(NSString *)storyboardPath
 {
-    NSMutableDictionary *result;
-
-    NSString *suffix = @".seguecode.json";
-    
-    NSString *configPath = [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], suffix];
-    
-    BOOL updateConfigFile = NO;
-
-    result = [NSMutableDictionary dictionaryWithContentsOfJSONFile:configPath];
-    if (!result)
-    {
-        result = [NSMutableDictionary dictionary];
-        result.exportConstants = NO;
-        result.squashVCS = NO;
-        updateConfigFile = YES;
-    }
-    
-    if (!result.outputDirectory)
-    {
-        result.outputDirectory = [NSString stringWithFormat:@"./Generated"];
-        updateConfigFile = YES;
-    }
-  
-    if (updateConfigFile)
-    {
-        [result writeContentsToJSONFile:configPath];
-    }
-    
-    return result;
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    result.exportConstants = NO;
+    result.squashVCS = NO;
+    result.outputDirectory = [NSString stringWithFormat:@"./Generated"];
+    return [result writeRunConfigForStoryboardAtPath:storyboardPath];
 }
 
-- (BOOL)applyToStoryboardAtPath:(NSString *)storyboardPath
+- (BOOL)applyToStoryboardAtPath:(NSString *)storyboardPath withRunConfig:(NSMutableDictionary *)runConfig
 {
-    BOOL result = NO;
-    if ( [self pathToSegueCode] )
-    {
-        NSMutableDictionary *runConfig = [self getOrCreateRunConfigForStoryboardAtPath:storyboardPath];
-        
-        NSPipe *pipe = [NSPipe pipe];
-        
-        NSTask *task = [[NSTask alloc] init];
-        task.launchPath = [ [self pathToSegueCode] path];
+    NSPipe *pipe = [NSPipe pipe];
+    
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = [ [self pathToSegueCode] path];
 
-        NSString *outputFolder = [NSString stringWithFormat:@"%@/%@", [storyboardPath stringByDeletingLastPathComponent], runConfig.outputDirectory];
-        
-        NSMutableArray *arguments = [NSMutableArray array];
-        [arguments addObjectsFromArray:@[@"--output-dir", outputFolder] ];
-        if (runConfig.squashVCS)
-        {
-            [arguments addObject:@"--squash-vcs"];
-        }
-        if (runConfig.exportConstants)
-        {
-            [arguments addObject:@"--export-constants"];
-        }
-        [arguments addObject:storyboardPath];
-        task.arguments = arguments;
-        
-        task.currentDirectoryPath = [storyboardPath stringByDeletingLastPathComponent];
-        task.standardOutput = pipe;
-        [task launch];
-        [task waitUntilExit];
-        
-        NSData *data = [ [pipe fileHandleForReading] availableData];
-        NSLog(@"seguecode result:\n%@", [ [NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
-        result = YES;
-    } else
+    NSString *outputFolder = [NSString stringWithFormat:@"%@/%@", [storyboardPath stringByDeletingLastPathComponent], runConfig.outputDirectory];
+    
+    NSMutableArray *arguments = [NSMutableArray array];
+    [arguments addObjectsFromArray:@[@"--output-dir", outputFolder] ];
+    if (runConfig.squashVCS)
     {
-        NSLog(@"Unable to find seguecode in bundle, can't run!");
-        result = NO;
+        [arguments addObject:@"--squash-vcs"];
     }
-    return result;
+    if (runConfig.exportConstants)
+    {
+        [arguments addObject:@"--export-constants"];
+    }
+    [arguments addObject:storyboardPath];
+    task.arguments = arguments;
+    
+    task.currentDirectoryPath = [storyboardPath stringByDeletingLastPathComponent];
+    task.standardOutput = pipe;
+    [task launch];
+    [task waitUntilExit];
+    
+    NSData *outputData = [ [pipe fileHandleForReading] availableData];
+    NSString *outputResult = [ [NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+    if (outputResult.length > 0)
+    {
+        NSLog(@"seguecode result:\n%@", outputResult);
+    }
+
+    return task.terminationStatus != 0;
 }
 
 - (NSURL *)pathToSegueCode
@@ -212,25 +203,64 @@ static seguecodePlugin *sharedPlugin;
 
 - (void)setupMenu
 {
-    // Create menu items, initialize UI, etc.
-    /*
-     // Sample Menu Item:
-     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-     if (menuItem) {
-     [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-     NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""];
-     [actionMenuItem setTarget:self];
-     [[menuItem submenu] addItem:actionMenuItem];
-     }*/
+    NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+    if (editMenuItem)
+    {
+        [ [editMenuItem submenu] addItem:[NSMenuItem separatorItem] ];
+        
+        NSMenuItem *storyboardEnabled = [ [NSMenuItem alloc] initWithTitle:@"Enable seguecode"
+                                                                    action:@selector(enableSeguecode:)
+                                                             keyEquivalent:@""];
+        [storyboardEnabled setTarget:self];
+        [ [editMenuItem submenu] addItem:storyboardEnabled];
+        self.storyboardEnabled = storyboardEnabled;
+    } else
+    {
+        NSLog(@"Unable to find Edit menu, cannot add menu items");
+    }
 }
-/*
-// Sample Action, for menu item:
-- (void)doMenuAction
+
+- (void)enableSeguecode:(id)sender
 {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"Hello, World"];
-    [alert runModal];
-}*/
+    if (self.currentlyEditingStoryboardFileName)
+    {
+        [self createDefaultRunConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+
+        [self updateStoryboardEnabled];
+    }
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    BOOL result = YES;
+    if (menuItem == self.storyboardEnabled)
+    {
+        result = self.currentlyEditingStoryboardFileName != nil && [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName] == nil;
+    }
+    return result;
+}
+
+- (void)updateStoryboardEnabled
+{
+    if (self.currentlyEditingStoryboardFileName)
+    {
+        if ( [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName] )
+        {
+            [self.storyboardEnabled setEnabled:NO];
+            [self.storyboardEnabled setState:NSOnState];
+        } else
+        {
+            [self.storyboardEnabled setEnabled:YES];
+            [self.storyboardEnabled setState:NSOffState];
+        }
+    } else
+    {
+        [self.storyboardEnabled setEnabled:NO];
+        [self.storyboardEnabled setState:NSOffState];
+    }
+}
+
+
 
 - (void)dealloc
 {
