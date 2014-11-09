@@ -2,6 +2,10 @@
 **seguecode** is a support tool to use alongside `UIStoryboard` development. It provides compile-time (and eventually run-time) safeties around dealing with `UIStoryboard`s in an effort to create an error free workflow so you can focus on the important things.
 
 ## Installation
+### Xcode Plugin
+Coming soon to the releases and Alcatraz! To build it yourself clone the repo and build the seguecodePlugin scheme.
+
+### Command Line
 You can download the [latest release](https://github.com/yoiang/seguecode/releases/latest)
 
 or 
