@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CE2B91B1A0A09DB00DF121D"
+               BlueprintIdentifier = "3C4B543F1A0EE8740041E9D0"
                BuildableName = "seguecodePlugin.xcplugin"
-               BlueprintName = "seguecodePlugin"
-               ReferencedContainer = "container:seguecode.xcodeproj">
+               BlueprintName = "seguecodePluginLocal"
+               ReferencedContainer = "container:seguecodePlugin.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,10 +42,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CE2B91B1A0A09DB00DF121D"
+            BlueprintIdentifier = "3C4B543F1A0EE8740041E9D0"
             BuildableName = "seguecodePlugin.xcplugin"
-            BlueprintName = "seguecodePlugin"
-            ReferencedContainer = "container:seguecode.xcodeproj">
+            BlueprintName = "seguecodePluginLocal"
+            ReferencedContainer = "container:seguecodePlugin.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CE2B91B1A0A09DB00DF121D"
+            BlueprintIdentifier = "3C4B543F1A0EE8740041E9D0"
             BuildableName = "seguecodePlugin.xcplugin"
-            BlueprintName = "seguecodePlugin"
-            ReferencedContainer = "container:seguecode.xcodeproj">
+            BlueprintName = "seguecodePluginLocal"
+            ReferencedContainer = "container:seguecodePlugin.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
