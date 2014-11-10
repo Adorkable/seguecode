@@ -295,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ${BUILT_PRODUCTS_DIR}\nrm -f seguecodePluginTmp\nmkdir -p seguecodePluginTmp\ncd seguecodePluginTmp\ngit clone https://github.com/yoiang/seguecode.git\ncd seguecode\nlatestTag=$(git describe --tags `git rev-list --tags --max-count=1`)\ncd ..\nrm -f -r -d seguecode\ncurl -O -L https://github.com/yoiang/seguecode/releases/download/$latestTag/seguecode.zip\nunzip seguecode\nmkdir -p ${SRCROOT}/bin\nmv -f seguecode ${SRCROOT}/bin";
+			shellScript = "cd \"${BUILT_PRODUCTS_DIR}\"\nrm -f seguecodePluginTmp\nmkdir -p seguecodePluginTmp\ncd seguecodePluginTmp\ngit clone https://github.com/yoiang/seguecode.git\ncd seguecode\nlatestTag=$(git describe --tags `git rev-list --tags --max-count=1`)\ncd ..\nrm -f -r -d seguecode\ncurl -O -L https://github.com/yoiang/seguecode/releases/download/$latestTag/seguecode.zip\nunzip seguecode\nmkdir -p \"${SRCROOT}/bin\"\nmv -f seguecode \"${SRCROOT}/bin\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
