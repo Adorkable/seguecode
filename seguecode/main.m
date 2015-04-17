@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ddcli/DDCommandLineInterface.h>
+#import <DDCommandLineInterface.h>
 
 int main(int argc, const char * argv[])
 {

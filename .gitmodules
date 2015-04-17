@@ -1,0 +1,3 @@
+[submodule "Library/ddcli"]
+	path = Library/ddcli
+	url = https://github.com/ddribin/ddcli.git

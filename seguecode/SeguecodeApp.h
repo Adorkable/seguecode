@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Adorkable. All rights reserved.
 //
 
-#import <ddcli/DDCliApplication.h>
+#import <DDCliApplication.h>
 
 @interface SeguecodeApp : NSObject< DDCliApplicationDelegate >
 

@@ -12,6 +12,8 @@
 	<dict>
 		<key>135769308420168AF7DDF8DC60BCB834AAD3928B</key>
 		<string>github.com:yoiang/seguecode.git</string>
+		<key>B0E6B06954F391D32E10FEBDE27034186A3BEF62</key>
+		<string>https://github.com/ddribin/ddcli.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>seguecode.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>135769308420168AF7DDF8DC60BCB834AAD3928B</key>
 		<string>..</string>
+		<key>B0E6B06954F391D32E10FEBDE27034186A3BEF62</key>
+		<string>../Library/ddcli</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:yoiang/seguecode.git</string>
@@ -28,6 +32,14 @@
 	<string>135769308420168AF7DDF8DC60BCB834AAD3928B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B0E6B06954F391D32E10FEBDE27034186A3BEF62</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ddcli</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

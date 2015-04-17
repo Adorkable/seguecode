@@ -8,14 +8,14 @@
 
 #import "SeguecodeApp.h"
 
-#import <ddcli/DDGetoptLongParser.h>
-#import <ddcli/DDCliUtil.h>
+#import <DDGetoptLongParser.h>
+#import <DDCliUtil.h>
 
 #import "StoryboardFile.h"
 
 #import "HeaderTemplate.h"
 
-#define SegueCodeAppVersion @"1.1"
+#define SegueCodeAppVersion @"1.2"
 
 static SeguecodeApp *staticSharedDelegate;
 
