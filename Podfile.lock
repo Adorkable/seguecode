@@ -4,18 +4,18 @@ PODS:
   - TypeForKey (0.1)
 
 DEPENDENCIES:
-  - CCTemplate (from `https://github.com/yoiang/CocoaTemplateEngine`)
+  - CCTemplate (from `https://github.com/xhan/CocoaTemplateEngine`)
   - RaptureXML (~> 1.0.1)
   - TypeForKey
 
 EXTERNAL SOURCES:
   CCTemplate:
-    :git: https://github.com/yoiang/CocoaTemplateEngine
+    :git: https://github.com/xhan/CocoaTemplateEngine
 
 CHECKOUT OPTIONS:
   CCTemplate:
-    :commit: 96fd3182adebf93de44a462e0680b6b3d8d0c89b
-    :git: https://github.com/yoiang/CocoaTemplateEngine
+    :commit: a9a1ce0a5a0ef0aa53d34ed0b1a22614f7ee5a91
+    :git: https://github.com/xhan/CocoaTemplateEngine
 
 SPEC CHECKSUMS:
   CCTemplate: f00efa85dad31e12b8a766b8e8198eb772c71c4f

@@ -4,7 +4,7 @@ xcodeproj 'seguecode.xcodeproj'
 target "seguecode" do
 #    pod 'ddcli', :git => 'https://github.com/ddribin/ddcli', :branch => 'master'
     pod 'RaptureXML', '~> 1.0.1'
-    pod 'CCTemplate', :git => 'https://github.com/yoiang/CocoaTemplateEngine'
+    pod 'CCTemplate', :git => 'https://github.com/xhan/CocoaTemplateEngine'
     pod 'TypeForKey'
 end
 
