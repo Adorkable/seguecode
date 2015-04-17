@@ -1,4 +1,7 @@
 # seguecode
+
+[![Travis Build Status](http://img.shields.io/travis/Adorkable/seguecode.svg?style=flat)](https://travis-ci.org/Adorkable/seguecode)
+
 **seguecode** is a support tool to use alongside `UIStoryboard` development. It provides compile-time (and eventually run-time) safeties around dealing with `UIStoryboard`s in an effort to create an error free workflow so you can focus on the important things.
 
 ## Installation
@@ -6,7 +9,7 @@
 Coming soon to the releases and Alcatraz! To build it yourself clone the repo and build the seguecodePlugin scheme.
 
 ### Command Line
-You can download the [latest release](https://github.com/yoiang/seguecode/releases/latest)
+You can download the [latest release](https://github.com/Adorkable/seguecode/releases/latest)
 
 or 
 
@@ -75,7 +78,7 @@ To further customize your export use the following parameters:
 * `-h` or `--help` - Display help
 
 ## Contributing
-**seguecode** is a new project that will hopefully continue to grow in usefulness. If you have any ideas or suggestions on how it can better serve you please [create an issue](https://github.com/yoiang/seguecode/issues/new) labeled *feature* (check to see if the issue exists first please!). Or suggest a  pull request!
+**seguecode** is a new project that will hopefully continue to grow in usefulness. If you have any ideas or suggestions on how it can better serve you please [create an issue](https://github.com/Adorkable/seguecode/issues/new) labeled *feature* (check to see if the issue exists first please!). Or suggest a  pull request!
 
 
 ## Thanks
