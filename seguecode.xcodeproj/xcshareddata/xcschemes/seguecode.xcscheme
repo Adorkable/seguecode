@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CE464401856B24A002F423D"
-               BuildableName = "seguecode"
+               BlueprintIdentifier = "3CCF86C81AF65DF600B7472E"
+               BuildableName = "seguecode.app"
                BlueprintName = "seguecode"
                ReferencedContainer = "container:seguecode.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CE464401856B24A002F423D"
-            BuildableName = "seguecode"
+            BlueprintIdentifier = "3CCF86C81AF65DF600B7472E"
+            BuildableName = "seguecode.app"
             BlueprintName = "seguecode"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>
@@ -48,11 +48,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CE464401856B24A002F423D"
-            BuildableName = "seguecode"
+            BlueprintIdentifier = "3CCF86C81AF65DF600B7472E"
+            BuildableName = "seguecode.app"
             BlueprintName = "seguecode"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>
@@ -76,11 +77,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CE464401856B24A002F423D"
-            BuildableName = "seguecode"
+            BlueprintIdentifier = "3CCF86C81AF65DF600B7472E"
+            BuildableName = "seguecode.app"
             BlueprintName = "seguecode"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>

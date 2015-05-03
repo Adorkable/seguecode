@@ -1,10 +1,11 @@
 xcodeproj 'seguecode.xcodeproj'
 # platform :ios, "6.0"
 
+use_frameworks!
+
 target "seguecode" do
-#    pod 'ddcli', :git => 'https://github.com/ddribin/ddcli', :branch => 'master'
-    pod 'RaptureXML', '~> 1.0.1'
-    pod 'CCTemplate', :git => 'https://github.com/xhan/CocoaTemplateEngine'
-    pod 'TypeForKey'
+    pod 'StoryboardKit'
+    
+    pod 'Stencil'
 end
 
