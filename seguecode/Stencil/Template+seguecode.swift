@@ -24,7 +24,7 @@ extension Template
         switch result
         {
         case .Success(let contents):
-            self.writeContents(outputPath: outputPath, fileName: fileName, contents: contents)
+            Template.writeContents(outputPath: outputPath, fileName: fileName, contents: contents)
             break
         case .Error(let error):
             NSLog("Error while rendering contents: \(error).")
@@ -32,7 +32,7 @@ extension Template
         }
     }
     
-    private func writeContents(#outputPath : NSURL, fileName : String, contents : String) {
+    private class func writeContents(#outputPath : NSURL, fileName : String, contents : String) {
         var createDirectoryError : NSError? = nil
         NSFileManager.defaultManager().createDirectoryAtURL(outputPath, withIntermediateDirectories: true, attributes: nil, error: &createDirectoryError)
         

@@ -21,7 +21,7 @@
 		3C1CE0CC1B885A2F00DA379A /* seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0741B88554D00DA379A /* seguecode.swift */; };
 		3C1CE0CD1B885A2F00DA379A /* ViewControllerClassInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0551B881E8600DA379A /* ViewControllerClassInfo+seguecode.swift */; };
 		3C1CE0CE1B885A2F00DA379A /* SegueInstanceInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE05B1B88341800DA379A /* SegueInstanceInfo+seguecode.swift */; };
-		3C1CE0CF1B885A2F00DA379A /* DefaultStencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0571B88215000DA379A /* DefaultStencil.swift */; };
+		3C1CE0CF1B885A2F00DA379A /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0571B88215000DA379A /* DefaultTemplate.swift */; };
 		3C1CE0D21B885A8200DA379A /* seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0A51B88598600DA379A /* seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0E11B885D7400DA379A /* CommandLine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0DC1B885D5300DA379A /* CommandLine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -134,7 +134,7 @@
 		3C13804A1AF7488400E417B2 /* TestCustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCustomSegue.h; sourceTree = "<group>"; };
 		3C13804B1AF7488400E417B2 /* TestCustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCustomSegue.m; sourceTree = "<group>"; };
 		3C1CE0551B881E8600DA379A /* ViewControllerClassInfo+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewControllerClassInfo+seguecode.swift"; sourceTree = "<group>"; };
-		3C1CE0571B88215000DA379A /* DefaultStencil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStencil.swift; sourceTree = "<group>"; };
+		3C1CE0571B88215000DA379A /* DefaultTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
 		3C1CE05B1B88341800DA379A /* SegueInstanceInfo+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SegueInstanceInfo+seguecode.swift"; sourceTree = "<group>"; };
 		3C1CE05D1B8841D200DA379A /* UIViewController+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+seguecode.swift"; sourceTree = "<group>"; };
 		3C1CE0601B88429100DA379A /* FirstViewController+Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirstViewController+Main_iPhone.swift"; sourceTree = "<group>"; };
@@ -295,6 +295,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3C1CE0FC1B88B66000DA379A /* Stencil */ = {
+			isa = PBXGroup;
+			children = (
+				3C1CE0FD1B88B66000DA379A /* Template+seguecode.swift */,
+			);
+			path = Stencil;
+			sourceTree = "<group>";
+		};
 		3CCF86C01AF65DF600B7472E = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +332,7 @@
 				3C1CE0951B8858F400DA379A /* main.m */,
 				3C1CE0741B88554D00DA379A /* seguecode.swift */,
 				3C1CE0541B881E5800DA379A /* StoryboardKit */,
-				3C1CE0571B88215000DA379A /* DefaultStencil.swift */,
+				3C1CE0571B88215000DA379A /* DefaultTemplate.swift */,
 				3C1CE0FC1B88B66000DA379A /* Stencil */,
 				3C1CE0CA1B8859E600DA379A /* Bundle */,
 				3C1CE0C51B8859B300DA379A /* Framework */,
@@ -664,7 +672,7 @@
 			files = (
 				3C1CE0CD1B885A2F00DA379A /* ViewControllerClassInfo+seguecode.swift in Sources */,
 				3C1CE0CE1B885A2F00DA379A /* SegueInstanceInfo+seguecode.swift in Sources */,
-				3C1CE0CF1B885A2F00DA379A /* DefaultStencil.swift in Sources */,
+				3C1CE0CF1B885A2F00DA379A /* DefaultTemplate.swift in Sources */,
 				3C1CE0FE1B88B66000DA379A /* Template+seguecode.swift in Sources */,
 				3C1CE0CC1B885A2F00DA379A /* seguecode.swift in Sources */,
 			);
