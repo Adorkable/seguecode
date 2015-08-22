@@ -35,7 +35,7 @@ public class seguecode : NSObject
                 let outputPathUrl = NSURL(fileURLWithPath: outputPath)
             {
                 self.parse(storyboardFilePathUrl, outputPath: outputPathUrl, projectName: projectName.value, exportTogether: exportTogether.value)
-                exit(EX_USAGE)
+                exit(EX_OK)
             } else
             {
                 cli.printUsage()
@@ -70,6 +70,8 @@ public class seguecode : NSObject
                 {
                     self.exportSeperately(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName : projectName)
                 }
+                self.exportSharedDefinitions(outputPath: outputPath, projectName: projectName)
+                
             } else if let error = result.1
             {
                 NSLog("Error while parsing storyboard \(storyboardFilePathString): \(error)")
@@ -138,13 +140,11 @@ public class seguecode : NSObject
     
     internal class func exportTogether(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
     
-        var contextDictionary : [String : AnyObject]
-        
         let fileName = storyboardFileName + ".swift"
         
         if let fileStencilContext = self.fileStencilContext(outputPath: outputPath, fileName: fileName, projectName: projectName)
         {
-            contextDictionary = fileStencilContext
+            var contextDictionary = fileStencilContext
             
             var viewControllers = [ [String : AnyObject] ]()
             for viewControllerClass in application.viewControllerClasses
@@ -166,7 +166,20 @@ public class seguecode : NSObject
                 // TODO: delete output file? output empty file?
                 NSLog("No information to export")
             }
-
+        }
+    }
+    
+    internal class func exportSharedDefinitions(#outputPath : NSURL, projectName : String?) {
+        var contextDictionary : [String : AnyObject]
+        
+        let fileName = "UIViewController+seguecode.swift"
+        
+        if let fileStencilContext = self.fileStencilContext(outputPath: outputPath, fileName: fileName, projectName: projectName)
+        {
+            var contextDictionary = fileStencilContext
+            
+            let stencilContext = Context(dictionary: contextDictionary)
+            Template.write(templateString: DefaultTemplate.sharedFile, outputPath: outputPath, fileName: fileName, context: stencilContext)
         }
     }
     
