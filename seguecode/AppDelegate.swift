@@ -17,38 +17,71 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     
-    var outputDirectory : NSURL?
-
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        for argument in NSProcessInfo.processInfo().arguments
+        
+        var outputDirectory : NSURL?
+        var storyboardFilePath : NSURL?
+        var projectName : String?
+        
+        let arguments = NSProcessInfo.processInfo().arguments
+        var index = 0
+        while index < arguments.count
         {
+            if let argument = arguments[index] as? String
+            {
+                if argument == "--outputPath"
+                {
+                    index += 1
+                    outputDirectory = NSURL(fileURLWithPath: arguments[index] as! String)
+                } else if argument == "--storyboardFile"
+                {
+                    index += 1
+                    storyboardFilePath = NSURL(fileURLWithPath: arguments[index] as! String)
+                } else if argument == "--projectName"
+                {
+                    index += 1
+                    projectName = arguments[index] as? String
+                }
+            }
             
+            index += 1
         }
         
         var applicationInfo = ApplicationInfo()
         
-        let storyboardFileName = "/Users/ian/Documents/Adorkable/seguecode/Example/iOS/Base.lproj/Main_iPhone.storyboard"
-        
-        let result = StoryboardFileParser.parse(applicationInfo, pathFileName: storyboardFileName)
-        
-        self.outputDirectory = NSURL(fileURLWithPath: "/Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated")
-        
-        if let storyboard = result.0
+        if let storyboardFilePath = storyboardFilePath,
+            let storyboardFilePathString = storyboardFilePath.path,
+            let storyboardFileName = storyboardFilePath.lastPathComponent?.stringByDeletingPathExtension
         {
-            self.export(outputPath: self.outputDirectory!, application: applicationInfo, storyboard: storyboard, storyboardFileName: "Main_iPhone", projectName : "Example")
-        } else if let error = result.1
-        {
-            NSLog("Error while parsing storyboard \(storyboardFileName): \(error)")
+            
+            let result = StoryboardFileParser.parse(applicationInfo, pathFileName: storyboardFilePathString)
+
+            if let outputDirectory = outputDirectory
+            {
+                if let storyboard = result.0
+                {
+                    self.export(outputPath: outputDirectory, application: applicationInfo, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName : projectName)
+                } else if let error = result.1
+                {
+                    NSLog("Error while parsing storyboard \(storyboardFilePathString): \(error)")
+                } else
+                {
+                    NSLog("Unknown Error while parsing storyboard \(storyboardFilePathString)")
+                }
+            } else
+            {
+                NSLog("Need to specify --outputPath with a valid path")
+            }
         } else
         {
-            NSLog("Unknown Error while parsing storyboard \(storyboardFileName)")
+            NSLog("Need to specify --storyboardFilePath with a valid Storyboard file")
         }
         
         NSApplication.sharedApplication().stop(nil)
     }
     
-    func export(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String) {
+    func export(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
         
         for viewControllerClass in application.viewControllerClasses
         {
