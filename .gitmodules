@@ -1,0 +1,3 @@
+[submodule "Library/CommandLine"]
+	path = Library/CommandLine
+	url = https://github.com/jatoben/CommandLine.git
