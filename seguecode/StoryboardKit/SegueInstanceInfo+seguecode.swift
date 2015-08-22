@@ -36,13 +36,38 @@ extension SegueInstanceInfo
     func segueCaseStencilContext() -> [String : String]? {
         var result : [String : String]?
         
-        if let segueCaseName = self.segueCaseName,
-            let segueCaseValue = self.segueCaseValue
+        if let segueCaseValue = self.segueCaseValue
         {
-            result = [
-                DefaultStencil.Keys.SegueCase.Name : segueCaseName,
+            var context = [
                 DefaultStencil.Keys.SegueCase.Value : segueCaseValue
             ]
+            
+            var minimumRequirement = false
+            
+            if let identifier = self.identifier
+            {
+                context[DefaultStencil.Keys.SegueCase.Identifier] = identifier
+                minimumRequirement = true
+            }
+            
+            if let source = self.source.value,
+                let sourceIdentifier = source.storyboardIdentifier
+            {
+                context[DefaultStencil.Keys.SegueCase.SourceIdentifier] = sourceIdentifier
+                minimumRequirement = true
+            }
+
+            if let destination = self.destination.value,
+                let destinationIdentifier = destination.storyboardIdentifier
+            {
+                context[DefaultStencil.Keys.SegueCase.DestinationIdentifier] = destinationIdentifier
+                minimumRequirement = true
+            }
+
+            if minimumRequirement == true
+            {
+                result = context
+            }
         }
         
         return result
@@ -51,12 +76,33 @@ extension SegueInstanceInfo
     func peformFunctionStencilContext() -> [String : String]? {
         var result : [String : String]?
         
-        if let segueCaseName = self.segueCaseName
+        var context = [String : String]()
+        
+        var minimumRequirement = false
+        
+        if let identifier = self.identifier
         {
-            result = [
-                DefaultStencil.Keys.PerformFunction.Name : segueCaseName,
-                DefaultStencil.Keys.PerformFunction.Segue : segueCaseName
-            ]
+            context[DefaultStencil.Keys.SegueCase.Identifier] = identifier
+            minimumRequirement = true
+        }
+        
+        if let source = self.source.value,
+            let sourceIdentifier = source.storyboardIdentifier
+        {
+            context[DefaultStencil.Keys.SegueCase.SourceIdentifier] = sourceIdentifier
+            minimumRequirement = true
+        }
+        
+        if let destination = self.destination.value,
+            let destinationIdentifier = destination.storyboardIdentifier
+        {
+            context[DefaultStencil.Keys.SegueCase.DestinationIdentifier] = destinationIdentifier
+            minimumRequirement = true
+        }
+        
+        if minimumRequirement == true
+        {
+            result = context
         }
         
         return result
