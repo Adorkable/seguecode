@@ -9,14 +9,14 @@ import UIKit
 
 extension FirstViewController {
 
-   enum Segue : String, SegueProtocol {
-       case FirstGoToSecondSecond = "GoTo"
-       case FirstForwardToFirstSecond = "ForwardTo"
-       case FirstForwardToUIVC = "ForwardToUIVC"
+   struct Segue {
+       static let FirstForwardToUIVC = SegueObject(identifier: "ForwardToUIVC")
+       static let FirstGoToSecondSecond = SegueObject(identifier: "GoTo")
+       static let FirstForwardToFirstSecond = SegueObject(identifier: "ForwardTo")
+   }
 
-       var identifier : String {
-           return self.rawValue
-       }
+   @IBAction func performFirstForwardToUIVC(sender : AnyObject? = nil) {
+       self.performSegue(FirstViewController.Segue.FirstForwardToUIVC, sender: sender)
    }
 
    @IBAction func performFirstGoToSecondSecond(sender : AnyObject? = nil) {
@@ -25,9 +25,5 @@ extension FirstViewController {
 
    @IBAction func performFirstForwardToFirstSecond(sender : AnyObject? = nil) {
        self.performSegue(FirstViewController.Segue.FirstForwardToFirstSecond, sender: sender)
-   }
-
-   @IBAction func performFirstForwardToUIVC(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segue.FirstForwardToUIVC, sender: sender)
    }
 }

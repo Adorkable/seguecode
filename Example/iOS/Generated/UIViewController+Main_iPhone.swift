@@ -8,11 +8,10 @@
 import UIKit
 
 extension UIViewController {
-    
-    struct Segue
-    {
-        static let BackToFirst = SegueObject(identifier: "BackToFirst")
-    }
+
+   struct Segue {
+       static let BackToFirst = SegueObject(identifier: "BackTo")
+   }
 
    @IBAction func performBackToFirst(sender : AnyObject? = nil) {
        self.performSegue(UIViewController.Segue.BackToFirst, sender: sender)
