@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0630"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1CE07C1B88572900DA379A"
-               BuildableName = "seguecode"
-               BlueprintName = "seguecode"
-               ReferencedContainer = "container:seguecode.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CCF86D81AF65DF600B7472E"
-               BuildableName = "seguecodeTests.xctest"
-               BlueprintName = "seguecodeTests"
+               BlueprintIdentifier = "3C1CE0871B8857B800DA379A"
+               BuildableName = "seguecode.bundle"
+               BlueprintName = "seguecodeBundle"
                ReferencedContainer = "container:seguecode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CCF86D81AF65DF600B7472E"
-               BuildableName = "seguecodeTests.xctest"
-               BlueprintName = "seguecodeTests"
-               ReferencedContainer = "container:seguecode.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -84,15 +60,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated/"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--projectName Example"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "--storyboardFile /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Base.lproj/Main_iPhone.storyboard"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--project Example"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -105,16 +81,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C1CE07C1B88572900DA379A"
-            BuildableName = "seguecode"
-            BlueprintName = "seguecode"
+            BlueprintIdentifier = "3C1CE0871B8857B800DA379A"
+            BuildableName = "seguecode.bundle"
+            BlueprintName = "seguecodeBundle"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
