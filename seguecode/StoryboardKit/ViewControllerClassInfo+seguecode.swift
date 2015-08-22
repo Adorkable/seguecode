@@ -28,14 +28,14 @@ extension ViewControllerClassInfo
         let instances = self.instanceInfos
         if instances.count > 0
         {
-            var segueInstances = Set<SegueInstanceInfo>()
+            var segueInstances = NSMutableOrderedSet()
             for instance in instances
             {
                 if let instance = instance.value
                 {
                     for segue in instance.segues
                     {
-                        segueInstances.insert(segue)
+                        segueInstances.addObject(segue)
                     }
                 }
             }
@@ -45,14 +45,17 @@ extension ViewControllerClassInfo
                 var performFunctions = [ [String : String] ]()
                 for segueInstance in segueInstances
                 {
-                    if let segueCaseStencilContext = segueInstance.segueCaseStencilContext()
+                    if let segueInstance = segueInstance as? SegueInstanceInfo
                     {
-                        segueCases.append(segueCaseStencilContext)
-                    }
-                    
-                    if let peformFunctionStencilContext = segueInstance.peformFunctionStencilContext()
-                    {
-                        performFunctions.append(peformFunctionStencilContext)
+                        if let segueCaseStencilContext = segueInstance.segueCaseStencilContext()
+                        {
+                            segueCases.append(segueCaseStencilContext)
+                        }
+                        
+                        if let peformFunctionStencilContext = segueInstance.peformFunctionStencilContext()
+                        {
+                            performFunctions.append(peformFunctionStencilContext)
+                        }
                     }
                 }
                 if segueCases.count > 0
