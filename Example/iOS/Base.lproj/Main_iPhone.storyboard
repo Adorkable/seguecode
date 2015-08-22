@@ -108,7 +108,7 @@
         <!--1st Second View Controller-->
         <scene sceneID="Jl1-yD-Z6Z">
             <objects>
-                <viewController storyboardIdentifier="1stSecond" id="rvK-U1-dp3" userLabel="1st Second View Controller" customClass="SecondViewController" customModule="iOSExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstSecond" id="rvK-U1-dp3" userLabel="1st Second View Controller" customClass="SecondViewController" customModule="iOSExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wwU-Mk-0WF"/>
                         <viewControllerLayoutGuide type="bottom" id="y52-Nb-hJG"/>
@@ -149,7 +149,7 @@
         <!--2nd Second View Controller-->
         <scene sceneID="tOT-rG-e1E">
             <objects>
-                <viewController storyboardIdentifier="2ndSecond" id="5Gf-YU-RpM" userLabel="2nd Second View Controller" customClass="SecondViewController" customModule="iOSExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondSecond" id="5Gf-YU-RpM" userLabel="2nd Second View Controller" customClass="SecondViewController" customModule="iOSExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bNU-Xh-D18"/>
                         <viewControllerLayoutGuide type="bottom" id="2Q6-AM-JNk"/>
@@ -194,6 +194,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WAD-aS-FzW"/>
+        <segue reference="u3S-KG-G4y"/>
     </inferredMetricsTieBreakers>
 </document>

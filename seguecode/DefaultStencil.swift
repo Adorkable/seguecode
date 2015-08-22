@@ -21,15 +21,18 @@ class DefaultStencil: NSObject {
         static let SegueCases = "SegueCases"
         struct SegueCase
         {
-            static let Name = "Name"
+            static let Identifier = "Identifier"
+            static let SourceIdentifier = "SourceIdentifier"
+            static let DestinationIdentifier = "DestinationIdentifier"
             static let Value = "Value"
         }
         
         static let PerformFunctions = "PerformFunctions"
         struct PerformFunction
         {
-            static let Name = "Name"
-            static let Segue = "Segue"
+            static let Identifier = "Identifier"
+            static let SourceIdentifier = "SourceIdentifier"
+            static let DestinationIdentifier = "DestinationIdentifier"
         }
     }
     
@@ -48,9 +51,9 @@ class DefaultStencil: NSObject {
             "extension {{ \(Keys.ViewControllerName) }} {\n" +
             "{% if \(Keys.SegueCases) %}" +
             "\n" +
-            "   enum Segue : String {\n" +
+            "   enum Segue : String, SegueProtocol {\n" +
             "{% for segueCase in \(Keys.SegueCases) %}" +
-            "       case {{ segueCase.\(Keys.SegueCase.Name) }} = \"{{ segueCase.\(Keys.SegueCase.Value) }}\"\n" +
+            "       case {{ segueCase.\(Keys.SegueCase.SourceIdentifier) }}{{ segueCase.\(Keys.SegueCase.Identifier) }}{{ segueCase.\(Keys.SegueCase.DestinationIdentifier) }} = \"{{ segueCase.\(Keys.SegueCase.Value) }}\"\n" +
             "{% endfor %}" +
             "\n" +
             "       var identifier : String {\n" +
@@ -61,8 +64,8 @@ class DefaultStencil: NSObject {
             "{% if \(Keys.PerformFunctions) %}" +
             "{% for performFunction in \(Keys.PerformFunctions) %}" +
             "\n" +
-            "   @IBAction func perform{{ performFunction.\(Keys.PerformFunction.Name) }}(sender : AnyObject? = nil) {\n" +
-            "       self.performSegue({{ \(Keys.ViewControllerName) }}.Segue.{{ performFunction.\(Keys.PerformFunction.Segue) }}, sender: sender)\n" +
+            "   @IBAction func perform{{ performFunction.\(Keys.PerformFunction.SourceIdentifier) }}{{ performFunction.\(Keys.PerformFunction.Identifier) }}{{ performFunction.\(Keys.PerformFunction.DestinationIdentifier) }}(sender : AnyObject? = nil) {\n" +
+            "       self.performSegue({{ \(Keys.ViewControllerName) }}.Segue.{{ performFunction.\(Keys.PerformFunction.SourceIdentifier) }}{{ performFunction.\(Keys.PerformFunction.Identifier) }}{{ performFunction.\(Keys.PerformFunction.DestinationIdentifier) }}, sender: sender)\n" +
             "   }\n" +
             "{% endfor %}" +
             "{% endif %}" +

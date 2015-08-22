@@ -12,18 +12,19 @@
 		3C1380311AF73FEE00E417B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C13802B1AF73FEE00E417B2 /* Images.xcassets */; };
 		3C1380391AF7407C00E417B2 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1380361AF7407C00E417B2 /* Main_iPhone.storyboard */; };
 		3C13803F1AF740A500E417B2 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C13803C1AF740A500E417B2 /* FirstViewController.m */; };
-		3C1380441AF7410300E417B2 /* FirstViewController_Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1380431AF7410300E417B2 /* FirstViewController_Main_iPhone.swift */; };
 		3C13804C1AF7488400E417B2 /* TestCustomReverseSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1380491AF7488400E417B2 /* TestCustomReverseSegue.m */; };
 		3C13804D1AF7488400E417B2 /* TestCustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C13804B1AF7488400E417B2 /* TestCustomSegue.m */; };
-		3C13804F1AF7B57800E417B2 /* UIViewController_Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C13804E1AF7B57800E417B2 /* UIViewController_Main_iPhone.swift */; };
 		3C1CE0561B881E8600DA379A /* ViewControllerClassInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0551B881E8600DA379A /* ViewControllerClassInfo+seguecode.swift */; };
 		3C1CE0581B88215000DA379A /* DefaultStencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0571B88215000DA379A /* DefaultStencil.swift */; };
 		3C1CE05C1B88341800DA379A /* SegueInstanceInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE05B1B88341800DA379A /* SegueInstanceInfo+seguecode.swift */; };
+		3C1CE05F1B88421900DA379A /* UIViewController+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE05D1B8841D200DA379A /* UIViewController+seguecode.swift */; };
+		3C1CE0661B8842A000DA379A /* FirstViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0601B88429100DA379A /* FirstViewController+Main_iPhone.swift */; };
+		3C1CE0671B8842A000DA379A /* SecondViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0611B88429100DA379A /* SecondViewController+Main_iPhone.swift */; };
+		3C1CE0681B8842A000DA379A /* UIViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0621B88429100DA379A /* UIViewController+Main_iPhone.swift */; };
 		3CCF86CF1AF65DF600B7472E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF86CE1AF65DF600B7472E /* AppDelegate.swift */; };
 		3CCF86D11AF65DF600B7472E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CCF86D01AF65DF600B7472E /* Images.xcassets */; };
 		3CCF86D41AF65DF600B7472E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCF86D21AF65DF600B7472E /* MainMenu.xib */; };
 		3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF970101B0147A30052F765 /* SecondViewController.swift */; };
-		3CF970151B014F850052F765 /* SecondViewController_Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF970141B014F850052F765 /* SecondViewController_Main_iPhone.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,23 +38,23 @@
 		3C13803A1AF740A400E417B2 /* iOSExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		3C13803B1AF740A500E417B2 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		3C13803C1AF740A500E417B2 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		3C1380431AF7410300E417B2 /* FirstViewController_Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController_Main_iPhone.swift; sourceTree = "<group>"; };
 		3C1380481AF7488400E417B2 /* TestCustomReverseSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCustomReverseSegue.h; sourceTree = "<group>"; };
 		3C1380491AF7488400E417B2 /* TestCustomReverseSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCustomReverseSegue.m; sourceTree = "<group>"; };
 		3C13804A1AF7488400E417B2 /* TestCustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCustomSegue.h; sourceTree = "<group>"; };
 		3C13804B1AF7488400E417B2 /* TestCustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCustomSegue.m; sourceTree = "<group>"; };
-		3C13804E1AF7B57800E417B2 /* UIViewController_Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController_Main_iPhone.swift; sourceTree = "<group>"; };
 		3C1CE0551B881E8600DA379A /* ViewControllerClassInfo+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewControllerClassInfo+seguecode.swift"; sourceTree = "<group>"; };
 		3C1CE0571B88215000DA379A /* DefaultStencil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStencil.swift; sourceTree = "<group>"; };
 		3C1CE05B1B88341800DA379A /* SegueInstanceInfo+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SegueInstanceInfo+seguecode.swift"; sourceTree = "<group>"; };
+		3C1CE05D1B8841D200DA379A /* UIViewController+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+seguecode.swift"; sourceTree = "<group>"; };
+		3C1CE0601B88429100DA379A /* FirstViewController+Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirstViewController+Main_iPhone.swift"; sourceTree = "<group>"; };
+		3C1CE0611B88429100DA379A /* SecondViewController+Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SecondViewController+Main_iPhone.swift"; sourceTree = "<group>"; };
+		3C1CE0621B88429100DA379A /* UIViewController+Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Main_iPhone.swift"; sourceTree = "<group>"; };
 		3CCF86C91AF65DF600B7472E /* seguecode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = seguecode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCF86CD1AF65DF600B7472E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CCF86CE1AF65DF600B7472E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CCF86D01AF65DF600B7472E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3CCF86D31AF65DF600B7472E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3CF970101B0147A30052F765 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		3CF970131B014F850052F765 /* SecondViewController_Main_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController_Main_iPhone.h; sourceTree = "<group>"; };
-		3CF970141B014F850052F765 /* SecondViewController_Main_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController_Main_iPhone.m; sourceTree = "<group>"; };
 		716916602D514BC689822B5B /* Pods-seguecode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecode.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecode/Pods-seguecode.release.xcconfig"; sourceTree = "<group>"; };
 		9CC2F008B5D131060C265DB4 /* Pods_seguecode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_seguecode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,10 +107,10 @@
 		3C1380421AF740D900E417B2 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				3C1380431AF7410300E417B2 /* FirstViewController_Main_iPhone.swift */,
-				3C13804E1AF7B57800E417B2 /* UIViewController_Main_iPhone.swift */,
-				3CF970131B014F850052F765 /* SecondViewController_Main_iPhone.h */,
-				3CF970141B014F850052F765 /* SecondViewController_Main_iPhone.m */,
+				3C1CE0601B88429100DA379A /* FirstViewController+Main_iPhone.swift */,
+				3C1CE0611B88429100DA379A /* SecondViewController+Main_iPhone.swift */,
+				3C1CE0621B88429100DA379A /* UIViewController+Main_iPhone.swift */,
+				3C1CE05D1B8841D200DA379A /* UIViewController+seguecode.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -343,12 +344,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */,
-				3CF970151B014F850052F765 /* SecondViewController_Main_iPhone.m in Sources */,
-				3C13804F1AF7B57800E417B2 /* UIViewController_Main_iPhone.swift in Sources */,
+				3C1CE0661B8842A000DA379A /* FirstViewController+Main_iPhone.swift in Sources */,
+				3C1CE0681B8842A000DA379A /* UIViewController+Main_iPhone.swift in Sources */,
+				3C1CE05F1B88421900DA379A /* UIViewController+seguecode.swift in Sources */,
 				3C13804C1AF7488400E417B2 /* TestCustomReverseSegue.m in Sources */,
-				3C1380441AF7410300E417B2 /* FirstViewController_Main_iPhone.swift in Sources */,
 				3C13802E1AF73FEE00E417B2 /* AppDelegate.swift in Sources */,
 				3C13804D1AF7488400E417B2 /* TestCustomSegue.m in Sources */,
+				3C1CE0671B8842A000DA379A /* SecondViewController+Main_iPhone.swift in Sources */,
 				3C13803F1AF740A500E417B2 /* FirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let result = StoryboardFileParser.parse(applicationInfo, pathFileName: storyboardFileName)
         
-        self.outputDirectory = NSURL(fileURLWithPath: "/Users/ian/Documents/Adorkable/seguecode/TestOutput/")
+        self.outputDirectory = NSURL(fileURLWithPath: "/Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated")
         
         if let storyboard = result.0
         {
