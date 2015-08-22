@@ -91,13 +91,13 @@ public class seguecode : NSObject
         let generatedOnString = dateFormatter.stringFromDate(generatedOn)
         
         var result : [String : AnyObject] = [
-            DefaultStencil.Keys.FileName : fileName,
-            DefaultStencil.Keys.GeneratedOn : generatedOnString
+            DefaultTemplate.Keys.FileName : fileName,
+            DefaultTemplate.Keys.GeneratedOn : generatedOnString
         ]
         
         if let projectName = projectName
         {
-            result[DefaultStencil.Keys.ProjectName] = projectName
+            result[DefaultTemplate.Keys.ProjectName] = projectName
         }
         
         return result
@@ -123,10 +123,10 @@ public class seguecode : NSObject
                 
                 if viewControllers.count > 0
                 {
-                    contextDictionary[DefaultStencil.Keys.ViewControllers] = viewControllers
+                    contextDictionary[DefaultTemplate.Keys.ViewControllers] = viewControllers
                     
-                    var stencilContext = Context(dictionary: contextDictionary)
-                    Template.write(templateString: DefaultStencil.sourceFile, outputPath: outputPath, fileName: fileName, context: stencilContext)
+                    let stencilContext = Context(dictionary: contextDictionary)
+                    Template.write(templateString: DefaultTemplate.sourceFile, outputPath: outputPath, fileName: fileName, context: stencilContext)
                 } else
                 {
                     // TODO: delete output file? output empty file?
@@ -157,12 +157,10 @@ public class seguecode : NSObject
             
             if viewControllers.count > 0
             {
-                contextDictionary[DefaultStencil.Keys.ViewControllers] = viewControllers
+                contextDictionary[DefaultTemplate.Keys.ViewControllers] = viewControllers
                 
-                let template = Template(templateString: DefaultStencil.sourceFile)
-            
-                var stencilContext = Context(dictionary: contextDictionary)
-                template.write(outputPath: outputPath, fileName: fileName, context: stencilContext)
+                let stencilContext = Context(dictionary: contextDictionary)
+                Template.write(templateString: DefaultTemplate.sourceFile, outputPath: outputPath, fileName: fileName, context: stencilContext)
             } else
             {
                 // TODO: delete output file? output empty file?

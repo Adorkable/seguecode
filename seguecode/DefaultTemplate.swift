@@ -1,5 +1,5 @@
 //
-//  DefaultStencil.swift
+//  DefaultTemplate.swift
 //  seguecode
 //
 //  Created by Ian Grossberg on 8/21/15.
@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class DefaultStencil: NSObject {
+import Stencil
+
+class DefaultTemplate: Template {
     struct Keys
     {
         static let FileName = "FileName"
@@ -90,5 +92,9 @@ class DefaultStencil: NSObject {
             "}\n" +
             "{% endfor %}" +
             "{% endif %}"
+    }
+    
+    required init() {
+        super.init(templateString: DefaultTemplate.sourceFile)
     }
 }

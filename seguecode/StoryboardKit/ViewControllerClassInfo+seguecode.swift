@@ -22,7 +22,7 @@ extension ViewControllerClassInfo
         var result : [String : AnyObject]?
 
         var contextDictionary : [String : AnyObject] = [
-            DefaultStencil.Keys.ViewController.Name : self.infoClassName
+            DefaultTemplate.Keys.ViewController.Name : self.infoClassName
         ]
         
         let instances = self.instanceInfos
@@ -60,12 +60,12 @@ extension ViewControllerClassInfo
                 }
                 if segueCases.count > 0
                 {
-                    contextDictionary[DefaultStencil.Keys.ViewController.SegueCases] = segueCases
+                    contextDictionary[DefaultTemplate.Keys.ViewController.SegueCases] = segueCases
                 }
                 
                 if performFunctions.count > 0
                 {
-                    contextDictionary[DefaultStencil.Keys.ViewController.PerformFunctions] = performFunctions
+                    contextDictionary[DefaultTemplate.Keys.ViewController.PerformFunctions] = performFunctions
                 }
                 
                 result = contextDictionary
