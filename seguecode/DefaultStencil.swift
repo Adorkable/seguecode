@@ -51,14 +51,10 @@ class DefaultStencil: NSObject {
             "extension {{ \(Keys.ViewControllerName) }} {\n" +
             "{% if \(Keys.SegueCases) %}" +
             "\n" +
-            "   enum Segue : String, SegueProtocol {\n" +
+            "   struct Segue {\n" +
             "{% for segueCase in \(Keys.SegueCases) %}" +
-            "       case {{ segueCase.\(Keys.SegueCase.SourceIdentifier) }}{{ segueCase.\(Keys.SegueCase.Identifier) }}{{ segueCase.\(Keys.SegueCase.DestinationIdentifier) }} = \"{{ segueCase.\(Keys.SegueCase.Value) }}\"\n" +
+            "       static let {{ segueCase.\(Keys.SegueCase.SourceIdentifier) }}{{ segueCase.\(Keys.SegueCase.Identifier) }}{{ segueCase.\(Keys.SegueCase.DestinationIdentifier) }} = SegueObject(identifier: \"{{ segueCase.\(Keys.SegueCase.Value) }}\")\n" +
             "{% endfor %}" +
-            "\n" +
-            "       var identifier : String {\n" +
-            "           return self.rawValue\n" +
-            "       }\n" +
             "   }\n" +
             "{% endif %}" +
             "{% if \(Keys.PerformFunctions) %}" +

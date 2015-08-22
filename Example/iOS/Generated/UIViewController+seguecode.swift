@@ -8,12 +8,17 @@
 
 import UIKit
 
-protocol SegueProtocol {
-    var identifier : String { get }
-}
-
 extension UIViewController {
-    func performSegue(segue : SegueProtocol, sender : AnyObject?) {
+    class SegueObject
+    {
+        let identifier : String
+        
+        init(identifier : String) {
+            self.identifier = identifier
+        }
+    }
+    
+    func performSegue(segue : SegueObject, sender : AnyObject?) {
         // TODO: validate that we're calling from the correct instance of the VC class for classes in multiple instances in storyboards
         
         self.performSegueWithIdentifier(segue.identifier, sender: sender)
