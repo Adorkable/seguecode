@@ -9,7 +9,8 @@
 import UIKit
 
 extension UIViewController {
-    class SegueObject
+    
+    class Segue
     {
         let identifier : String
         
@@ -18,7 +19,7 @@ extension UIViewController {
         }
     }
     
-    func performSegue(segue : SegueObject, sender : AnyObject?) {
+    func performSegue(segue : Segue, sender : AnyObject?) {
         // TODO: validate that we're calling from the correct instance of the VC class for classes in multiple instances in storyboards
         
         self.performSegueWithIdentifier(segue.identifier, sender: sender)

@@ -9,21 +9,21 @@ import UIKit
 
 extension FirstViewController {
 
-   struct Segue {
-       static let FirstForwardToUIVC = SegueObject(identifier: "ForwardToUIVC")
-       static let FirstGoToSecondSecond = SegueObject(identifier: "GoTo")
-       static let FirstForwardToFirstSecond = SegueObject(identifier: "ForwardTo")
+   struct Segues {
+       static let FirstForwardToUIVC = Segue(identifier: "ForwardToUIVC")
+       static let FirstGoToSecondSecond = Segue(identifier: "GoTo")
+       static let FirstForwardToFirstSecond = Segue(identifier: "ForwardTo")
    }
 
    @IBAction func performFirstForwardToUIVC(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segue.FirstForwardToUIVC, sender: sender)
+       self.performSegue(FirstViewController.Segues.FirstForwardToUIVC, sender: sender)
    }
 
    @IBAction func performFirstGoToSecondSecond(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segue.FirstGoToSecondSecond, sender: sender)
+       self.performSegue(FirstViewController.Segues.FirstGoToSecondSecond, sender: sender)
    }
 
    @IBAction func performFirstForwardToFirstSecond(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segue.FirstForwardToFirstSecond, sender: sender)
+       self.performSegue(FirstViewController.Segues.FirstForwardToFirstSecond, sender: sender)
    }
 }
