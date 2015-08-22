@@ -9,16 +9,16 @@ import UIKit
 
 extension SecondViewController {
 
-   struct Segue {
-       static let SecondSecondBackToFirst = SegueObject(identifier: "BackTo")
-       static let FirstSecondBackToFirst = SegueObject(identifier: "BackTo")
+   struct Segues {
+       static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
+       static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
    }
 
    @IBAction func performSecondSecondBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(SecondViewController.Segue.SecondSecondBackToFirst, sender: sender)
+       self.performSegue(SecondViewController.Segues.SecondSecondBackToFirst, sender: sender)
    }
 
    @IBAction func performFirstSecondBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(SecondViewController.Segue.FirstSecondBackToFirst, sender: sender)
+       self.performSegue(SecondViewController.Segues.FirstSecondBackToFirst, sender: sender)
    }
 }
