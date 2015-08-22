@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
             NSString *parameter = [NSString stringWithCString:argv[index] encoding:NSUTF8StringEncoding];
             [parameters addObject:parameter];
         }
-        [seguecode handleParameters:parameters];
+        [seguecode handleParametersAndRun:parameters];
     }
     
     [ [NSRunLoop currentRunLoop] run];

@@ -18,25 +18,12 @@ extension ViewControllerClassInfo
         return "\(self.infoClassName)+\(category)"
     }
     
-    func stencilContext(fileName : String, projectName : String?) -> Context? {
-        var result : Context?
-        
-        let generatedOn = NSDate()
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "M/d/YY"
-        let generatedOnString = dateFormatter.stringFromDate(generatedOn)
+    func stencilContext() -> [String : AnyObject]? {
+        var result : [String : AnyObject]?
 
         var contextDictionary : [String : AnyObject] = [
-            DefaultStencil.Keys.FileName : fileName,
-            
-            DefaultStencil.Keys.GeneratedOn : generatedOnString,
-            DefaultStencil.Keys.ViewControllerName : self.infoClassName
+            DefaultStencil.Keys.ViewController.Name : self.infoClassName
         ]
-        
-        if let projectName = projectName
-        {
-            contextDictionary[DefaultStencil.Keys.ProjectName] = projectName
-        }
         
         let instances = self.instanceInfos
         if instances.count > 0
@@ -70,15 +57,15 @@ extension ViewControllerClassInfo
                 }
                 if segueCases.count > 0
                 {
-                    contextDictionary[DefaultStencil.Keys.SegueCases] = segueCases
+                    contextDictionary[DefaultStencil.Keys.ViewController.SegueCases] = segueCases
                 }
                 
                 if performFunctions.count > 0
                 {
-                    contextDictionary[DefaultStencil.Keys.PerformFunctions] = performFunctions
+                    contextDictionary[DefaultStencil.Keys.ViewController.PerformFunctions] = performFunctions
                 }
                 
-                result = Context(dictionary: contextDictionary)
+                result = contextDictionary
             }
         }
         

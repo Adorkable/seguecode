@@ -16,14 +16,15 @@ import CommandLine
 
 public class seguecode : NSObject
 {
-    public class func handleParameters(parameters : [String]) {
+    public class func handleParametersAndRun(parameters : [String]) {
         let cli = CommandLine(arguments: parameters)
         
         let storyboardFilePath = StringOption(shortFlag: "s", longFlag: "storyboardFile", required: true, helpMessage: "Path to storyboard to process.")
         let outputPath = StringOption(shortFlag: "o", longFlag: "outputPath", required: true, helpMessage: "Path to output generated files.")
         let projectName = StringOption(shortFlag: "p", longFlag: "project", required: false, helpMessage: "Name of project (Optional).")
+        let exportTogether = BoolOption(shortFlag: "t", longFlag: "together", helpMessage: "Export the View Controllers together in one file (Optional).")
         
-        cli.addOptions([storyboardFilePath, outputPath, projectName])
+        cli.addOptions([storyboardFilePath, outputPath, projectName, exportTogether])
         
         var result = cli.parse(strict: true)
         if result.0 == true
@@ -33,7 +34,7 @@ public class seguecode : NSObject
                 let outputPath = outputPath.value,
                 let outputPathUrl = NSURL(fileURLWithPath: outputPath)
             {
-                self.parse(storyboardFilePathUrl, outputPath: outputPathUrl, projectName: projectName.value)
+                self.parse(storyboardFilePathUrl, outputPath: outputPathUrl, projectName: projectName.value, exportTogether: exportTogether.value)
                 exit(EX_USAGE)
             } else
             {
@@ -51,19 +52,24 @@ public class seguecode : NSObject
         }
     }
     
-    public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?) {
-        var applicationInfo = ApplicationInfo()
+    public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?, exportTogether : Bool) {
+        var application = ApplicationInfo()
         
         if let storyboardFilePathString = storyboardFilePath.path,
             let storyboardFileName = storyboardFilePath.lastPathComponent?.stringByDeletingPathExtension
         {
             
-            let result = StoryboardFileParser.parse(applicationInfo, pathFileName: storyboardFilePathString)
+            let result = StoryboardFileParser.parse(application, pathFileName: storyboardFilePathString)
             
-
             if let storyboard = result.0
             {
-                self.export(outputPath: outputPath, application: applicationInfo, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName : projectName)
+                if exportTogether == true
+                {
+                    self.exportTogether(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName: projectName)
+                } else
+                {
+                    self.exportSeperately(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName : projectName)
+                }
             } else if let error = result.1
             {
                 NSLog("Error while parsing storyboard \(storyboardFilePathString): \(error)")
@@ -77,52 +83,94 @@ public class seguecode : NSObject
         }
     }
     
-    public class func export(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
+    internal class func fileStencilContext(#outputPath : NSURL, fileName : String, projectName : String?) -> [String : AnyObject]?
+    {
+        let generatedOn = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/d/YY"
+        let generatedOnString = dateFormatter.stringFromDate(generatedOn)
+        
+        var result : [String : AnyObject] = [
+            DefaultStencil.Keys.FileName : fileName,
+            DefaultStencil.Keys.GeneratedOn : generatedOnString
+        ]
+        
+        if let projectName = projectName
+        {
+            result[DefaultStencil.Keys.ProjectName] = projectName
+        }
+        
+        return result
+    }
+    
+    internal class func exportSeperately(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
         
         for viewControllerClass in application.viewControllerClasses
         {
-            let fileName = viewControllerClass.separateFileName(storyboardFileName)
-            if let stencilContext = viewControllerClass.stencilContext(fileName + ".swift", projectName: projectName)
+            var contextDictionary : [String : AnyObject]
+            
+            let fileName = viewControllerClass.separateFileName(storyboardFileName) + ".swift"
+
+            if let fileStencilContext = self.fileStencilContext(outputPath: outputPath, fileName: fileName, projectName: projectName)
             {
-                let template = Template(templateString: DefaultStencil.separateFile)
-                let result = template.render(stencilContext)
+                contextDictionary = fileStencilContext
                 
-                switch result
+                var viewControllers = [ [String : AnyObject] ]()
+                if let viewControllerContext = viewControllerClass.stencilContext()
                 {
-                case .Success(let contents):
-                    self.write(outputPath: outputPath, fileName: fileName + ".swift", contents: contents)
-                    break
-                case .Error(let error):
-                    NSLog("Error while rendering contents: \(error).")
-                    break
+                    viewControllers.append(viewControllerContext)
                 }
-            } else
-            {
-                // TODO: delete output file
-                NSLog("No information to export for view controller class \(viewControllerClass)")
+                
+                if viewControllers.count > 0
+                {
+                    contextDictionary[DefaultStencil.Keys.ViewControllers] = viewControllers
+                    
+                    var stencilContext = Context(dictionary: contextDictionary)
+                    Template.write(templateString: DefaultStencil.sourceFile, outputPath: outputPath, fileName: fileName, context: stencilContext)
+                } else
+                {
+                    // TODO: delete output file? output empty file?
+                    NSLog("No information to export for view controller class \(viewControllerClass)")
+                }
             }
         }
     }
     
-    public class func write(#outputPath : NSURL, fileName : String, contents : String) {
-        var createDirectoryError : NSError? = nil
-        NSFileManager.defaultManager().createDirectoryAtURL(outputPath, withIntermediateDirectories: true, attributes: nil, error: &createDirectoryError)
+    internal class func exportTogether(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
+    
+        var contextDictionary : [String : AnyObject]
         
-        if let error = createDirectoryError
-        {
-            NSLog("Error while creating output directory \(outputPath): \(error)")
-        }
+        let fileName = storyboardFileName + ".swift"
         
-        if let path = outputPath.path
+        if let fileStencilContext = self.fileStencilContext(outputPath: outputPath, fileName: fileName, projectName: projectName)
         {
-            let fullFilePath = path + "/" + fileName
+            contextDictionary = fileStencilContext
             
-            var writeToFileError : NSError? = nil
-            contents.writeToFile(fullFilePath, atomically: true, encoding: NSUTF8StringEncoding, error: &writeToFileError)
-            if let error = writeToFileError
+            var viewControllers = [ [String : AnyObject] ]()
+            for viewControllerClass in application.viewControllerClasses
             {
-                NSLog("Error while writing to file \(fullFilePath): \(error)")
+                if let viewControllerContext = viewControllerClass.stencilContext()
+                {
+                    viewControllers.append(viewControllerContext)
+                }
             }
+            
+            if viewControllers.count > 0
+            {
+                contextDictionary[DefaultStencil.Keys.ViewControllers] = viewControllers
+                
+                let template = Template(templateString: DefaultStencil.sourceFile)
+            
+                var stencilContext = Context(dictionary: contextDictionary)
+                template.write(outputPath: outputPath, fileName: fileName, context: stencilContext)
+            } else
+            {
+                // TODO: delete output file? output empty file?
+                NSLog("No information to export")
+            }
+
         }
     }
+    
+    
 }

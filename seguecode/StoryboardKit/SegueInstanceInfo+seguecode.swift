@@ -39,28 +39,28 @@ extension SegueInstanceInfo
         if let segueCaseValue = self.segueCaseValue
         {
             var context = [
-                DefaultStencil.Keys.SegueCase.Value : segueCaseValue
+                DefaultStencil.Keys.ViewController.SegueCase.Value : segueCaseValue
             ]
             
             var minimumRequirement = false
             
             if let identifier = self.identifier
             {
-                context[DefaultStencil.Keys.SegueCase.Identifier] = identifier
+                context[DefaultStencil.Keys.ViewController.SegueCase.Identifier] = identifier
                 minimumRequirement = true
             }
             
             if let source = self.source.value,
                 let sourceIdentifier = source.storyboardIdentifier
             {
-                context[DefaultStencil.Keys.SegueCase.SourceIdentifier] = sourceIdentifier
+                context[DefaultStencil.Keys.ViewController.SegueCase.SourceIdentifier] = sourceIdentifier
                 minimumRequirement = true
             }
 
             if let destination = self.destination.value,
                 let destinationIdentifier = destination.storyboardIdentifier
             {
-                context[DefaultStencil.Keys.SegueCase.DestinationIdentifier] = destinationIdentifier
+                context[DefaultStencil.Keys.ViewController.SegueCase.DestinationIdentifier] = destinationIdentifier
                 minimumRequirement = true
             }
 
@@ -82,21 +82,21 @@ extension SegueInstanceInfo
         
         if let identifier = self.identifier
         {
-            context[DefaultStencil.Keys.SegueCase.Identifier] = identifier
+            context[DefaultStencil.Keys.ViewController.SegueCase.Identifier] = identifier
             minimumRequirement = true
         }
         
         if let source = self.source.value,
             let sourceIdentifier = source.storyboardIdentifier
         {
-            context[DefaultStencil.Keys.SegueCase.SourceIdentifier] = sourceIdentifier
+            context[DefaultStencil.Keys.ViewController.SegueCase.SourceIdentifier] = sourceIdentifier
             minimumRequirement = true
         }
         
         if let destination = self.destination.value,
             let destinationIdentifier = destination.storyboardIdentifier
         {
-            context[DefaultStencil.Keys.SegueCase.DestinationIdentifier] = destinationIdentifier
+            context[DefaultStencil.Keys.ViewController.SegueCase.DestinationIdentifier] = destinationIdentifier
             minimumRequirement = true
         }
         
