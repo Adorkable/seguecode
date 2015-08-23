@@ -22,7 +22,7 @@ public class seguecode : NSObject
         let storyboardFilePath = StringOption(shortFlag: "s", longFlag: "storyboardFile", required: true, helpMessage: "Path to storyboard to process.")
         let outputPath = StringOption(shortFlag: "o", longFlag: "outputPath", required: true, helpMessage: "Path to output generated files.")
         let projectName = StringOption(shortFlag: "p", longFlag: "project", required: false, helpMessage: "Name of project (Optional).")
-        let exportTogether = BoolOption(shortFlag: "t", longFlag: "together", helpMessage: "Export the View Controllers together in one file (Optional).")
+        let exportTogether = BoolOption(shortFlag: "c", longFlag: "combine", helpMessage: "Export the View Controllers combined in one file (Optional).")
         
         cli.addOptions([storyboardFilePath, outputPath, projectName, exportTogether])
         

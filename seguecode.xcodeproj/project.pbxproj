@@ -27,7 +27,6 @@
 		3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0F61B8864FF00DA379A /* CommandLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1CE0DC1B885D5300DA379A /* CommandLine.framework */; };
 		3C1CE0FE1B88B66000DA379A /* Template+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0FD1B88B66000DA379A /* Template+seguecode.swift */; };
-		3C1CE1091B88BA8100DA379A /* seguecodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1CE0A51B88598600DA379A /* seguecodeKit.framework */; };
 		3C1CE1111B88C00300DA379A /* Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE10F1B88BFED00DA379A /* Main_iPhone.swift */; };
 		3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF970101B0147A30052F765 /* SecondViewController.swift */; };
 		A8655F729A961C64A8246398 /* Pods_seguecodeBundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923BA86F12E639ED709CACBB /* Pods_seguecodeBundle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -82,13 +81,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5D06884219674D7D00BBFAAC;
 			remoteInfo = CommandLine;
-		};
-		3C1CE10A1B88BA8100DA379A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3CCF86C11AF65DF600B7472E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C1CE0A41B88598600DA379A;
-			remoteInfo = seguecodeKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -150,8 +142,6 @@
 		3C1CE0CB1B8859E600DA379A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommandLine.xcodeproj; path = Library/CommandLine/CommandLine.xcodeproj; sourceTree = "<group>"; };
 		3C1CE0FD1B88B66000DA379A /* Template+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Template+seguecode.swift"; sourceTree = "<group>"; };
-		3C1CE1031B88BA8100DA379A /* seguecodeKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = seguecodeKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C1CE1061B88BA8100DA379A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C1CE10F1B88BFED00DA379A /* Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main_iPhone.swift; sourceTree = "<group>"; };
 		3CF970101B0147A30052F765 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		499E529370BA086E416AE04A /* Pods-seguecodeBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecodeBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecodeBundle/Pods-seguecodeBundle.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,14 +179,6 @@
 			files = (
 				3C1CE0F61B8864FF00DA379A /* CommandLine.framework in Frameworks */,
 				12BF3D29CAC354F954B49AA0 /* Pods_seguecodeKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3C1CE1001B88BA8100DA379A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C1CE1091B88BA8100DA379A /* seguecodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,9 +458,6 @@
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 3UDY2NT62F;
 					};
-					3C1CE1021B88BA8100DA379A = {
-						CreatedOnToolsVersion = 6.4;
-					};
 				};
 			};
 			buildConfigurationList = 3CCF86C41AF65DF600B7472E /* Build configuration list for PBXProject "seguecode" */;
@@ -543,13 +522,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C1CE0A31B88598600DA379A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3C1CE1011B88BA8100DA379A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -678,14 +650,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C1CE0FF1B88BA8100DA379A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C1CE1081B88BA8100DA379A /* seguecodeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -713,11 +677,6 @@
 			isa = PBXTargetDependency;
 			name = CommandLine;
 			targetProxy = 3C1CE0F41B8864F600DA379A /* PBXContainerItemProxy */;
-		};
-		3C1CE10B1B88BA8100DA379A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3C1CE0A41B88598600DA379A /* seguecodeKit */;
-			targetProxy = 3C1CE10A1B88BA8100DA379A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -875,38 +834,6 @@
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3C1CE10D1B88BA8100DA379A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = seguecodeKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3C1CE10E1B88BA8100DA379A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = seguecodeKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
