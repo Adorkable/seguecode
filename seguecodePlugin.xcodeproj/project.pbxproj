@@ -174,7 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C4B541E1A0EE7FE0041E9D0 /* Build configuration list for PBXNativeTarget "seguecodePlugin" */;
 			buildPhases = (
-				3C4B544F1A0EE8CD0041E9D0 /* ShellScript */,
+				3C4B544F1A0EE8CD0041E9D0 /* Retrieve seguecode */,
 				3C4B540C1A0EE7FE0041E9D0 /* Sources */,
 				3C4B540D1A0EE7FE0041E9D0 /* Resources */,
 				3C4B540E1A0EE7FE0041E9D0 /* Frameworks */,
@@ -284,18 +284,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3C4B544F1A0EE8CD0041E9D0 /* ShellScript */ = {
+		3C4B544F1A0EE8CD0041E9D0 /* Retrieve seguecode */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Retrieve seguecode";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"${BUILT_PRODUCTS_DIR}\"\nrm -f seguecodePluginTmp\nmkdir -p seguecodePluginTmp\ncd seguecodePluginTmp\ngit clone https://github.com/Adorkable/seguecode.git\ncd seguecode\nlatestTag=$(git describe --tags `git rev-list --tags --max-count=1`)\ncd ..\nrm -f -r -d seguecode\ncurl -O -L https://github.com/Adorkable/seguecode/releases/download/$latestTag/seguecode.zip\nunzip seguecode\nmkdir -p \"${SRCROOT}/bin\"\nmv -f seguecode \"${SRCROOT}/bin\"";
+			shellScript = "VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\necho \"Retrieving seguecode for version ${VERSION_NUMBER}\"\n\ncd \"${BUILT_PRODUCTS_DIR}\"\nrm -f -r -d seguecode\ncurl -O -L https://github.com/Adorkable/seguecode/releases/download/$VERSION_NUMBER/seguecode.zip\nunzip seguecode\nmkdir -p \"${SRCROOT}/bin\"\nmv -f seguecode \"${SRCROOT}/bin\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
