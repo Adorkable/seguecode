@@ -93,8 +93,9 @@ public class seguecode : NSObject
         let generatedOnString = dateFormatter.stringFromDate(generatedOn)
         
         var result : [String : AnyObject] = [
-            DefaultTemplate.Keys.FileName : fileName,
-            DefaultTemplate.Keys.GeneratedOn : generatedOnString
+            DefaultTemplate.Keys.FileName : fileName
+            // TODO: until we have MD5 checking on the remainder of the file contents we don't to cause unimportant file diffs
+            /*, DefaultTemplate.Keys.GeneratedOn : generatedOnString*/
         ]
         
         if let projectName = projectName
