@@ -14,13 +14,12 @@
 		3C4B54271A0EE8270041E9D0 /* NSObject+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54251A0EE8270041E9D0 /* NSObject+Utility.m */; };
 		3C4B54411A0EE8740041E9D0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4B54121A0EE7FE0041E9D0 /* AppKit.framework */; };
 		3C4B54421A0EE8740041E9D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4B54141A0EE7FE0041E9D0 /* Foundation.framework */; };
-		3C4B54501A0EE9B70041E9D0 /* seguecode in Resources */ = {isa = PBXBuildFile; fileRef = 3C4B54291A0EE83B0041E9D0 /* seguecode */; };
-		3C4B545F1A0EEAB80041E9D0 /* seguecode in Resources */ = {isa = PBXBuildFile; fileRef = 3C4B54291A0EE83B0041E9D0 /* seguecode */; };
 		3C4B54611A0EEAC10041E9D0 /* NSNotification+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54231A0EE8270041E9D0 /* NSNotification+Utility.m */; };
 		3C4B54631A0EEAC10041E9D0 /* NSObject+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54251A0EE8270041E9D0 /* NSObject+Utility.m */; };
 		3C4B54651A0EEAC10041E9D0 /* seguecodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B541C1A0EE7FE0041E9D0 /* seguecodePlugin.m */; };
-		3C4B54691A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54681A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.m */; };
-		3C4B546A1A0EEB820041E9D0 /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54681A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.m */; };
+		3CAA721A1B8A07490028683D /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */; };
+		3CAA721F1B8A0B600028683D /* seguecode.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CAA72131B8A064F0028683D /* seguecode.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3CFE5E331B8B68A800A4146D /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,21 +30,48 @@
 			remoteGlobalIDString = 3CE464411856B24A002F423D;
 			remoteInfo = seguecode;
 		};
-		3C4B54591A0EEA910041E9D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3CE4645F1856CB39002F423D;
-			remoteInfo = SegueCodeExample;
-		};
-		3C4B545D1A0EEAA80041E9D0 /* PBXContainerItemProxy */ = {
+		3CAA720D1B8A064F0028683D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 3CE464401856B24A002F423D;
-			remoteInfo = seguecode;
+			remoteGlobalIDString = 3C1CE0871B8857B800DA379A;
+			remoteInfo = seguecodeBundle;
+		};
+		3CAA72121B8A064F0028683D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3C1CE0881B8857B800DA379A;
+			remoteInfo = seguecodeBundle;
+		};
+		3CAA72141B8A064F0028683D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3C1CE0A51B88598600DA379A;
+			remoteInfo = seguecodeKit;
+		};
+		3CAA72161B8A064F0028683D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3C1380021AF73FA800E417B2;
+			remoteInfo = iOSExample;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3CAA721E1B8A0B470028683D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				3CAA721F1B8A0B600028683D /* seguecode.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3C4B54101A0EE7FE0041E9D0 /* seguecodePlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = seguecodePlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,11 +85,10 @@
 		3C4B54231A0EE8270041E9D0 /* NSNotification+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotification+Utility.m"; sourceTree = "<group>"; };
 		3C4B54241A0EE8270041E9D0 /* NSObject+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utility.h"; sourceTree = "<group>"; };
 		3C4B54251A0EE8270041E9D0 /* NSObject+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utility.m"; sourceTree = "<group>"; };
-		3C4B54291A0EE83B0041E9D0 /* seguecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = seguecode; sourceTree = "<group>"; };
 		3C4B544E1A0EE8A90041E9D0 /* seguecodePlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = seguecodePlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = seguecode.xcodeproj; sourceTree = "<group>"; };
-		3C4B54671A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+RunConfig.h"; path = "seguecode/NSMutableDictionary+RunConfig.h"; sourceTree = "<group>"; };
-		3C4B54681A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+RunConfig.m"; path = "seguecode/NSMutableDictionary+RunConfig.m"; sourceTree = "<group>"; };
+		3CAA72181B8A07490028683D /* NSMutableDictionary+RunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+RunConfig.h"; sourceTree = "<group>"; };
+		3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+RunConfig.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +125,6 @@
 		3C4B54161A0EE7FE0041E9D0 /* seguecodePlugin */ = {
 			isa = PBXGroup;
 			children = (
-				3C4B54281A0EE83B0041E9D0 /* bin */,
 				3C4B54211A0EE8270041E9D0 /* Utility */,
 				3C4B541B1A0EE7FE0041E9D0 /* seguecodePlugin.h */,
 				3C4B541C1A0EE7FE0041E9D0 /* seguecodePlugin.m */,
@@ -121,6 +145,8 @@
 		3C4B54211A0EE8270041E9D0 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				3CAA72181B8A07490028683D /* NSMutableDictionary+RunConfig.h */,
+				3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */,
 				3C4B54221A0EE8270041E9D0 /* NSNotification+Utility.h */,
 				3C4B54231A0EE8270041E9D0 /* NSNotification+Utility.m */,
 				3C4B54241A0EE8270041E9D0 /* NSObject+Utility.h */,
@@ -129,36 +155,20 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		3C4B54281A0EE83B0041E9D0 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				3C4B54291A0EE83B0041E9D0 /* seguecode */,
-			);
-			path = bin;
-			sourceTree = SOURCE_ROOT;
-		};
 		3C4B54521A0EEA910041E9D0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				3C4B54581A0EEA910041E9D0 /* seguecode */,
-				3C4B545A1A0EEA910041E9D0 /* SegueCodeExample.app */,
+				3CAA72131B8A064F0028683D /* seguecode.bundle */,
+				3CAA72151B8A064F0028683D /* seguecodeKit.framework */,
+				3CAA72171B8A064F0028683D /* iOSExample.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3C4B54661A0EEB2E0041E9D0 /* seguecode */ = {
-			isa = PBXGroup;
-			children = (
-				3C4B54671A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.h */,
-				3C4B54681A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.m */,
-			);
-			name = seguecode;
 			sourceTree = "<group>";
 		};
 		3CB24CCC1A0AD53200006169 = {
 			isa = PBXGroup;
 			children = (
-				3C4B54661A0EEB2E0041E9D0 /* seguecode */,
 				3C4B54101A0EE7FE0041E9D0 /* seguecodePlugin.xcplugin */,
 				3C4B54161A0EE7FE0041E9D0 /* seguecodePlugin */,
 				3C4B54111A0EE7FE0041E9D0 /* Frameworks */,
@@ -174,7 +184,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C4B541E1A0EE7FE0041E9D0 /* Build configuration list for PBXNativeTarget "seguecodePlugin" */;
 			buildPhases = (
-				3C4B544F1A0EE8CD0041E9D0 /* Retrieve seguecode */,
+				3C4B544F1A0EE8CD0041E9D0 /* ShellScript */,
 				3C4B540C1A0EE7FE0041E9D0 /* Sources */,
 				3C4B540D1A0EE7FE0041E9D0 /* Resources */,
 				3C4B540E1A0EE7FE0041E9D0 /* Frameworks */,
@@ -193,13 +203,13 @@
 			buildConfigurationList = 3C4B544B1A0EE8740041E9D0 /* Build configuration list for PBXNativeTarget "seguecodePluginLocal" */;
 			buildPhases = (
 				3C4B543C1A0EE8740041E9D0 /* Sources */,
-				3C4B543D1A0EE8740041E9D0 /* Resources */,
+				3CAA721E1B8A0B470028683D /* CopyFiles */,
 				3C4B543E1A0EE8740041E9D0 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3C4B545E1A0EEAA80041E9D0 /* PBXTargetDependency */,
+				3CAA720E1B8A064F0028683D /* PBXTargetDependency */,
 			);
 			name = seguecodePluginLocal;
 			productName = seguecodePluginLocal;
@@ -255,11 +265,25 @@
 			remoteRef = 3C4B54571A0EEA910041E9D0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3C4B545A1A0EEA910041E9D0 /* SegueCodeExample.app */ = {
+		3CAA72131B8A064F0028683D /* seguecode.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = seguecode.bundle;
+			remoteRef = 3CAA72121B8A064F0028683D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3CAA72151B8A064F0028683D /* seguecodeKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = seguecodeKit.framework;
+			remoteRef = 3CAA72141B8A064F0028683D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3CAA72171B8A064F0028683D /* iOSExample.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = SegueCodeExample.app;
-			remoteRef = 3C4B54591A0EEA910041E9D0 /* PBXContainerItemProxy */;
+			path = iOSExample.app;
+			remoteRef = 3CAA72161B8A064F0028683D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -269,34 +293,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4B54501A0EE9B70041E9D0 /* seguecode in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3C4B543D1A0EE8740041E9D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C4B545F1A0EEAB80041E9D0 /* seguecode in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3C4B544F1A0EE8CD0041E9D0 /* Retrieve seguecode */ = {
+		3C4B544F1A0EE8CD0041E9D0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Retrieve seguecode";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\necho \"Retrieving seguecode for version ${VERSION_NUMBER}\"\n\ncd \"${BUILT_PRODUCTS_DIR}\"\nrm -f -r -d seguecode\ncurl -O -L https://github.com/Adorkable/seguecode/releases/download/$VERSION_NUMBER/seguecode.zip\nunzip seguecode\nmkdir -p \"${SRCROOT}/bin\"\nmv -f seguecode \"${SRCROOT}/bin\"";
+			shellScript = "cd \"${BUILT_PRODUCTS_DIR}\"\nrm -f seguecodePluginTmp\nmkdir -p seguecodePluginTmp\ncd seguecodePluginTmp\ngit clone https://github.com/Adorkable/seguecode.git\ncd seguecode\nlatestTag=$(git describe --tags `git rev-list --tags --max-count=1`)\ncd ..\nrm -f -r -d seguecode\ncurl -O -L https://github.com/Adorkable/seguecode/releases/download/$latestTag/seguecode.zip\nunzip seguecode\nmkdir -p \"${SRCROOT}/bin\"\nmv -f seguecode \"${SRCROOT}/bin\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -306,7 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4B54261A0EE8270041E9D0 /* NSNotification+Utility.m in Sources */,
-				3C4B54691A0EEB3B0041E9D0 /* NSMutableDictionary+RunConfig.m in Sources */,
+				3CAA721A1B8A07490028683D /* NSMutableDictionary+RunConfig.m in Sources */,
 				3C4B54271A0EE8270041E9D0 /* NSObject+Utility.m in Sources */,
 				3C4B541D1A0EE7FE0041E9D0 /* seguecodePlugin.m in Sources */,
 			);
@@ -317,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4B54611A0EEAC10041E9D0 /* NSNotification+Utility.m in Sources */,
-				3C4B546A1A0EEB820041E9D0 /* NSMutableDictionary+RunConfig.m in Sources */,
+				3CFE5E331B8B68A800A4146D /* NSMutableDictionary+RunConfig.m in Sources */,
 				3C4B54631A0EEAC10041E9D0 /* NSObject+Utility.m in Sources */,
 				3C4B54651A0EEAC10041E9D0 /* seguecodePlugin.m in Sources */,
 			);
@@ -326,10 +340,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3C4B545E1A0EEAA80041E9D0 /* PBXTargetDependency */ = {
+		3CAA720E1B8A064F0028683D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = seguecode;
-			targetProxy = 3C4B545D1A0EEAA80041E9D0 /* PBXContainerItemProxy */;
+			name = seguecodeBundle;
+			targetProxy = 3CAA720D1B8A064F0028683D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

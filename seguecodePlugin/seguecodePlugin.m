@@ -54,7 +54,7 @@ static seguecodePlugin *sharedPlugin;
             NSLog(@"seguecode found at %@", [self pathToSegueCode] );
             
             [self setupNotifications];
-
+            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self setupMenu];
             }];
@@ -154,9 +154,8 @@ static seguecodePlugin *sharedPlugin;
 - (BOOL)createDefaultRunConfigForStoryboardAtPath:(NSString *)storyboardPath
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
-    result.exportConstants = NO;
-    result.squashVCS = NO;
-    result.outputDirectory = [NSString stringWithFormat:@"./Generated"];
+    result.combine = NO;
+    result.outputPath = [NSString stringWithFormat:@"./Generated"];
     return [result writeRunConfigForStoryboardAtPath:storyboardPath];
 }
 
@@ -167,19 +166,15 @@ static seguecodePlugin *sharedPlugin;
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [ [self pathToSegueCode] path];
 
-    NSString *outputFolder = [NSString stringWithFormat:@"%@/%@", [storyboardPath stringByDeletingLastPathComponent], runConfig.outputDirectory];
+    NSString *outputFolder = [NSString stringWithFormat:@"%@/%@", [storyboardPath stringByDeletingLastPathComponent], runConfig.outputPath];
     
     NSMutableArray *arguments = [NSMutableArray array];
-    [arguments addObjectsFromArray:@[@"--output-dir", outputFolder] ];
-    if (runConfig.squashVCS)
+    [arguments addObjectsFromArray:@[@"--outputPath", outputFolder] ];
+    if (runConfig.combine)
     {
-        [arguments addObject:@"--squash-vcs"];
+        [arguments addObject:@"--combine"];
     }
-    if (runConfig.exportConstants)
-    {
-        [arguments addObject:@"--export-constants"];
-    }
-    [arguments addObject:storyboardPath];
+    [arguments addObjectsFromArray:@[@"--storyboardFile", storyboardPath] ];
     task.arguments = arguments;
     
     task.currentDirectoryPath = [storyboardPath stringByDeletingLastPathComponent];
@@ -199,13 +194,23 @@ static seguecodePlugin *sharedPlugin;
 
 - (NSURL *)pathToSegueCode
 {
-    return [self.bundle URLForResource:@"seguecode"
+    return [self.bundle URLForResource:@"seguecode.bundle/Contents/MacOS/seguecode"
                          withExtension:nil];
+}
+
+- (NSMenuItem *)xcodeEditMenu
+{
+    NSMenuItem *result = [ [NSApp mainMenu] itemWithTitle:@"Edit"];
+    if (result == nil)
+    {
+        NSLog(@"Unable to find Edit menu");
+    }
+    return result;
 }
 
 - (void)setupMenu
 {
-    NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+    NSMenuItem *editMenuItem = [self xcodeEditMenu];
     if (editMenuItem)
     {
         [ [editMenuItem submenu] addItem:[NSMenuItem separatorItem] ];
@@ -218,7 +223,7 @@ static seguecodePlugin *sharedPlugin;
         self.storyboardEnabled = storyboardEnabled;
     } else
     {
-        NSLog(@"Unable to find Edit menu, cannot add menu items");
+        NSLog(@"Cannot add seguecode menu items");
     }
 }
 
