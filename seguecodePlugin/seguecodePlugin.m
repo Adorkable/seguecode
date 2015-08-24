@@ -55,7 +55,9 @@ static seguecodePlugin *sharedPlugin;
             
             [self setupNotifications];
 
-            [self setupMenu];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self setupMenu];
+            }];
         } else
         {
             NSLog(@"seguecode not found!");
