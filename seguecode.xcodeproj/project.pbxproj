@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02919032306C426B8C27FF0D /* libPods-seguecode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */; };
 		3C40A8B418D8BFB400963EDD /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8B318D8BFB400963EDD /* Utility.m */; };
 		3C40A8B718D8C02C00963EDD /* NSMutableDictionary+NilSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8B618D8C02C00963EDD /* NSMutableDictionary+NilSafe.m */; };
 		3C40A8BA18D8C09E00963EDD /* NSString+seguecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8B918D8C09E00963EDD /* NSString+seguecode.m */; };
@@ -16,6 +15,7 @@
 		3C40A8C618D8EE6A00963EDD /* SecondViewController+Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8C418D8EE6A00963EDD /* SecondViewController+Main_iPhone.m */; };
 		3C40A8C918D8F50600963EDD /* UIViewController+Main_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8C818D8F50600963EDD /* UIViewController+Main_iPhone.m */; };
 		3C4109BF1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4109BE1A0AB2D900688600 /* NSMutableDictionary+RunConfig.m */; };
+		3C6B5D157D756DB1422AFE77 /* libPods-seguecode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 581C04022FCC7A96EEEB49CA /* libPods-seguecode.a */; };
 		3C7D8FA8185ACB1B00D329C7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D8FA7185ACB1B00D329C7 /* SecondViewController.m */; };
 		3CD2E1981AE0F0A800C35626 /* libddcli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD2E1951AE0F09300C35626 /* libddcli.a */; };
 		3CE464451856B24A002F423D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE464441856B24A002F423D /* Foundation.framework */; };
@@ -143,7 +143,7 @@
 		3CE464A01856E8B8002F423D /* ViewControllerDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDefinition.m; sourceTree = "<group>"; };
 		3CE464A21856EB75002F423D /* SegueDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegueDefinition.h; sourceTree = "<group>"; };
 		3CE464A31856EB75002F423D /* SegueDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegueDefinition.m; sourceTree = "<group>"; };
-		479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-seguecode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		581C04022FCC7A96EEEB49CA /* libPods-seguecode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-seguecode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A10029FCAF1CA11647E2E18 /* Pods-seguecode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-seguecode/Pods-seguecode.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +154,7 @@
 			files = (
 				3CD2E1981AE0F0A800C35626 /* libddcli.a in Frameworks */,
 				3CE464451856B24A002F423D /* Foundation.framework in Frameworks */,
-				02919032306C426B8C27FF0D /* libPods-seguecode.a in Frameworks */,
+				3C6B5D157D756DB1422AFE77 /* libPods-seguecode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,11 +234,11 @@
 			children = (
 				3CD2E1891AE0F09300C35626 /* ddcli.xcodeproj */,
 				3CE464441856B24A002F423D /* Foundation.framework */,
-				479905BBA65C4B97B3BB4785 /* libPods-seguecode.a */,
 				3CE464611856CB39002F423D /* CoreGraphics.framework */,
 				3CE464631856CB39002F423D /* UIKit.framework */,
 				3CE464811856CB3A002F423D /* XCTest.framework */,
 				3CE2B91D1A0A09DB00DF121D /* AppKit.framework */,
+				581C04022FCC7A96EEEB49CA /* libPods-seguecode.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -634,6 +634,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A10029FCAF1CA11647E2E18 /* Pods-seguecode.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "seguecode/seguecode-Prefix.pch";
@@ -646,7 +647,9 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(SRCROOT)/Library/ddcli/lib/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -654,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 06BBE0B1C288E11A0E50E6D8 /* Pods-seguecode.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "seguecode/seguecode-Prefix.pch";
@@ -666,6 +670,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(SRCROOT)/Library/ddcli/lib/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
