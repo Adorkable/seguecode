@@ -1,5 +1,1 @@
-{
-  "outputDirectory": "../Generated",
-  "squashVCS": false,
-  "exportConstants": false
-}
+{"combine":false,"outputPath":"..\/Generated"}
