@@ -18,6 +18,8 @@
 @property (readwrite) NSString *outputPath;
 @property (readwrite) BOOL combine;
 
+@property (readwrite) NSString *projectName;
+
 - (BOOL)writeContentsToJSONFile:(NSString *)path;
 - (BOOL)writeContentsToJSONURL:(NSURL *)url;
 - (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath;

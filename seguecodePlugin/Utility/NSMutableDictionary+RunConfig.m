@@ -133,6 +133,29 @@ NSString *const RunConfigSuffix = @".seguecode.json";
     return result;
 }
 
++ (NSString *)projectNameKey
+{
+    return @"projectName";
+}
+
+- (void)setProjectName:(NSString *)projectName
+{
+    if (projectName)
+    {
+        [self setObject:projectName
+                 forKey:[NSMutableDictionary outputPathKey]
+         ];
+    } else
+    {
+        [self removeObjectForKey:[NSMutableDictionary projectNameKey] ];
+    }
+}
+
+- (NSString *)projectName
+{
+    return [self objectForKey:[NSMutableDictionary projectNameKey] ];
+}
+
 + (BOOL)removeRunConfigForStoryboardAtPath:(NSString *)storyboardPath
 {
     return [ [NSFileManager defaultManager] removeItemAtPath:[self runConfigPathForStoryboardAtPath:storyboardPath] error:nil];

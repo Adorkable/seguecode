@@ -1,1 +1,5 @@
-{"combine":false,"outputPath":"..\/Generated"}
+{
+  "combine": true,
+  "outputPath": "../Generated",
+  "projectName": "Example"
+}

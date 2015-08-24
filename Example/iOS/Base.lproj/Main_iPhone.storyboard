@@ -16,20 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KB0-FH-jHd">
-                                <rect key="frame" x="128" y="40" width="64" height="64"/>
-                                <color key="backgroundColor" red="0.98813183110000002" green="1" blue="0.74592510899999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="UVa-xb-iM1"/>
-                                    <constraint firstAttribute="width" constant="64" id="aFf-3e-iOA"/>
-                                </constraints>
-                                <state key="normal" title="2.1">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="performFirstForwardToFirstSecondWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Rzx-xQ-oQ1"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-tF-PuC">
                                 <rect key="frame" x="128" y="124" width="64" height="64"/>
                                 <color key="backgroundColor" red="0.98813183110000002" green="0.73480269160583944" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,6 +42,20 @@
                                 </state>
                                 <connections>
                                     <action selector="goToUIViewController:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MQR-Ek-FhF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KB0-FH-jHd">
+                                <rect key="frame" x="128" y="40" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.98813183110000002" green="1" blue="0.74592510899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="UVa-xb-iM1"/>
+                                    <constraint firstAttribute="width" constant="64" id="aFf-3e-iOA"/>
+                                </constraints>
+                                <state key="normal" title="2.1">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="performFirstForwardToFirstSecondWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Rzx-xQ-oQ1"/>
                                 </connections>
                             </button>
                         </subviews>

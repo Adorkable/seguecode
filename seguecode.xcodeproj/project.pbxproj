@@ -17,9 +17,7 @@
 		3C1CE05F1B88421900DA379A /* UIViewController+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE05D1B8841D200DA379A /* UIViewController+seguecode.swift */; };
 		3C1CE0921B88587600DA379A /* seguecode in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE07D1B88572900DA379A /* seguecode */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3C1CE0D21B885A8200DA379A /* seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0A51B88598600DA379A /* seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3C1CE0E11B885D7400DA379A /* CommandLine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0DC1B885D5300DA379A /* CommandLine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3C1CE0F61B8864FF00DA379A /* CommandLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1CE0DC1B885D5300DA379A /* CommandLine.framework */; };
 		3C1CE1111B88C00300DA379A /* Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE10F1B88BFED00DA379A /* Main_iPhone.swift */; };
 		3C7304201B8BAF680093F82A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C73041F1B8BAF680093F82A /* main.m */; };
 		3C7304231B8BAF6F0093F82A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C7304221B8BAF6F0093F82A /* Info.plist */; };
@@ -30,6 +28,8 @@
 		3C7304321B8BAF770093F82A /* Template+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73042A1B8BAF770093F82A /* Template+seguecode.swift */; };
 		3C7304331B8BAF770093F82A /* SegueInstanceInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73042C1B8BAF770093F82A /* SegueInstanceInfo+seguecode.swift */; };
 		3C7304341B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73042D1B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift */; };
+		3C7304441B8BB1ED0093F82A /* libddcli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7304411B8BB1B30093F82A /* libddcli.a */; };
+		3C7304471B8BB3830093F82A /* SeguecodeCLIApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */; };
 		3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF970101B0147A30052F765 /* SecondViewController.swift */; };
 		A8655F729A961C64A8246398 /* Pods_seguecodeBundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923BA86F12E639ED709CACBB /* Pods_seguecodeBundle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -49,27 +49,6 @@
 			remoteGlobalIDString = 3C1CE0A41B88598600DA379A;
 			remoteInfo = seguecodeKit;
 		};
-		3C1CE0DB1B885D5300DA379A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D06884319674D7D00BBFAAC;
-			remoteInfo = CommandLine;
-		};
-		3C1CE0DD1B885D5300DA379A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D06884E19674D7D00BBFAAC;
-			remoteInfo = CommandLineTests;
-		};
-		3C1CE0DF1B885D6D00DA379A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D06884219674D7D00BBFAAC;
-			remoteInfo = CommandLine;
-		};
 		3C1CE0E41B88604800DA379A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3CCF86C11AF65DF600B7472E /* Project object */;
@@ -77,12 +56,33 @@
 			remoteGlobalIDString = 3C1CE0A41B88598600DA379A;
 			remoteInfo = seguecodeKit;
 		};
-		3C1CE0F41B8864F600DA379A /* PBXContainerItemProxy */ = {
+		3C73043C1B8BB1B30093F82A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */;
+			containerPortal = 3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = example;
+		};
+		3C73043E1B8BB1B30093F82A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55CCE9760C1380C900FA06C6;
+			remoteInfo = simple;
+		};
+		3C7304401B8BB1B30093F82A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55CCE92E0C137F7D00FA06C6;
+			remoteInfo = ddcli;
+		};
+		3C7304421B8BB1E60093F82A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 5D06884219674D7D00BBFAAC;
-			remoteInfo = CommandLine;
+			remoteGlobalIDString = 55CCE92D0C137F7D00FA06C6;
+			remoteInfo = ddcli;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -104,7 +104,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */,
-				3C1CE0E11B885D7400DA379A /* CommandLine.framework in CopyFiles */,
 				3C1CE0D21B885A8200DA379A /* seguecodeKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,7 +133,6 @@
 		3C1CE07D1B88572900DA379A /* seguecode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = seguecode; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1CE0881B8857B800DA379A /* seguecode.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = seguecode.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1CE0A51B88598600DA379A /* seguecodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = seguecodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommandLine.xcodeproj; path = Library/CommandLine/CommandLine.xcodeproj; sourceTree = "<group>"; };
 		3C1CE10F1B88BFED00DA379A /* Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main_iPhone.swift; sourceTree = "<group>"; };
 		3C73041F1B8BAF680093F82A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C7304221B8BAF6F0093F82A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,6 +143,9 @@
 		3C73042A1B8BAF770093F82A /* Template+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Template+seguecode.swift"; sourceTree = "<group>"; };
 		3C73042C1B8BAF770093F82A /* SegueInstanceInfo+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SegueInstanceInfo+seguecode.swift"; sourceTree = "<group>"; };
 		3C73042D1B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewControllerClassInfo+seguecode.swift"; sourceTree = "<group>"; };
+		3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ddcli.xcodeproj; path = Library/ddcli/ddcli.xcodeproj; sourceTree = "<group>"; };
+		3C7304451B8BB3830093F82A /* SeguecodeCLIApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeguecodeCLIApp.h; sourceTree = "<group>"; };
+		3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeguecodeCLIApp.m; sourceTree = "<group>"; };
 		3CF970101B0147A30052F765 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		499E529370BA086E416AE04A /* Pods-seguecodeBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecodeBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecodeBundle/Pods-seguecodeBundle.release.xcconfig"; sourceTree = "<group>"; };
 		4D63F6989CF94539579C3ED9 /* Pods-seguecodeKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecodeKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecodeKit/Pods-seguecodeKit.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C7304441B8BB1ED0093F82A /* libddcli.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +181,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C1CE0F61B8864FF00DA379A /* CommandLine.framework in Frameworks */,
 				12BF3D29CAC354F954B49AA0 /* Pods_seguecodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,24 +240,17 @@
 		3C1CE0D51B885D3C00DA379A /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */,
+				3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		3C1CE0D71B885D5300DA379A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3C1CE0DC1B885D5300DA379A /* CommandLine.framework */,
-				3C1CE0DE1B885D5300DA379A /* CommandLineTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3C73041E1B8BAF680093F82A /* seguecode */ = {
 			isa = PBXGroup;
 			children = (
 				3C73041F1B8BAF680093F82A /* main.m */,
+				3C7304451B8BB3830093F82A /* SeguecodeCLIApp.h */,
+				3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */,
 			);
 			path = seguecode;
 			sourceTree = "<group>";
@@ -297,6 +291,16 @@
 				3C73042D1B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift */,
 			);
 			path = StoryboardKit;
+			sourceTree = "<group>";
+		};
+		3C7304361B8BB1B30093F82A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C73043D1B8BB1B30093F82A /* example */,
+				3C73043F1B8BB1B30093F82A /* simple */,
+				3C7304411B8BB1B30093F82A /* libddcli.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3CCF86C01AF65DF600B7472E = {
@@ -385,6 +389,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3C7304431B8BB1E60093F82A /* PBXTargetDependency */,
 				3C1CE0E51B88604800DA379A /* PBXTargetDependency */,
 			);
 			name = seguecode;
@@ -408,7 +413,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3C1CE0E01B885D6D00DA379A /* PBXTargetDependency */,
 				3C1CE0D11B885A7B00DA379A /* PBXTargetDependency */,
 				3C1CE0901B88585700DA379A /* PBXTargetDependency */,
 			);
@@ -431,7 +435,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3C1CE0F51B8864F600DA379A /* PBXTargetDependency */,
 			);
 			name = seguecodeKit;
 			productName = seguecodeKit;
@@ -475,8 +478,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3C1CE0D71B885D5300DA379A /* Products */;
-					ProjectRef = 3C1CE0D61B885D5300DA379A /* CommandLine.xcodeproj */;
+					ProductGroup = 3C7304361B8BB1B30093F82A /* Products */;
+					ProjectRef = 3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -490,18 +493,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3C1CE0DC1B885D5300DA379A /* CommandLine.framework */ = {
+		3C73043D1B8BB1B30093F82A /* example */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommandLine.framework;
-			remoteRef = 3C1CE0DB1B885D5300DA379A /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.executable";
+			path = example;
+			remoteRef = 3C73043C1B8BB1B30093F82A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3C1CE0DE1B885D5300DA379A /* CommandLineTests.xctest */ = {
+		3C73043F1B8BB1B30093F82A /* simple */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CommandLineTests.xctest;
-			remoteRef = 3C1CE0DD1B885D5300DA379A /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.executable";
+			path = simple;
+			remoteRef = 3C73043E1B8BB1B30093F82A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3C7304411B8BB1B30093F82A /* libddcli.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libddcli.a;
+			remoteRef = 3C7304401B8BB1B30093F82A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -632,6 +642,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C7304201B8BAF680093F82A /* main.m in Sources */,
+				3C7304471B8BB3830093F82A /* SeguecodeCLIApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,20 +678,15 @@
 			target = 3C1CE0A41B88598600DA379A /* seguecodeKit */;
 			targetProxy = 3C1CE0D01B885A7B00DA379A /* PBXContainerItemProxy */;
 		};
-		3C1CE0E01B885D6D00DA379A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CommandLine;
-			targetProxy = 3C1CE0DF1B885D6D00DA379A /* PBXContainerItemProxy */;
-		};
 		3C1CE0E51B88604800DA379A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3C1CE0A41B88598600DA379A /* seguecodeKit */;
 			targetProxy = 3C1CE0E41B88604800DA379A /* PBXContainerItemProxy */;
 		};
-		3C1CE0F51B8864F600DA379A /* PBXTargetDependency */ = {
+		3C7304431B8BB1E60093F82A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = CommandLine;
-			targetProxy = 3C1CE0F41B8864F600DA379A /* PBXContainerItemProxy */;
+			name = ddcli;
+			targetProxy = 3C7304421B8BB1E60093F82A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -750,6 +756,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					Library/ddcli/lib,
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -758,6 +769,11 @@
 		3C1CE0831B88572900DA379A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					Library/ddcli/lib,
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -60,20 +60,20 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--storyboardFile /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Base.lproj/Main_iPhone.storyboard"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--project Example"
+            argument = "--projectName Example"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-c"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/ian/Documents/Adorkable/seguecode/Example/iOS/Base.lproj/Main_iPhone.storyboard"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

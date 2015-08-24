@@ -8,21 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@import seguecodeKit;
+#import <DDCommandLineInterface.h>
 
 int main(int argc, const char * argv[]) {
     
     @autoreleasepool {
-        NSMutableArray *parameters = [NSMutableArray arrayWithCapacity:argc];
-        
-        for (int index = 0; index < argc; index ++) {
-            NSString *parameter = [NSString stringWithCString:argv[index] encoding:NSUTF8StringEncoding];
-            [parameters addObject:parameter];
-        }
-        [seguecode handleParametersAndRun:parameters];
+        return DDCliAppRunWithDefaultClass();
     }
-    
-    [ [NSRunLoop currentRunLoop] run];
     
     return 0;
 }

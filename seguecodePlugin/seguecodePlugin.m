@@ -174,7 +174,11 @@ static seguecodePlugin *sharedPlugin;
     {
         [arguments addObject:@"--combine"];
     }
-    [arguments addObjectsFromArray:@[@"--storyboardFile", storyboardPath] ];
+    if (runConfig.projectName)
+    {
+        [arguments addObjectsFromArray:@[@"--projectName", runConfig.projectName] ];
+    }
+    [arguments addObject:storyboardPath];
     task.arguments = arguments;
     
     task.currentDirectoryPath = [storyboardPath stringByDeletingLastPathComponent];

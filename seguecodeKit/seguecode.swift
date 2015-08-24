@@ -12,48 +12,13 @@ import StoryboardKit
 
 import Stencil
 
-import CommandLine
-
 public class seguecode : NSObject
 {
-    public class func handleParametersAndRun(parameters : [String]) {
-        let cli = CommandLine(arguments: parameters)
-        
-        let storyboardFilePath = StringOption(shortFlag: "s", longFlag: "storyboardFile", required: true, helpMessage: "Path to storyboard to process.")
-        let outputPath = StringOption(shortFlag: "o", longFlag: "outputPath", required: true, helpMessage: "Path to output generated files.")
-        let projectName = StringOption(shortFlag: "p", longFlag: "project", required: false, helpMessage: "Name of project (Optional).")
-        let exportTogether = BoolOption(shortFlag: "c", longFlag: "combine", helpMessage: "Export the View Controllers combined in one file (Optional).")
-        
-        cli.addOptions([storyboardFilePath, outputPath, projectName, exportTogether])
-        
-        var result = cli.parse(strict: true)
-        if result.0 == true
-        {
-            if let storyboardFilePath = storyboardFilePath.value,
-                let storyboardFilePathUrl = NSURL(fileURLWithPath: storyboardFilePath),
-                let outputPath = outputPath.value,
-                let outputPathUrl = NSURL(fileURLWithPath: outputPath)
-            {
-                self.parse(storyboardFilePathUrl, outputPath: outputPathUrl, projectName: projectName.value, exportTogether: exportTogether.value)
-                exit(EX_OK)
-            } else
-            {
-                cli.printUsage()
-                exit(EX_USAGE)
-            }
-        } else
-        {
-            if let feedback = result.1
-            {
-                println("Error: \(feedback)")
-            }
-            cli.printUsage()
-            exit(EX_USAGE)
-        }
-    }
-    
     public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?, exportTogether : Bool) {
         var application = ApplicationInfo()
+        
+        NSLog("Writing to output path \(outputPath)")
+        NSLog("Using project name \(projectName)")
         
         if let storyboardFilePathString = storyboardFilePath.path,
             let storyboardFileName = storyboardFilePath.lastPathComponent?.stringByDeletingPathExtension
