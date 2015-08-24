@@ -15,7 +15,7 @@
 
 #import "HeaderTemplate.h"
 
-#define SegueCodeAppVersion @"1.2"
+#define SegueCodeAppVersion @"1.1.1"
 
 static SeguecodeApp *staticSharedDelegate;
 
