@@ -17,6 +17,7 @@
 		3C4B54611A0EEAC10041E9D0 /* NSNotification+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54231A0EE8270041E9D0 /* NSNotification+Utility.m */; };
 		3C4B54631A0EEAC10041E9D0 /* NSObject+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B54251A0EE8270041E9D0 /* NSObject+Utility.m */; };
 		3C4B54651A0EEAC10041E9D0 /* seguecodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B541C1A0EE7FE0041E9D0 /* seguecodePlugin.m */; };
+		3C6608661B8B6FB000F86FFD /* seguecode.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CAA72131B8A064F0028683D /* seguecode.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CAA721A1B8A07490028683D /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */; };
 		3CAA721F1B8A0B600028683D /* seguecode.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CAA72131B8A064F0028683D /* seguecode.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CFE5E331B8B68A800A4146D /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */; };
@@ -61,6 +62,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3C6608651B8B6F9F00F86FFD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				3C6608661B8B6FB000F86FFD /* seguecode.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3CAA721E1B8A0B470028683D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,9 +195,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C4B541E1A0EE7FE0041E9D0 /* Build configuration list for PBXNativeTarget "seguecodePlugin" */;
 			buildPhases = (
-				3C4B544F1A0EE8CD0041E9D0 /* ShellScript */,
+				3C4B544F1A0EE8CD0041E9D0 /* Get Latest seguecodeBundle */,
 				3C4B540C1A0EE7FE0041E9D0 /* Sources */,
-				3C4B540D1A0EE7FE0041E9D0 /* Resources */,
+				3C6608651B8B6F9F00F86FFD /* CopyFiles */,
 				3C4B540E1A0EE7FE0041E9D0 /* Frameworks */,
 			);
 			buildRules = (
@@ -288,29 +299,20 @@
 		};
 /* End PBXReferenceProxy section */
 
-/* Begin PBXResourcesBuildPhase section */
-		3C4B540D1A0EE7FE0041E9D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
-		3C4B544F1A0EE8CD0041E9D0 /* ShellScript */ = {
+		3C4B544F1A0EE8CD0041E9D0 /* Get Latest seguecodeBundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Get Latest seguecodeBundle";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"${BUILT_PRODUCTS_DIR}\"\nrm -f seguecodePluginTmp\nmkdir -p seguecodePluginTmp\ncd seguecodePluginTmp\ngit clone https://github.com/Adorkable/seguecode.git\ncd seguecode\nlatestTag=$(git describe --tags `git rev-list --tags --max-count=1`)\ncd ..\nrm -f -r -d seguecode\ncurl -O -L https://github.com/Adorkable/seguecode/releases/download/$latestTag/seguecode.zip\nunzip seguecode\nmkdir -p \"${SRCROOT}/bin\"\nmv -f seguecode \"${SRCROOT}/bin\"";
+			shellScript = "VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\necho \"Retrieving seguecodeBundle for version ${VERSION_NUMBER}\"\n\ncd \"${BUILT_PRODUCTS_DIR}\"\nrm -f -r -d seguecode.bundle.zip\ncurl -O -L https://github.com/Adorkable/seguecode/releases/download/$VERSION_NUMBER/seguecode.bundle.zip\nrm -f -r -d seguecode.bundle\nunzip seguecode.bundle";
 		};
 /* End PBXShellScriptBuildPhase section */
 
