@@ -1,4 +1,4 @@
-# Uncomment this line to define a global platform for your project
+xcodeproj 'seguecode.xcodeproj'
 # platform :ios, '6.0'
 
 use_frameworks!

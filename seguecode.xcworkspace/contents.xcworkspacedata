@@ -4,9 +4,6 @@
    <FileRef
       location = "group:seguecode.xcodeproj">
    </FileRef>
-      <FileRef
-      location = "group:seguecodePlugin.xcodeproj">
-   </FileRef>
    <FileRef
       location = "group:seguecodePlugin.xcodeproj">
    </FileRef>

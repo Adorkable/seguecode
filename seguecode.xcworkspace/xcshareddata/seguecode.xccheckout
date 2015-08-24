@@ -26,7 +26,7 @@
 		<key>B0E6B06954F391D32E10FEBDE27034186A3BEF62</key>
 		<string>../Library/ddcli</string>
 		<key>CBF5F70D4EDC8047BC75C25236002B0EA7F6B15B</key>
-		<string>../Library/CommandLine/</string>
+		<string>../Library/CommandLine</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:yoiang/seguecode.git</string>
