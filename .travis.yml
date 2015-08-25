@@ -4,6 +4,7 @@ xcode_scheme:
 - seguecodePluginLocal
 - seguecodePlugin
 before_install: 
+- gem install rake
 - gem install cocoapods
 - git submodule init
 - git submodule update
