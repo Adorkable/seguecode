@@ -1,6 +1,8 @@
-language: objective-c
+osx_image: beta-xcode6.3
 xcode_workspace: seguecode.xcworkspace
-xcode_scheme: seguecode
+xcode_scheme: 
+- seguecodePluginLocal
+- seguecodePlugin
 before_install: 
 - gem install cocoapods
 - git submodule init
