@@ -29,6 +29,7 @@ extension ViewControllerClassInfo
         if instances.count > 0
         {
             var segueInstances = NSMutableOrderedSet()
+            var tableViewCellPrototypes = Array<TableViewInstanceInfo.TableViewCellPrototypeInfo>()
             for instance in instances
             {
                 if let instance = instance.value
@@ -36,13 +37,21 @@ extension ViewControllerClassInfo
                     for segue in instance.segues
                     {
                         segueInstances.addObject(segue)
+                        
+                        if let view = instance.view
+                        {
+                            var viewCellPrototypes = ViewControllerClassInfo.tableViewCellPrototypes(view)
+                            if viewCellPrototypes.count > 0
+                            {
+                                tableViewCellPrototypes = tableViewCellPrototypes + viewCellPrototypes
+                            }
+                        }
                     }
-                    
-                    
                 }
             }
             
             ViewControllerClassInfo.addSegueInfoStencilContexts(&contextDictionary, segueInstances: segueInstances)
+            ViewControllerClassInfo.addTableViewCellPrototypeStencilContexts(&contextDictionary, cellPrototypes: tableViewCellPrototypes)
             
             result = contextDictionary
         }
@@ -86,4 +95,66 @@ extension ViewControllerClassInfo
         
         return (resultSegueCases, resultPerformFunctions)
     }
+    
+    class func tableViewCellPrototypes(view : ViewInstanceInfo) -> [TableViewInstanceInfo.TableViewCellPrototypeInfo] {
+        var result = Array<TableViewInstanceInfo.TableViewCellPrototypeInfo>()
+        
+        if let tableView = view as? TableViewInstanceInfo,
+            let cellPrototypes = tableView.cellPrototypes
+        {
+            for cellPrototype in cellPrototypes
+            {
+                result.append(cellPrototype)
+            }
+        }
+        
+        if let subviews = view.subviews
+        {
+            for subview in subviews
+            {
+                var subviewResult = self.tableViewCellPrototypes(subview)
+                if subviewResult.count > 0
+                {
+                    result = result + subviewResult
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    class func addTableViewCellPrototypeStencilContexts(inout contextDictionary : [String : AnyObject], cellPrototypes: [TableViewInstanceInfo.TableViewCellPrototypeInfo]) {
+        var cellPrototypeResults = self.cellPrototypeStencilContexts(cellPrototypes)
+        if cellPrototypeResults.0.count > 0
+        {
+            contextDictionary[DefaultTemplate.Keys.ViewController.TableViewCellPrototypes] = cellPrototypeResults.0
+        }
+        
+        if cellPrototypeResults.1.count > 0
+        {
+            contextDictionary[DefaultTemplate.Keys.ViewController.DequeueFunctions] = cellPrototypeResults.1
+        }
+    }
+    
+    // TODO: clarify cellPrototypes and dequeueFunctions in return results, right now interchangable
+    class func cellPrototypeStencilContexts(cellPrototypes : [TableViewInstanceInfo.TableViewCellPrototypeInfo]) -> ([ [String : String] ], [ [String: String] ]) {
+        var resultCellPrototypes = [ [String : String] ]()
+        var resultDequeueFunctions = [ [String : String] ]()
+        
+        for cellPrototype in cellPrototypes
+        {
+            if let cellPrototypeStencilContext = cellPrototype.cellPrototypeStencilContext()
+            {
+                resultCellPrototypes.append(cellPrototypeStencilContext)
+            }
+            
+            if let dequeueFunctionStencilContext = cellPrototype.dequeueFunctionStencilContext()
+            {
+                resultDequeueFunctions.append(dequeueFunctionStencilContext)
+            }
+        }
+        
+        return (resultCellPrototypes, resultDequeueFunctions)
+    }
+    
 }

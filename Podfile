@@ -8,13 +8,13 @@ target 'seguecode' do
 end
 
 target 'seguecodeBundle' do
-    pod 'StoryboardKit'
+    pod 'StoryboardKit', :path => '~/Documents/Adorkable/StoryboardKit'
     
     pod 'Stencil'
 end
 
 target 'seguecodeKit' do
-    pod 'StoryboardKit'
+    pod 'StoryboardKit', :path => '~/Documents/Adorkable/StoryboardKit'
     
     pod 'Stencil'
 end

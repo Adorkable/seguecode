@@ -18,7 +18,6 @@
 		3C1CE0921B88587600DA379A /* seguecode in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE07D1B88572900DA379A /* seguecode */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3C1CE0D21B885A8200DA379A /* seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0A51B88598600DA379A /* seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3C1CE1111B88C00300DA379A /* Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE10F1B88BFED00DA379A /* Main_iPhone.swift */; };
 		3C7304201B8BAF680093F82A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C73041F1B8BAF680093F82A /* main.m */; };
 		3C7304231B8BAF6F0093F82A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C7304221B8BAF6F0093F82A /* Info.plist */; };
 		3C73042E1B8BAF770093F82A /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304251B8BAF770093F82A /* DefaultTemplate.swift */; };
@@ -30,6 +29,10 @@
 		3C7304341B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73042D1B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift */; };
 		3C7304441B8BB1ED0093F82A /* libddcli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7304411B8BB1B30093F82A /* libddcli.a */; };
 		3C7304471B8BB3830093F82A /* SeguecodeCLIApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */; };
+		3CC70BED1B8EB07F002C4437 /* FirstViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0601B88429100DA379A /* FirstViewController+Main_iPhone.swift */; };
+		3CC70BEE1B8EB07F002C4437 /* SecondViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0611B88429100DA379A /* SecondViewController+Main_iPhone.swift */; };
+		3CC70BEF1B8EB07F002C4437 /* UIViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0621B88429100DA379A /* UIViewController+Main_iPhone.swift */; };
+		3CC70BF31B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC70BF21B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift */; };
 		3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF970101B0147A30052F765 /* SecondViewController.swift */; };
 		A8655F729A961C64A8246398 /* Pods_seguecodeBundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923BA86F12E639ED709CACBB /* Pods_seguecodeBundle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -146,6 +149,7 @@
 		3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ddcli.xcodeproj; path = Library/ddcli/ddcli.xcodeproj; sourceTree = "<group>"; };
 		3C7304451B8BB3830093F82A /* SeguecodeCLIApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeguecodeCLIApp.h; sourceTree = "<group>"; };
 		3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeguecodeCLIApp.m; sourceTree = "<group>"; };
+		3CC70BF21B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewCellPrototype+seguecode.swift"; sourceTree = "<group>"; };
 		3CF970101B0147A30052F765 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		499E529370BA086E416AE04A /* Pods-seguecodeBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecodeBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecodeBundle/Pods-seguecodeBundle.release.xcconfig"; sourceTree = "<group>"; };
 		4D63F6989CF94539579C3ED9 /* Pods-seguecodeKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecodeKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecodeKit/Pods-seguecodeKit.release.xcconfig"; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 			children = (
 				3C73042C1B8BAF770093F82A /* SegueInstanceInfo+seguecode.swift */,
 				3C73042D1B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift */,
+				3CC70BF21B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift */,
 			);
 			path = StoryboardKit;
 			sourceTree = "<group>";
@@ -628,12 +633,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */,
+				3CC70BED1B8EB07F002C4437 /* FirstViewController+Main_iPhone.swift in Sources */,
+				3CC70BEF1B8EB07F002C4437 /* UIViewController+Main_iPhone.swift in Sources */,
 				3C1CE05F1B88421900DA379A /* UIViewController+seguecode.swift in Sources */,
 				3C13804C1AF7488400E417B2 /* TestCustomReverseSegue.m in Sources */,
 				3C13802E1AF73FEE00E417B2 /* AppDelegate.swift in Sources */,
 				3C13804D1AF7488400E417B2 /* TestCustomSegue.m in Sources */,
+				3CC70BEE1B8EB07F002C4437 /* SecondViewController+Main_iPhone.swift in Sources */,
 				3C13803F1AF740A500E417B2 /* FirstViewController.m in Sources */,
-				3C1CE1111B88C00300DA379A /* Main_iPhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +665,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C7304301B8BAF770093F82A /* seguecode.swift in Sources */,
+				3CC70BF31B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift in Sources */,
 				3C73042E1B8BAF770093F82A /* DefaultTemplate.swift in Sources */,
 				3C7304321B8BAF770093F82A /* Template+seguecode.swift in Sources */,
 				3C7304341B8BAF770093F82A /* ViewControllerClassInfo+seguecode.swift in Sources */,
