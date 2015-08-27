@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Adorkable. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 import Stencil
 
@@ -63,28 +63,30 @@ class DefaultTemplate: Template {
         "//"
     }
 
+    // TODO: no longer cases, rename
     static var segueCases : String {
         return "{% if viewController.\(Keys.ViewController.SegueCases) %}" +
             
             "\n" +
-            "   struct Segues {\n" +
+            "    struct Segues {\n" +
             "{% for segueCase in viewController.\(Keys.ViewController.SegueCases) %}" +
             
-            "       static let {{ segueCase.\(Keys.ViewController.SegueCase.SourceIdentifier) }}{{ segueCase.\(Keys.ViewController.SegueCase.Identifier) }}{{ segueCase.\(Keys.ViewController.SegueCase.DestinationIdentifier) }} = Segue(identifier: \"{{ segueCase.\(Keys.ViewController.SegueCase.Value) }}\")\n" +
+            "        static let {{ segueCase.\(Keys.ViewController.SegueCase.SourceIdentifier) }}{{ segueCase.\(Keys.ViewController.SegueCase.Identifier) }}{{ segueCase.\(Keys.ViewController.SegueCase.DestinationIdentifier) }} = Segue(identifier: \"{{ segueCase.\(Keys.ViewController.SegueCase.Value) }}\")\n" +
 
             "{% endfor %}" +
-            "   }\n" +
+            "    }\n" +
             
             "{% endif %}"
     }
+    
     static var performFunctions : String {
         return "{% if viewController.\(Keys.ViewController.PerformFunctions) %}" +
             "{% for performFunction in viewController.\(Keys.ViewController.PerformFunctions) %}" +
             
             "\n" +
-            "   @IBAction func perform{{ performFunction.\(Keys.ViewController.PerformFunction.SourceIdentifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.Identifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.DestinationIdentifier) }}(sender : AnyObject? = nil) {\n" +
-            "       self.performSegue({{ viewController.\(Keys.ViewController.Name) }}.Segues.{{ performFunction.\(Keys.ViewController.PerformFunction.SourceIdentifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.Identifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.DestinationIdentifier) }}, sender: sender)\n" +
-            "   }\n" +
+            "    @IBAction func perform{{ performFunction.\(Keys.ViewController.PerformFunction.SourceIdentifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.Identifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.DestinationIdentifier) }}(sender : AnyObject? = nil) {\n" +
+            "        self.performSegue({{ viewController.\(Keys.ViewController.Name) }}.Segues.{{ performFunction.\(Keys.ViewController.PerformFunction.SourceIdentifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.Identifier) }}{{ performFunction.\(Keys.ViewController.PerformFunction.DestinationIdentifier) }}, sender: sender)\n" +
+            "    }\n" +
 
             "{% endfor %}" +
             "{% endif %}"
@@ -115,21 +117,25 @@ class DefaultTemplate: Template {
     }
     
     static var sharedDefinitions : String {
+        return self.sharedUIViewControllerDefinitions 
+    }
+    
+    static var sharedUIViewControllerDefinitions : String {
         return "extension UIViewController {\n" +
             
-            "   class Segue\n" +
-            "   {\n" +
-            "       let identifier : String\n" +
-            "   \n" +
-            "       init(identifier : String) {\n" +
-            "           self.identifier = identifier\n" +
-            "       }\n" +
-            "   }\n" +
+            "    class Segue\n" +
+            "    {\n" +
+            "        let identifier : String\n" +
+            "\n" +
+            "        init(identifier : String) {\n" +
+            "            self.identifier = identifier\n" +
+            "        }\n" +
+            "    }\n" +
             "\n" +
             
-            "   func performSegue(segue : Segue, sender : AnyObject?) {\n" + // TODO: validate that we're calling from the correct instance of the VC class for classes in multiple instances in storyboards
-            "       self.performSegueWithIdentifier(segue.identifier, sender: sender)\n" +
-            "   }\n" +
+            "    func performSegue(segue : Segue, sender : AnyObject?) {\n" + // TODO: validate that we're calling from the correct instance of the VC class for classes in multiple instances in storyboards
+            "        self.performSegueWithIdentifier(segue.identifier, sender: sender)\n" +
+            "    }\n" +
             "}\n"
     }
     

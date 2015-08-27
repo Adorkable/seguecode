@@ -37,41 +37,53 @@ extension ViewControllerClassInfo
                     {
                         segueInstances.addObject(segue)
                     }
+                    
+                    
                 }
             }
-            if segueInstances.count > 0
-            {
-                var segueCases = [ [String : String] ]()
-                var performFunctions = [ [String : String] ]()
-                for segueInstance in segueInstances
-                {
-                    if let segueInstance = segueInstance as? SegueInstanceInfo
-                    {
-                        if let segueCaseStencilContext = segueInstance.segueCaseStencilContext()
-                        {
-                            segueCases.append(segueCaseStencilContext)
-                        }
-                        
-                        if let peformFunctionStencilContext = segueInstance.peformFunctionStencilContext()
-                        {
-                            performFunctions.append(peformFunctionStencilContext)
-                        }
-                    }
-                }
-                if segueCases.count > 0
-                {
-                    contextDictionary[DefaultTemplate.Keys.ViewController.SegueCases] = segueCases
-                }
-                
-                if performFunctions.count > 0
-                {
-                    contextDictionary[DefaultTemplate.Keys.ViewController.PerformFunctions] = performFunctions
-                }
-                
-                result = contextDictionary
-            }
+            
+            ViewControllerClassInfo.addSegueInfoStencilContexts(&contextDictionary, segueInstances: segueInstances)
+            
+            result = contextDictionary
         }
         
         return result
+    }
+    
+    class func addSegueInfoStencilContexts(inout contextDictionary : [String : AnyObject], segueInstances : NSOrderedSet) {
+        var segueResults = self.segueInfoStencilContexts(segueInstances)
+        if segueResults.0.count > 0
+        {
+            contextDictionary[DefaultTemplate.Keys.ViewController.SegueCases] = segueResults.0
+        }
+        
+        if segueResults.1.count > 0
+        {
+            contextDictionary[DefaultTemplate.Keys.ViewController.PerformFunctions] = segueResults.1
+        }
+    }
+    
+    // TODO: clarify segueCases and performFunctions in return results, right now interchangable
+    class func segueInfoStencilContexts(segueInstances : NSOrderedSet) -> ([ [String : String] ], [ [String: String] ]) {
+        var resultSegueCases = [ [String : String] ]()
+        var resultPerformFunctions = [ [String : String] ]()
+        
+        for segueInstance in segueInstances
+        {
+            if let segueInstance = segueInstance as? SegueInstanceInfo
+            {
+                if let segueCaseStencilContext = segueInstance.segueCaseStencilContext()
+                {
+                    resultSegueCases.append(segueCaseStencilContext)
+                }
+                
+                if let peformFunctionStencilContext = segueInstance.peformFunctionStencilContext()
+                {
+                    resultPerformFunctions.append(peformFunctionStencilContext)
+                }
+            }
+        }
+        
+        return (resultSegueCases, resultPerformFunctions)
     }
 }

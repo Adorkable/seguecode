@@ -8,16 +8,17 @@
 import UIKit
 
 extension UIViewController {
-   class Segue
-   {
-       let identifier : String
-   
-       init(identifier : String) {
-           self.identifier = identifier
-       }
-   }
+    class Segue
+    {
+        let identifier : String
 
-   func performSegue(segue : Segue, sender : AnyObject?) {
-       self.performSegueWithIdentifier(segue.identifier, sender: sender)
-   }
+        init(identifier : String) {
+            self.identifier = identifier
+        }
+    }
+
+    func performSegue(segue : Segue, sender : AnyObject?) {
+        self.performSegueWithIdentifier(segue.identifier, sender: sender)
+    }
+}
 }
