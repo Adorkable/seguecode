@@ -20,34 +20,6 @@
                ReferencedContainer = "container:seguecode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1380151AF73FA800E417B2"
-               BuildableName = "seguecodeiOSExampleTests.xctest"
-               BlueprintName = "seguecodeiOSExampleTests"
-               ReferencedContainer = "container:seguecode.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1CE0AE1B88598600DA379A"
-               BuildableName = "seguecodeKitTests.xctest"
-               BlueprintName = "seguecodeKitTests"
-               ReferencedContainer = "container:seguecode.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -56,26 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1380151AF73FA800E417B2"
-               BuildableName = "seguecodeiOSExampleTests.xctest"
-               BlueprintName = "seguecodeiOSExampleTests"
-               ReferencedContainer = "container:seguecode.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1CE0AE1B88598600DA379A"
-               BuildableName = "seguecodeKitTests.xctest"
-               BlueprintName = "seguecodeKitTests"
-               ReferencedContainer = "container:seguecode.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

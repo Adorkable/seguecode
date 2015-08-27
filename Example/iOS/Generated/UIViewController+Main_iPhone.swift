@@ -9,11 +9,11 @@ import UIKit
 
 extension UIViewController {
 
-   struct Segues {
-       static let BackToFirst = Segue(identifier: "BackTo")
-   }
+    struct Segues {
+        static let BackToFirst = Segue(identifier: "BackTo")
+    }
 
-   @IBAction func performBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(UIViewController.Segues.BackToFirst, sender: sender)
-   }
+    @IBAction func performBackToFirst(sender : AnyObject? = nil) {
+        self.performSegue(UIViewController.Segues.BackToFirst, sender: sender)
+    }
 }

@@ -10,3 +10,13 @@ import UIKit
 
 class SecondViewController: UIViewController {
 }
+
+extension SecondViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return self.dequeueReusableSecondTableCell(tableView, forIndexPath : indexPath) as! UITableViewCell
+    }
+}

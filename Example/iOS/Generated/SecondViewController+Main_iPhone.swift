@@ -9,16 +9,28 @@ import UIKit
 
 extension SecondViewController {
 
-   struct Segues {
-       static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
-       static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
-   }
+    struct Segues {
+        static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
+        static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
+    }
 
-   @IBAction func performFirstSecondBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(SecondViewController.Segues.FirstSecondBackToFirst, sender: sender)
-   }
+    @IBAction func performFirstSecondBackToFirst(sender : AnyObject? = nil) {
+        self.performSegue(SecondViewController.Segues.FirstSecondBackToFirst, sender: sender)
+    }
 
-   @IBAction func performSecondSecondBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(SecondViewController.Segues.SecondSecondBackToFirst, sender: sender)
-   }
+    @IBAction func performSecondSecondBackToFirst(sender : AnyObject? = nil) {
+        self.performSegue(SecondViewController.Segues.SecondSecondBackToFirst, sender: sender)
+    }
+
+    struct TableViewCellPrototypes {
+        static let SecondTableCell = UITableView.TableViewCellPrototype(reuseIdentifier: "SecondTableCell")
+    }
+
+    func dequeueReusableSecondTableCell(tableView : UITableView) -> AnyObject? {
+        return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell)
+    }
+
+    func dequeueReusableSecondTableCell(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> AnyObject {
+        return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell, forIndexPath : indexPath)
+    }
 }

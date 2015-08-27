@@ -21,4 +21,22 @@ extension UIViewController {
         self.performSegueWithIdentifier(segue.identifier, sender: sender)
     }
 }
+
+extension UITableView {
+    class TableViewCellPrototype
+    {
+        let reuseIdentifier : String
+
+        init(reuseIdentifier : String) {
+            self.reuseIdentifier = reuseIdentifier
+        }
+    }
+
+    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> AnyObject? {
+        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier)
+    }
+
+    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> AnyObject {
+        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier, forIndexPath: indexPath)
+    }
 }
