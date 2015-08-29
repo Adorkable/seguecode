@@ -1,4 +1,5 @@
-osx_image: beta-xcode6.3
+language: objective-c
+osx_image: xcode6.4
 xcode_workspace: seguecode.xcworkspace
 xcode_scheme: 
 - seguecodePluginLocal
