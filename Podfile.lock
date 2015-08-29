@@ -8,11 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - Stencil
-  - StoryboardKit (from `~/Documents/Adorkable/StoryboardKit`)
-
-EXTERNAL SOURCES:
-  StoryboardKit:
-    :path: "~/Documents/Adorkable/StoryboardKit"
+  - StoryboardKit
 
 SPEC CHECKSUMS:
   PathKit: 0f4d1becb7002e3cd62a1583ce8de964d57485ce
