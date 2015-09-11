@@ -119,7 +119,7 @@ public class seguecode : NSObject
                 } else
                 {
                     // TODO: delete output file? output empty file?
-                    NSLog("No information to export for view controller class \(viewControllerClass)")
+                    NSLog("No information to export for view controller class \(viewControllerClass.infoClassName)")
                 }
             }
         }

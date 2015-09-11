@@ -18,6 +18,7 @@
 		3C1CE0921B88587600DA379A /* seguecode in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE07D1B88572900DA379A /* seguecode */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3C1CE0D21B885A8200DA379A /* seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0A51B88598600DA379A /* seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C4716E31BA2A151006750E9 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4716E21BA2A151006750E9 /* ThirdViewController.swift */; };
 		3C7304201B8BAF680093F82A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C73041F1B8BAF680093F82A /* main.m */; };
 		3C73042E1B8BAF770093F82A /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304251B8BAF770093F82A /* DefaultTemplate.swift */; };
 		3C73042F1B8BAF770093F82A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C7304261B8BAF770093F82A /* Info.plist */; };
@@ -136,6 +137,7 @@
 		3C1CE0881B8857B800DA379A /* seguecode.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = seguecode.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1CE0A51B88598600DA379A /* seguecodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = seguecodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1CE10F1B88BFED00DA379A /* Main_iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main_iPhone.swift; sourceTree = "<group>"; };
+		3C4716E21BA2A151006750E9 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		3C73041F1B8BAF680093F82A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C7304221B8BAF6F0093F82A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C7304251B8BAF770093F82A /* DefaultTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				3C13803B1AF740A500E417B2 /* FirstViewController.h */,
 				3C13803C1AF740A500E417B2 /* FirstViewController.m */,
 				3CF970101B0147A30052F765 /* SecondViewController.swift */,
+				3C4716E21BA2A151006750E9 /* ThirdViewController.swift */,
 				3C1380421AF740D900E417B2 /* Generated */,
 				3C1380471AF7488400E417B2 /* Segues */,
 			);
@@ -646,6 +649,7 @@
 			files = (
 				3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */,
 				3CC70BED1B8EB07F002C4437 /* FirstViewController+Main_iPhone.swift in Sources */,
+				3C4716E31BA2A151006750E9 /* ThirdViewController.swift in Sources */,
 				3CC70BEF1B8EB07F002C4437 /* UIViewController+Main_iPhone.swift in Sources */,
 				3C1CE05F1B88421900DA379A /* UIViewController+seguecode.swift in Sources */,
 				3C13804C1AF7488400E417B2 /* TestCustomReverseSegue.m in Sources */,
