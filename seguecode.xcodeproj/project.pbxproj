@@ -19,7 +19,6 @@
 		3C1CE0D21B885A8200DA379A /* seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C1CE0A51B88598600DA379A /* seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C1CE0E21B885F9600DA379A /* Pods_seguecodeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C7304201B8BAF680093F82A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C73041F1B8BAF680093F82A /* main.m */; };
-		3C7304231B8BAF6F0093F82A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C7304221B8BAF6F0093F82A /* Info.plist */; };
 		3C73042E1B8BAF770093F82A /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304251B8BAF770093F82A /* DefaultTemplate.swift */; };
 		3C73042F1B8BAF770093F82A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C7304261B8BAF770093F82A /* Info.plist */; };
 		3C7304301B8BAF770093F82A /* seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304271B8BAF770093F82A /* seguecode.swift */; };
@@ -536,7 +535,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C7304231B8BAF6F0093F82A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
