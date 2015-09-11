@@ -130,6 +130,24 @@
             </objects>
             <point key="canvasLocation" x="592" y="957"/>
         </scene>
+        <!--Third View Controller-->
+        <scene sceneID="A1N-BE-9PZ">
+            <objects>
+                <viewController id="XM4-lT-flK" customClass="ThirdViewController" customModule="iOSExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sNX-cf-BbC"/>
+                        <viewControllerLayoutGuide type="bottom" id="i0g-tb-UcN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u6X-eg-QZW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WiR-c7-RLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1142" y="1173"/>
+        </scene>
         <!--1st Second View Controller-->
         <scene sceneID="Jl1-yD-Z6Z">
             <objects>
