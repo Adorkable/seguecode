@@ -18,4 +18,6 @@
 
 @property (readonly) BOOL combine;
 
+@property (readonly) BOOL verbose;
+
 @end

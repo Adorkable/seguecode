@@ -64,6 +64,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-l"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--projectName Example"
             isEnabled = "YES">
          </CommandLineArgument>

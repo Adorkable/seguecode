@@ -19,6 +19,8 @@
 {
     BOOL _combine;
     
+    BOOL _verbose;
+    
     BOOL _help;
     BOOL _version;
 }
@@ -37,6 +39,8 @@
         
         {"projectName", 'p', DDGetoptRequiredArgument},
         
+        {"verbose",    'l',    DDGetoptNoArgument},
+        
         {"help",       'h',    DDGetoptNoArgument},
         {"version",    'v',    DDGetoptNoArgument},
         {nil,           0,      0},
@@ -50,6 +54,9 @@
     ddprintf(@"  -o, --outputPath DIR         (Required) Path to output generated files.\n"
              @"  -c, --combine                Export the View Controllers combined in one file\n"
              @"  -p, --projectName NAME       Name to use as project in source file header comment\n"
+             @"\n"
+             @"  -l, --verbose                Output verbose logging\n"
+             @"\n"
              @"  -v, --version                Display seguecode's version\n"
              @"  -h, --help                   Display help\n");
 }
@@ -81,11 +88,12 @@
     NSURL *outputPathUrl = [NSURL fileURLWithPath:outputPath];
     
     BOOL combine = _combine;
+    BOOL verboseLogging = _verbose;
     
     if (outputPathUrl != nil)
     {
         result = YES;
-        [seguecode parse:storyboardPathFileNameUrl outputPath:outputPathUrl projectName:self.projectName exportTogether:combine];
+        [seguecode parse:storyboardPathFileNameUrl outputPath:outputPathUrl projectName:self.projectName exportTogether:combine verboseLogging:verboseLogging];
     }
 
     return result;

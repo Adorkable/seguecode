@@ -14,17 +14,38 @@ import Stencil
 
 public class seguecode : NSObject
 {
-    public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?, exportTogether : Bool) {
+    public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?, exportTogether : Bool, verboseLogging : Bool) {
         var application = ApplicationInfo()
         
         NSLog("Writing to output path \(outputPath)")
-        NSLog("Using project name \(projectName)")
+        if let projectName = projectName
+        {
+            NSLog("Using project name \"\(projectName)\"")
+        }
+        
+        NSLog("\n")
         
         if let storyboardFilePathString = storyboardFilePath.path,
             let storyboardFileName = storyboardFilePath.lastPathComponent?.stringByDeletingPathExtension
         {
             
             let result = StoryboardFileParser.parse(application, pathFileName: storyboardFilePathString)
+            
+            if verboseLogging == true
+            {
+                if let logs = result.2
+                {
+                    if logs.count > 0
+                    {
+                        NSLog("Verbose Logs:")
+                        for message in logs
+                        {
+                            NSLog("\(message)")
+                        }
+                        NSLog("\n")
+                    }
+                }
+            }
             
             if let storyboard = result.0
             {
