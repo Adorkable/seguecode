@@ -10,4 +10,6 @@
 
 @interface FirstViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *label;
+
 @end
