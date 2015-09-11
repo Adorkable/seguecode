@@ -9,48 +9,63 @@ import UIKit
 
 extension FirstViewController {
 
-   struct Segues {
-       static let FirstForwardToUIVC = Segue(identifier: "ForwardToUIVC")
-       static let FirstGoToSecondSecond = Segue(identifier: "GoTo")
-       static let FirstForwardToFirstSecond = Segue(identifier: "ForwardTo")
-   }
+    struct Segues {
+        static let FirstForwardToUIVC = Segue(identifier: "ForwardToUIVC")
+        static let FirstGoToSecondSecond = Segue(identifier: "GoTo")
+        static let FirstForwardToFirstSecond = Segue(identifier: "ForwardTo")
+    }
 
-   @IBAction func performFirstForwardToUIVC(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segues.FirstForwardToUIVC, sender: sender)
-   }
+    @IBAction func performFirstForwardToUIVC(sender : AnyObject? = nil) {
+        self.performSegue(FirstViewController.Segues.FirstForwardToUIVC, sender: sender)
+    }
 
-   @IBAction func performFirstGoToSecondSecond(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segues.FirstGoToSecondSecond, sender: sender)
-   }
+    @IBAction func performFirstGoToSecondSecond(sender : AnyObject? = nil) {
+        self.performSegue(FirstViewController.Segues.FirstGoToSecondSecond, sender: sender)
+    }
 
-   @IBAction func performFirstForwardToFirstSecond(sender : AnyObject? = nil) {
-       self.performSegue(FirstViewController.Segues.FirstForwardToFirstSecond, sender: sender)
-   }
+    @IBAction func performFirstForwardToFirstSecond(sender : AnyObject? = nil) {
+        self.performSegue(FirstViewController.Segues.FirstForwardToFirstSecond, sender: sender)
+    }
 }
 
 extension UIViewController {
 
-   struct Segues {
-       static let BackToFirst = Segue(identifier: "BackTo")
-   }
+    struct Segues {
+        static let BackToFirst = Segue(identifier: "BackTo")
+    }
 
-   @IBAction func performBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(UIViewController.Segues.BackToFirst, sender: sender)
-   }
+    @IBAction func performBackToFirst(sender : AnyObject? = nil) {
+        self.performSegue(UIViewController.Segues.BackToFirst, sender: sender)
+    }
+}
+
+extension ThirdViewController {
 }
 
 extension SecondViewController {
 
-   struct Segues {
-       static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
-       static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
-   }
+    struct Segues {
+        static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
+        static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
+    }
 
-   @IBAction func performFirstSecondBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(SecondViewController.Segues.FirstSecondBackToFirst, sender: sender)
-   }
+    @IBAction func performFirstSecondBackToFirst(sender : AnyObject? = nil) {
+        self.performSegue(SecondViewController.Segues.FirstSecondBackToFirst, sender: sender)
+    }
 
-   @IBAction func performSecondSecondBackToFirst(sender : AnyObject? = nil) {
-       self.performSegue(SecondViewController.Segues.SecondSecondBackToFirst, sender: sender)
-   }
+    @IBAction func performSecondSecondBackToFirst(sender : AnyObject? = nil) {
+        self.performSegue(SecondViewController.Segues.SecondSecondBackToFirst, sender: sender)
+    }
+
+    struct TableViewCellPrototypes {
+        static let SecondTableCell = UITableView.TableViewCellPrototype(reuseIdentifier: "SecondTableCell")
+    }
+
+    func dequeueReusableSecondTableCell(tableView : UITableView) -> AnyObject? {
+        return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell)
+    }
+
+    func dequeueReusableSecondTableCell(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> AnyObject {
+        return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell, forIndexPath : indexPath)
+    }
 }

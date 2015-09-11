@@ -50,10 +50,13 @@ extension ViewControllerClassInfo
                 }
             }
             
-            ViewControllerClassInfo.addSegueInfoStencilContexts(&contextDictionary, segueInstances: segueInstances)
-            ViewControllerClassInfo.addTableViewCellPrototypeStencilContexts(&contextDictionary, cellPrototypes: tableViewCellPrototypes)
-            
-            result = contextDictionary
+            if segueInstances.count > 0 || tableViewCellPrototypes.count > 0
+            {
+                ViewControllerClassInfo.addSegueInfoStencilContexts(&contextDictionary, segueInstances: segueInstances)
+                ViewControllerClassInfo.addTableViewCellPrototypeStencilContexts(&contextDictionary, cellPrototypes: tableViewCellPrototypes)
+                
+                result = contextDictionary
+            }
         }
         
         return result
