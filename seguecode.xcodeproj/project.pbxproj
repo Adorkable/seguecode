@@ -409,6 +409,7 @@
 				D997504BFEE9928981832419 /* Check Pods Manifest.lock */,
 				3C1CE0841B8857B800DA379A /* Sources */,
 				3C1CE0851B8857B800DA379A /* Frameworks */,
+				3CA216991BA28FE000EE4BA4 /* ShellScript */,
 				3C1CE0861B8857B800DA379A /* Resources */,
 				3C1CE0911B88586600DA379A /* CopyFiles */,
 				3C1CE0931B88588200DA379A /* CopyFiles */,
@@ -594,6 +595,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-seguecodeBundle/Pods-seguecodeBundle-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3CA216991BA28FE000EE4BA4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "./Tools/xcode-build-bump.sh";
 		};
 		6651CAF6AC1663C7C530D463 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
