@@ -21,7 +21,6 @@
 		3C4716E31BA2A151006750E9 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4716E21BA2A151006750E9 /* ThirdViewController.swift */; };
 		3C7304201B8BAF680093F82A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C73041F1B8BAF680093F82A /* main.m */; };
 		3C73042E1B8BAF770093F82A /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304251B8BAF770093F82A /* DefaultTemplate.swift */; };
-		3C73042F1B8BAF770093F82A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C7304261B8BAF770093F82A /* Info.plist */; };
 		3C7304301B8BAF770093F82A /* seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304271B8BAF770093F82A /* seguecode.swift */; };
 		3C7304311B8BAF770093F82A /* seguecodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C7304281B8BAF770093F82A /* seguecodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C7304321B8BAF770093F82A /* Template+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73042A1B8BAF770093F82A /* Template+seguecode.swift */; };
@@ -455,7 +454,9 @@
 		3CCF86C11AF65DF600B7472E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Adorkable;
 				TargetAttributes = {
 					3C1380011AF73FA800E417B2 = {
@@ -545,7 +546,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C73042F1B8BAF770093F82A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +748,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Example/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.seguecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/iOS/iOSExample-Bridging-Header.h";
@@ -765,6 +766,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Example/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.seguecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/iOS/iOSExample-Bridging-Header.h";
@@ -815,6 +817,7 @@
 				);
 				INFOPLIST_FILE = seguecodeBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.seguecode.bundle;
 				PRODUCT_NAME = seguecode;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -829,6 +832,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = seguecodeBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.seguecode.bundle;
 				PRODUCT_NAME = seguecode;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -853,6 +857,7 @@
 				INFOPLIST_FILE = seguecodeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.seguecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -874,6 +879,7 @@
 				INFOPLIST_FILE = seguecodeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.seguecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -901,6 +907,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

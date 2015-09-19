@@ -18,7 +18,7 @@
 
 - (IBAction)goToUIViewController:(id)sender
 {
-    [self performFirstForwardToUIVCWithSender:sender];
+    [self performFirstForwardToUIVC:sender];
 }
 
 @end

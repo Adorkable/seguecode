@@ -39,9 +39,6 @@ extension UIViewController {
     }
 }
 
-extension ThirdViewController {
-}
-
 extension SecondViewController {
 
     struct Segues {

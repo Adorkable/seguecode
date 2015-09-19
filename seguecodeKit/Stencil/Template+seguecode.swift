@@ -12,13 +12,13 @@ import Stencil
 
 extension Template
 {
-    class func write(#templateString : String, outputPath : NSURL, fileName : String, context : Context) {
+    class func write(templateString templateString : String, outputPath : NSURL, fileName : String, context : Context) {
         
         let template = Template(templateString: templateString)
         template.write(outputPath: outputPath, fileName: fileName, context: context)
     }
     
-    func write(#outputPath : NSURL, fileName : String, context : Context) {
+    func write(outputPath outputPath : NSURL, fileName : String, context : Context) {
         let result = self.render(context)
         
         switch result
@@ -32,11 +32,12 @@ extension Template
         }
     }
     
-    private class func writeContents(#outputPath : NSURL, fileName : String, contents : String) {
-        var createDirectoryError : NSError? = nil
-        NSFileManager.defaultManager().createDirectoryAtURL(outputPath, withIntermediateDirectories: true, attributes: nil, error: &createDirectoryError)
-        
-        if let error = createDirectoryError
+    private class func writeContents(outputPath outputPath : NSURL, fileName : String, contents : String) {
+
+        do
+        {
+            try NSFileManager.defaultManager().createDirectoryAtURL(outputPath, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError
         {
             NSLog("Error while creating output directory \(outputPath): \(error)")
         }
@@ -45,14 +46,13 @@ extension Template
         {
             let fullFilePath = path + "/" + fileName
             
-            var writeToFileError : NSError? = nil
-            contents.writeToFile(fullFilePath, atomically: true, encoding: NSUTF8StringEncoding, error: &writeToFileError)
-            if let error = writeToFileError
+            do
+            {
+                try contents.writeToFile(fullFilePath, atomically: true, encoding: NSUTF8StringEncoding)
+                NSLog("Exported \(fileName)")
+            } catch let error as NSError
             {
                 NSLog("Error while writing to file \(fullFilePath): \(error)")
-            } else
-            {
-                NSLog("Exported \(fileName)")
             }
         }
     }
