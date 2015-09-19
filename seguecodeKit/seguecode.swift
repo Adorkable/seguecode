@@ -15,7 +15,7 @@ import Stencil
 public class seguecode : NSObject
 {
     public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?, exportTogether : Bool, verboseLogging : Bool) {
-        var application = ApplicationInfo()
+        let application = ApplicationInfo()
         
         NSLog("Writing to output path \(outputPath)")
         if let projectName = projectName
@@ -25,45 +25,51 @@ public class seguecode : NSObject
         
         NSLog("\n")
         
-        if let storyboardFilePathString = storyboardFilePath.path,
-            let storyboardFileName = storyboardFilePath.lastPathComponent?.stringByDeletingPathExtension
+        if let storyboardFilePathString = storyboardFilePath.path
         {
             
-            let result = StoryboardFileParser.parse(application, pathFileName: storyboardFilePathString)
-            
-            if verboseLogging == true
-            {
-                if let logs = result.2
+            do {
+                let result = try StoryboardFileParser.parse(application, pathFileName: storyboardFilePathString)
+                
+                if verboseLogging == true
                 {
-                    if logs.count > 0
+                    if let logs = result.1
                     {
-                        NSLog("Verbose Logs:")
-                        for message in logs
+                        if logs.count > 0
                         {
-                            NSLog("\(message)")
+                            NSLog("Verbose Logs:")
+                            for message in logs
+                            {
+                                NSLog("\(message)")
+                            }
+                            NSLog("\n")
                         }
-                        NSLog("\n")
                     }
                 }
-            }
-            
-            if let storyboard = result.0
-            {
-                if exportTogether == true
-                {
-                    self.exportTogether(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName: projectName)
-                } else
-                {
-                    self.exportSeperately(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName : projectName)
-                }
-                self.exportSharedDefinitions(outputPath: outputPath, projectName: projectName)
                 
-            } else if let error = result.1
+                
+                if let storyboard = result.0,
+                    let storyboardFileNameWithExtension = storyboardFilePath.lastPathComponent
+                {
+                    let storyboardFileName = (storyboardFileNameWithExtension as NSString).stringByDeletingPathExtension
+                    
+                    if exportTogether == true
+                    {
+                        self.exportTogether(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName: projectName)
+                    } else
+                    {
+                        self.exportSeperately(outputPath: outputPath, application: application, storyboard: storyboard, storyboardFileName: storyboardFileName, projectName : projectName)
+                    }
+                    self.exportSharedDefinitions(outputPath: outputPath, projectName: projectName)
+                    
+                }else
+                {
+                    NSLog("Unknown Error while parsing storyboard \(storyboardFilePathString)")
+                }
+            
+            } catch let error as NSError
             {
                 NSLog("Error while parsing storyboard \(storyboardFilePathString): \(error)")
-            } else
-            {
-                NSLog("Unknown Error while parsing storyboard \(storyboardFilePathString)")
             }
         } else
         {
@@ -71,12 +77,12 @@ public class seguecode : NSObject
         }
     }
     
-    internal class func fileStencilContext(#outputPath : NSURL, fileName : String, projectName : String?) -> [String : AnyObject]?
+    internal class func fileStencilContext(outputPath outputPath : NSURL, fileName : String, projectName : String?) -> [String : AnyObject]?
     {
         let generatedOn = NSDate()
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "M/d/YY"
-        let generatedOnString = dateFormatter.stringFromDate(generatedOn)
+        _ = dateFormatter.stringFromDate(generatedOn)
         
         var result : [String : AnyObject] = [
             DefaultTemplate.Keys.FileName : fileName
@@ -92,7 +98,7 @@ public class seguecode : NSObject
         return result
     }
     
-    internal class func exportSeperately(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
+    internal class func exportSeperately(outputPath outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
         
         for viewControllerClass in application.viewControllerClasses
         {
@@ -125,7 +131,7 @@ public class seguecode : NSObject
         }
     }
     
-    internal class func exportTogether(#outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
+    internal class func exportTogether(outputPath outputPath : NSURL, application : ApplicationInfo, storyboard : StoryboardInstanceInfo, storyboardFileName : String, projectName : String?) {
     
         let fileName = storyboardFileName + ".swift"
         
@@ -156,14 +162,14 @@ public class seguecode : NSObject
         }
     }
     
-    internal class func exportSharedDefinitions(#outputPath : NSURL, projectName : String?) {
-        var contextDictionary : [String : AnyObject]
+    internal class func exportSharedDefinitions(outputPath outputPath : NSURL, projectName : String?) {
+        var _ : [String : AnyObject]
         
         let fileName = "UIViewController+seguecode.swift"
         
         if let fileStencilContext = self.fileStencilContext(outputPath: outputPath, fileName: fileName, projectName: projectName)
         {
-            var contextDictionary = fileStencilContext
+            let contextDictionary = fileStencilContext
             
             let stencilContext = Context(dictionary: contextDictionary)
             Template.write(templateString: DefaultTemplate.sharedFile, outputPath: outputPath, fileName: fileName, context: stencilContext)

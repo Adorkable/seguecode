@@ -1,19 +1,36 @@
 PODS:
-  - PathKit (0.3.0)
+  - PathKit (0.4.0-beta.1)
   - Stencil (0.2.0):
-    - PathKit (~> 0.3.0)
-  - StoryboardKit (0.3.2):
+    - PathKit (~> 0.4.0-beta.1)
+  - StoryboardKit (0.4.0):
     - SWXMLHash
-  - SWXMLHash (1.1.0)
+  - SWXMLHash (2.0.0)
 
 DEPENDENCIES:
-  - Stencil
+  - PathKit (from `https://github.com/kylef/PathKit.git`, branch `swift-2.0`)
+  - Stencil (from `https://github.com/kylef/Stencil.git`, branch `swift-2.0`)
   - StoryboardKit
 
+EXTERNAL SOURCES:
+  PathKit:
+    :branch: swift-2.0
+    :git: https://github.com/kylef/PathKit.git
+  Stencil:
+    :branch: swift-2.0
+    :git: https://github.com/kylef/Stencil.git
+
+CHECKOUT OPTIONS:
+  PathKit:
+    :commit: f1c503d5f2912e71c1464e56db3ba579dff45f29
+    :git: https://github.com/kylef/PathKit.git
+  Stencil:
+    :commit: dcf2611ac24829ffe80cf46894ebc98fdda62e0c
+    :git: https://github.com/kylef/Stencil.git
+
 SPEC CHECKSUMS:
-  PathKit: 0f4d1becb7002e3cd62a1583ce8de964d57485ce
-  Stencil: aaa9a79fd7e8cbd3d635c81e50539a3b322e5889
-  StoryboardKit: 84879523eb20300cffad4bec891397cabcb86e1e
-  SWXMLHash: 3937b867dfe3091a84304176d80399fc2e709c37
+  PathKit: dd424f40892d4f60f279c8f2cd82503fc86e4dad
+  Stencil: 4214b68cf5a5f24c74c8c6fbbb573e225c490f88
+  StoryboardKit: fe4e460fb10faa6c2465af3a7d134523aeffb986
+  SWXMLHash: b92213e98aebac80583ee58c2298c5533c7e2a7b
 
 COCOAPODS: 0.38.2

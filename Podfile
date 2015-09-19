@@ -9,14 +9,16 @@ end
 
 target 'seguecodeBundle' do
     pod 'StoryboardKit'
-    
-    pod 'Stencil'
+
+    pod 'PathKit', :git => 'https://github.com/kylef/PathKit.git', :branch => 'swift-2.0'
+    pod 'Stencil', :git => 'https://github.com/kylef/Stencil.git', :branch => 'swift-2.0'
 end
 
 target 'seguecodeKit' do
     pod 'StoryboardKit'
     
-    pod 'Stencil'
+    pod 'PathKit', :git => 'https://github.com/kylef/PathKit.git', :branch => 'swift-2.0'
+    pod 'Stencil', :git => 'https://github.com/kylef/Stencil.git', :branch => 'swift-2.0'
 end
 
 target 'iOSExample' do

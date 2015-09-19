@@ -17,7 +17,7 @@ extension TableViewInstanceInfo.TableViewCellPrototypeInfo
         
         if let reuseIdentifier = self.reuseIdentifier
         {
-            var context = [DefaultTemplate.Keys.ViewController.TableViewCellPrototype.ReuseIdentifier : reuseIdentifier]
+            let context = [DefaultTemplate.Keys.ViewController.TableViewCellPrototype.ReuseIdentifier : reuseIdentifier]
             result = context
         }
         
@@ -29,7 +29,7 @@ extension TableViewInstanceInfo.TableViewCellPrototypeInfo
         
         if let reuseIdentifier = self.reuseIdentifier
         {
-            var context = [DefaultTemplate.Keys.ViewController.DequeueFunction.ReuseIdentifier : reuseIdentifier]
+            let context = [DefaultTemplate.Keys.ViewController.DequeueFunction.ReuseIdentifier : reuseIdentifier]
             result = context
         }
         

@@ -28,7 +28,7 @@ extension ViewControllerClassInfo
         let instances = self.instanceInfos
         if instances.count > 0
         {
-            var segueInstances = NSMutableOrderedSet()
+            let segueInstances = NSMutableOrderedSet()
             var tableViewCellPrototypes = Array<TableViewInstanceInfo.TableViewCellPrototypeInfo>()
             for instance in instances
             {
@@ -40,7 +40,7 @@ extension ViewControllerClassInfo
                         
                         if let view = instance.view
                         {
-                            var viewCellPrototypes = ViewControllerClassInfo.tableViewCellPrototypes(view)
+                            let viewCellPrototypes = ViewControllerClassInfo.tableViewCellPrototypes(view)
                             if viewCellPrototypes.count > 0
                             {
                                 tableViewCellPrototypes = tableViewCellPrototypes + viewCellPrototypes
@@ -63,7 +63,7 @@ extension ViewControllerClassInfo
     }
     
     class func addSegueInfoStencilContexts(inout contextDictionary : [String : AnyObject], segueInstances : NSOrderedSet) {
-        var segueResults = self.segueInfoStencilContexts(segueInstances)
+        let segueResults = self.segueInfoStencilContexts(segueInstances)
         if segueResults.0.count > 0
         {
             contextDictionary[DefaultTemplate.Keys.ViewController.SegueCases] = segueResults.0
@@ -115,7 +115,7 @@ extension ViewControllerClassInfo
         {
             for subview in subviews
             {
-                var subviewResult = self.tableViewCellPrototypes(subview)
+                let subviewResult = self.tableViewCellPrototypes(subview)
                 if subviewResult.count > 0
                 {
                     result = result + subviewResult
@@ -127,7 +127,7 @@ extension ViewControllerClassInfo
     }
     
     class func addTableViewCellPrototypeStencilContexts(inout contextDictionary : [String : AnyObject], cellPrototypes: [TableViewInstanceInfo.TableViewCellPrototypeInfo]) {
-        var cellPrototypeResults = self.cellPrototypeStencilContexts(cellPrototypes)
+        let cellPrototypeResults = self.cellPrototypeStencilContexts(cellPrototypes)
         if cellPrototypeResults.0.count > 0
         {
             contextDictionary[DefaultTemplate.Keys.ViewController.TableViewCellPrototypes] = cellPrototypeResults.0
