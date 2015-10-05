@@ -149,6 +149,7 @@
 		3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ddcli.xcodeproj; path = Library/ddcli/ddcli.xcodeproj; sourceTree = "<group>"; };
 		3C7304451B8BB3830093F82A /* SeguecodeCLIApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeguecodeCLIApp.h; sourceTree = "<group>"; };
 		3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeguecodeCLIApp.m; sourceTree = "<group>"; };
+		3C8BD2F71BAD26FA00E0AF8A /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		3CC70BF21B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewCellPrototype+seguecode.swift"; sourceTree = "<group>"; };
 		3CF970101B0147A30052F765 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		499E529370BA086E416AE04A /* Pods-seguecodeBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seguecodeBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-seguecodeBundle/Pods-seguecodeBundle.release.xcconfig"; sourceTree = "<group>"; };
@@ -320,6 +321,7 @@
 				8FB6583E9AEF779C95045D69 /* Pods */,
 				3C1CE0D51B885D3C00DA379A /* Library */,
 				F5E357D676B76B3C2A55679D /* Frameworks */,
+				3C8BD2F71BAD26FA00E0AF8A /* .travis.yml */,
 			);
 			sourceTree = "<group>";
 		};
