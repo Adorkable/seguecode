@@ -37,14 +37,14 @@ extension ViewControllerClassInfo
                     for segue in instance.segues
                     {
                         segueInstances.addObject(segue)
-                        
-                        if let view = instance.view
+                    }
+                    
+                    if let view = instance.view
+                    {
+                        let viewCellPrototypes = ViewControllerClassInfo.tableViewCellPrototypes(view)
+                        if viewCellPrototypes.count > 0
                         {
-                            let viewCellPrototypes = ViewControllerClassInfo.tableViewCellPrototypes(view)
-                            if viewCellPrototypes.count > 0
-                            {
-                                tableViewCellPrototypes = tableViewCellPrototypes + viewCellPrototypes
-                            }
+                            tableViewCellPrototypes = tableViewCellPrototypes + viewCellPrototypes
                         }
                     }
                 }
