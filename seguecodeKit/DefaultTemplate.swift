@@ -124,14 +124,14 @@ class DefaultTemplate: Template {
             "{% for dequeueFunction in viewController.\(Keys.ViewController.DequeueFunctions) %}" +
             
             "\n" +
-            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}(tableView : UITableView) -> AnyObject? {\n" +
+            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}(tableView : UITableView) -> UITableViewCell? {\n" +
             
             "        return tableView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.TableViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }})\n" +
             
             "    }\n" +
             "\n" +
             
-            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> AnyObject {\n" +
+            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {\n" +
             
             "        return tableView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.TableViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}, forIndexPath : indexPath)\n" +
             
@@ -206,12 +206,12 @@ class DefaultTemplate: Template {
         "    }\n" +
         "\n" +
             
-        "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> AnyObject? {\n" +
+        "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> UITableViewCell? {\n" +
         "        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier)\n" +
         "    }\n" +
         "\n" +
             
-        "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> AnyObject {\n" +
+        "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {\n" +
         "        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier, forIndexPath: indexPath)\n" +
         "    }\n" +
             
