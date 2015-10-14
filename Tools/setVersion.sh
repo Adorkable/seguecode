@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]
 then
-	echo "setVersion [version]"
+	echo "setVersion [version]" >&2
 	exit -1
 fi
 version=$1
@@ -20,14 +20,14 @@ function updatePlist()
 {
 	if [ -z "$1" ]
 	then
-		echo "updatePlist() expects a version for first parameter"
+		echo "updatePlist() expects a version for first parameter" >&2
 		return -1
 	fi
 	version=$1
 
 	if [ -z "$2" ]
 	then
-		echo "updatePlist() expects a file name for second parameter"
+		echo "updatePlist() expects a file name for second parameter" >&2
 		return -1
 	fi
 	plistFile=$2
@@ -49,7 +49,7 @@ for plistFile in ${plistFiles[@]}
 do
 	if !(updatePlist "$version" "$plistFile")
 	then
-		echo "Error while updatingPlist($version, $plistFile)"
+		echo "Error while updatingPlist($version, $plistFile)" >&2
 		exit -1
 	fi
 done
@@ -76,6 +76,6 @@ function updateSourceFile()
 
 if !(updateSourceFile "$version")
 then
-	echo "Error while updateSourceFile($version)"
+	echo "Error while updateSourceFile($version)" >&2
 	exit -1
 fi
