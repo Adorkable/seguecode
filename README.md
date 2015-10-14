@@ -2,11 +2,15 @@
 
 [![Travis Build Status](http://img.shields.io/travis/Adorkable/seguecode.svg?style=flat)](https://travis-ci.org/Adorkable/seguecode)
 
-**seguecode** is a support tool to use alongside `UIStoryboard` development. It provides compile-time (and eventually run-time) safeties around dealing with `UIStoryboard`s in an effort to create an error free workflow so you can focus on the important things.
+**seguecode** is a support tool to use alongside `UIStoryboard` development. It provides compile-time safeties around building with `UIStoryboard`s in an effort to create an error free workflow so you can focus on the important things.
 
 ## Installation
 ### Xcode Plugin
-Coming soon to the releases and Alcatraz! To build it yourself clone the repo and build the seguecodePlugin scheme.
+The easiest way to get and use **seguecode** is through the wonderful Xcode plugin manager [Alcatraz](http://alcatraz.io/). The **seguecode** plugin, when enabled for a storyboard, will detect when you save your storyboard and automatically regenerate your **seguecode** source code.
+
+To enable the **seguecode** plugin for a storyboard first open the storyboard in Xcode. While the storyboard is open pull down Xcode's *Edit menu* and select the **seguecode** option. This will generate a file alongside your storyboard called *&lt;Storyboard Name&gt;.seguecode.json* which contains configuration information you can change to define how the automatic regeneration works. 
+
+The **seguecode** plugin looks for this json file to see if it should be enabled for a particular storyboard file, deleting it, or unchecking the **seguecode** option in the *Edit menu*, will disable the automatic regeneration.
 
 ### Command Line
 You can download the [latest release](https://github.com/Adorkable/seguecode/releases/latest)
@@ -72,8 +76,9 @@ Xcode's autocorrect should help you out and fill in the name.
 ### Exporting Customization
 To further customize your export use the following parameters:
 
-* `-s` or `--squash-vcs` - Store all UIViewController and subclass categories in one file
-* `-c` or `--export-constants` - Include segue ID constants in the header for direct usage
+* `-c` or `--combine` - Export the View Controllers combined in one file
+* `-p` or `--projectName NAME` - Name to use as project in source file header comment
+* `-l` or `--verbose` - Output verbose logging
 * `-v` or `--version` - Display **seguecode**'s version
 * `-h` or `--help` - Display help
 
@@ -82,11 +87,5 @@ To further customize your export use the following parameters:
 
 
 ## Thanks
-Props to 
-
-* **[ddcli](https://github.com/ddribin/ddcli)**
-* **[RaptureXML](https://github.com/ZaBlanc/RaptureXML)**
-* **[CCTemplate](https://github.com/xhan/CocoaTemplateEngine)**
-
 
 Props to **[mogenerator](https://github.com/rentzsch/mogenerator)** for pointing out **[ddcli](https://github.com/ddribin/ddcli)**. And being a CoreData savior. And the kick in the butt to start **seguecode**. 
