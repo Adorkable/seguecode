@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12BF3D29CAC354F954B49AA0 /* Pods_seguecodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		12BF3D29CAC354F954B49AA0 /* Pods_seguecodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFD25FD26877717593CCBC4 /* Pods_seguecodeKit.framework */; };
 		3C13802E1AF73FEE00E417B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1380261AF73FEE00E417B2 /* AppDelegate.swift */; };
 		3C1380311AF73FEE00E417B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C13802B1AF73FEE00E417B2 /* Images.xcassets */; };
 		3C1380391AF7407C00E417B2 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1380361AF7407C00E417B2 /* Main_iPhone.storyboard */; };
@@ -33,7 +33,7 @@
 		3CC70BEF1B8EB07F002C4437 /* UIViewController+Main_iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CE0621B88429100DA379A /* UIViewController+Main_iPhone.swift */; };
 		3CC70BF31B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC70BF21B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift */; };
 		3CF970121B0147AA0052F765 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF970101B0147A30052F765 /* SecondViewController.swift */; };
-		A8655F729A961C64A8246398 /* Pods_seguecodeBundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923BA86F12E639ED709CACBB /* Pods_seguecodeBundle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A8655F729A961C64A8246398 /* Pods_seguecodeBundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923BA86F12E639ED709CACBB /* Pods_seguecodeBundle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -812,7 +812,6 @@
 			baseConfigurationReference = 0743DA19A661DCCAD9763079 /* Pods-seguecodeBundle.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -831,7 +830,6 @@
 			baseConfigurationReference = 499E529370BA086E416AE04A /* Pods-seguecodeBundle.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = seguecodeBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.seguecode.bundle;
