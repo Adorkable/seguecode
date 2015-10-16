@@ -19,16 +19,14 @@ extension Template
     }
     
     func write(outputPath outputPath : NSURL, fileName : String, context : Context) {
-        let result = self.render(context)
-        
-        switch result
+        do
         {
-        case .Success(let contents):
+            let contents = try self.render(context)
             Template.writeContents(outputPath: outputPath, fileName: fileName, contents: contents)
-            break
-        case .Error(let error):
+            
+        } catch let error as NSError
+        {
             NSLog("Error while rendering contents: \(error).")
-            break
         }
     }
     

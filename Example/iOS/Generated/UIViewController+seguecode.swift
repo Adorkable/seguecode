@@ -32,11 +32,11 @@ extension UITableView {
         }
     }
 
-    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> AnyObject? {
+    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> UITableViewCell? {
         return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier)
     }
 
-    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> AnyObject {
+    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {
         return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier, forIndexPath: indexPath)
     }
 }
