@@ -12,6 +12,8 @@ To enable the **seguecode** plugin for a storyboard first open the storyboard in
 
 The **seguecode** plugin looks for this json file to see if it should be enabled for a particular storyboard file, deleting it, or unchecking the **seguecode** option in the *Edit menu*, will disable the automatic regeneration.
 
+![Plugin Screenshot](https://raw.githubusercontent.com/Adorkable/seguecode/master/README/Edit_and_Menubar.png)
+
 ### Command Line
 You can download the [latest release](https://github.com/Adorkable/seguecode/releases/latest)
 
