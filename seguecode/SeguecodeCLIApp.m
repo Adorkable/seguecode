@@ -13,7 +13,7 @@
 
 @import seguecodeKit;
 
-#define SegueCodeAppVersion @"2.2.3"
+#define SegueCodeAppVersion @"2.2.4"
 
 @interface SeguecodeCLIApp ()
 {
