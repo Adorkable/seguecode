@@ -8,17 +8,17 @@ target 'seguecode' do
 end
 
 target 'seguecodeBundle' do
-    pod 'StoryboardKit'
+    pod 'StoryboardKit', '~> 0.5'
 
-    pod 'PathKit'
-    pod 'Stencil'
+    pod 'PathKit', '~> 0.5'
+    pod 'Stencil', '~> 0.3'
 end
 
 target 'seguecodeKit' do
-    pod 'StoryboardKit'
+    pod 'StoryboardKit', '~> 0.5'
     
-    pod 'PathKit'
-    pod 'Stencil'
+    pod 'PathKit', '~> 0.5'
+    pod 'Stencil', '~> 0.3'
 end
 
 target 'iOSExample' do
