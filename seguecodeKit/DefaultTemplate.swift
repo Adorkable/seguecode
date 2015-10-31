@@ -24,6 +24,13 @@ class DefaultTemplate: Template {
         struct ViewController {
             static let Name = "ViewControllerName"
             
+            static let StoryboardInstances = "StoryboardInstances"
+            struct StoryboardInstance
+            {
+                static let Identifier = "Identifier"
+                static let Value = "Value"
+            }
+            
             static let SegueCases = "SegueCases"
             struct SegueCase
             {
@@ -47,8 +54,20 @@ class DefaultTemplate: Template {
                 static let ReuseIdentifier = "ReuseIdentifier"
             }
             
-            static let DequeueFunctions = "DequeueFunctions"
-            struct DequeueFunction
+            static let DequeueTableViewCellFunctions = "DequeueTableViewCellFunctions"
+            struct DequeueTableViewCellFunction
+            {
+                static let ReuseIdentifier = "ReuseIdentifier"
+            }
+            
+            static let CollectionViewCellPrototypes = "CollectionViewCellPrototypes"
+            struct CollectionViewCellPrototype
+            {
+                static let ReuseIdentifier = "ReuseIdentifier"
+            }
+            
+            static let DequeueCollectionViewCellFunctions = "DequeueCollectionViewCellFunctions"
+            struct DequeueCollectionViewCellFunction
             {
                 static let ReuseIdentifier = "ReuseIdentifier"
             }
@@ -73,6 +92,21 @@ class DefaultTemplate: Template {
         "\n" +
         // TODO: copywrite and company info
         "//"
+    }
+    
+    static var storyboardInstances : String {
+        return "{% if viewController.\(Keys.ViewController.StoryboardInstances) %}" +
+        
+            "\n" +
+            "   struct StoryboardInstances {\n" +
+        "{% for storyboardInstance in viewController.\(Keys.ViewController.StoryboardInstances) %}" +
+        
+            "       static let {{ storyboardInstance.\(Keys.ViewController.StoryboardInstance.Identifier) }} = StoryboardInstance(identifier: \"{{ storyboardInstance.\(Keys.ViewController.StoryboardInstance.Value) }}\")\n" +
+            
+            "{% endfor %}" +
+            "    }\n" +
+            
+        "{% endif %}"
     }
 
     // TODO: no longer cases, rename
@@ -107,33 +141,64 @@ class DefaultTemplate: Template {
     static var tableViewCellPrototypes : String {
         return "{% if viewController.\(Keys.ViewController.TableViewCellPrototypes) %}" +
             
-        "\n" +
-        "    struct TableViewCellPrototypes {\n" +
-        "{% for cellPrototype in viewController.\(Keys.ViewController.TableViewCellPrototypes) %}" +
+            "\n" +
+            "    struct TableViewCellPrototypes {\n" +
+            "{% for cellPrototype in viewController.\(Keys.ViewController.TableViewCellPrototypes) %}" +
             
-        "        static let {{ cellPrototype.\(Keys.ViewController.TableViewCellPrototype.ReuseIdentifier) }} = UITableView.TableViewCellPrototype(reuseIdentifier: \"{{ cellPrototype.\(Keys.ViewController.TableViewCellPrototype.ReuseIdentifier) }}\")\n" +
-        
-        "{% endfor %}" +
-        "    }\n" +
+            "        static let {{ cellPrototype.\(Keys.ViewController.TableViewCellPrototype.ReuseIdentifier) }} = UITableView.TableViewCellPrototype(reuseIdentifier: \"{{ cellPrototype.\(Keys.ViewController.TableViewCellPrototype.ReuseIdentifier) }}\")\n" +
+            
+            "{% endfor %}" +
+            "    }\n" +
             
         "{% endif %}"
     }
     
-    static var dequeueFunctions : String {
-        return "{% if viewController.\(Keys.ViewController.DequeueFunctions) %}" +
-            "{% for dequeueFunction in viewController.\(Keys.ViewController.DequeueFunctions) %}" +
+    static var dequeueTableViewCellFunctions : String {
+        return "{% if viewController.\(Keys.ViewController.DequeueTableViewCellFunctions) %}" +
+            "{% for dequeueFunction in viewController.\(Keys.ViewController.DequeueTableViewCellFunctions) %}" +
             
             "\n" +
-            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}(tableView : UITableView) -> UITableViewCell? {\n" +
+            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueTableViewCellFunction.ReuseIdentifier) }}(tableView : UITableView) -> UITableViewCell? {\n" +
             
-            "        return tableView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.TableViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }})\n" +
+            "        return tableView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.TableViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueTableViewCellFunction.ReuseIdentifier) }})\n" +
             
             "    }\n" +
             "\n" +
             
-            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {\n" +
+            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueTableViewCellFunction.ReuseIdentifier) }}(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {\n" +
             
-            "        return tableView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.TableViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueFunction.ReuseIdentifier) }}, forIndexPath : indexPath)\n" +
+            "        return tableView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.TableViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueTableViewCellFunction.ReuseIdentifier) }}, forIndexPath : indexPath)\n" +
+            
+            "    }\n" +
+            
+            "{% endfor %}" +
+        "{% endif %}"
+    }
+    
+    static var collectionViewCellPrototypes : String {
+        return "{% if viewController.\(Keys.ViewController.CollectionViewCellPrototypes) %}" +
+            
+            "\n" +
+            "    struct CollectionViewCellPrototypes {\n" +
+            "{% for cellPrototype in viewController.\(Keys.ViewController.CollectionViewCellPrototypes) %}" +
+            
+            "        static let {{ cellPrototype.\(Keys.ViewController.CollectionViewCellPrototype.ReuseIdentifier) }} = UICollectionView.CollectionViewCellPrototype(reuseIdentifier: \"{{ cellPrototype.\(Keys.ViewController.CollectionViewCellPrototype.ReuseIdentifier) }}\")\n" +
+            
+            "{% endfor %}" +
+            "    }\n" +
+            
+        "{% endif %}"
+    }
+    
+    static var dequeueCollectionViewCellFunctions : String {
+        return "{% if viewController.\(Keys.ViewController.DequeueCollectionViewCellFunctions) %}" +
+            "{% for dequeueFunction in viewController.\(Keys.ViewController.DequeueCollectionViewCellFunctions) %}" +
+            
+            "\n" +
+            
+            "    func dequeueReusable{{ dequeueFunction.\(Keys.ViewController.DequeueCollectionViewCellFunction.ReuseIdentifier) }}(collectionView : UICollectionView, forIndexPath indexPath : NSIndexPath) -> UICollectionViewCell {\n" +
+            
+            "        return collectionView.dequeueReusableCell({{ viewController.\(Keys.ViewController.Name) }}.CollectionViewCellPrototypes.{{ dequeueFunction.\(Keys.ViewController.DequeueCollectionViewCellFunction.ReuseIdentifier) }}, forIndexPath : indexPath)\n" +
             
             "    }\n" +
             
@@ -157,10 +222,13 @@ class DefaultTemplate: Template {
             
             "\n" +
             "extension {{ viewController.\(Keys.ViewController.Name) }} {\n" +
+            self.storyboardInstances +
             self.segueCases +
             self.performFunctions +
             self.tableViewCellPrototypes +
-            self.dequeueFunctions +
+            self.dequeueTableViewCellFunctions +
+            self.collectionViewCellPrototypes +
+            self.dequeueCollectionViewCellFunctions +
             "}\n" +
 
             "{% endfor %}" +
@@ -170,14 +238,18 @@ class DefaultTemplate: Template {
     
     static var sharedDefinitions : String {
         return self.sharedUIViewControllerDefinitions +
-        "\n" +
-        self.sharedUITableViewDefinitions
+            "\n" +
+            self.sharedUIStoryboardDefinitions +
+            "\n" +
+            self.sharedUITableViewDefinitions +
+            "\n" +
+            self.sharedUICollectionViewDefinitions
     }
     
     static var sharedUIViewControllerDefinitions : String {
         return "extension UIViewController {\n" +
             
-            "    class Segue\n" +
+            "    class Segue : NSObject\n" +
             "    {\n" +
             "        let identifier : String\n" +
             "\n" +
@@ -190,30 +262,70 @@ class DefaultTemplate: Template {
             "    func performSegue(segue : Segue, sender : AnyObject?) {\n" + // TODO: validate that we're calling from the correct instance of the VC class for classes in multiple instances in storyboards
             "        self.performSegueWithIdentifier(segue.identifier, sender: sender)\n" +
             "    }\n" +
+            "\n" +
+            
+            "    class StoryboardInstance : NSObject\n" +
+            "    {\n" +
+            "        let identifier : String\n" +
+            "\n" +
+            "        init(identifier : String) {\n" +
+            "            self.identifier = identifier\n" +
+            "        }\n" +
+            "    }\n" +
             "}\n"
+    }
+    
+    static var sharedUIStoryboardDefinitions : String {
+        return "extension UIStoryboard {\n" +
+            
+        "    func instantiateViewController(instance : UIViewController.StoryboardInstance) -> UIViewController {\n" +
+        "\n" +
+        "        return self.instantiateViewControllerWithIdentifier(instance.identifier)\n" +
+        "    }\n" +
+        "}\n"
     }
     
     static var sharedUITableViewDefinitions : String {
         return "extension UITableView {\n" +
             
-        "    class TableViewCellPrototype\n" +
-        "    {\n" +
-        "        let reuseIdentifier : String\n" +
-        "\n" +
-        "        init(reuseIdentifier : String) {\n" +
-        "            self.reuseIdentifier = reuseIdentifier\n" +
-        "        }\n" +
-        "    }\n" +
-        "\n" +
+            "    class TableViewCellPrototype : NSObject\n" +
+            "    {\n" +
+            "        let reuseIdentifier : String\n" +
+            "\n" +
+            "        init(reuseIdentifier : String) {\n" +
+            "            self.reuseIdentifier = reuseIdentifier\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
             
-        "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> UITableViewCell? {\n" +
-        "        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier)\n" +
-        "    }\n" +
-        "\n" +
+            "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype) -> UITableViewCell? {\n" +
+            "        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier)\n" +
+            "    }\n" +
+            "\n" +
             
-        "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {\n" +
-        "        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier, forIndexPath: indexPath)\n" +
-        "    }\n" +
+            "    func dequeueReusableCell(cellPrototype : TableViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {\n" +
+            "        return self.dequeueReusableCellWithIdentifier(cellPrototype.reuseIdentifier, forIndexPath: indexPath)\n" +
+            "    }\n" +
+            
+        "}\n"
+    }
+    
+    static var sharedUICollectionViewDefinitions : String {
+        return "extension UICollectionView {\n" +
+            
+            "    class CollectionViewCellPrototype : NSObject\n" +
+            "    {\n" +
+            "        let reuseIdentifier : String\n" +
+            "\n" +
+            "        init(reuseIdentifier : String) {\n" +
+            "            self.reuseIdentifier = reuseIdentifier\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            
+            "    func dequeueReusableCell(cellPrototype : CollectionViewCellPrototype, forIndexPath indexPath : NSIndexPath) -> UICollectionViewCell {\n" +
+            "        return self.dequeueReusableCellWithReuseIdentifier(cellPrototype.reuseIdentifier, forIndexPath: indexPath)\n" +
+            "    }\n" +
             
         "}\n"
     }

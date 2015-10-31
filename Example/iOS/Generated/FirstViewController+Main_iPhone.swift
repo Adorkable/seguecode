@@ -9,6 +9,10 @@ import UIKit
 
 extension FirstViewController {
 
+   struct StoryboardInstances {
+       static let First = StoryboardInstance(identifier: "First")
+    }
+
     struct Segues {
         static let FirstForwardToUIVC = Segue(identifier: "ForwardToUIVC")
         static let FirstGoToSecondSecond = Segue(identifier: "GoTo")

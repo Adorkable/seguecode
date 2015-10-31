@@ -9,6 +9,10 @@ import UIKit
 
 extension FirstViewController {
 
+   struct StoryboardInstances {
+       static let First = StoryboardInstance(identifier: "First")
+    }
+
     struct Segues {
         static let FirstForwardToUIVC = Segue(identifier: "ForwardToUIVC")
         static let FirstGoToSecondSecond = Segue(identifier: "GoTo")
@@ -41,6 +45,11 @@ extension UIViewController {
 
 extension SecondViewController {
 
+   struct StoryboardInstances {
+       static let FirstSecond = StoryboardInstance(identifier: "FirstSecond")
+       static let SecondSecond = StoryboardInstance(identifier: "SecondSecond")
+    }
+
     struct Segues {
         static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
         static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
@@ -64,5 +73,13 @@ extension SecondViewController {
 
     func dequeueReusableSecondTableCell(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell, forIndexPath : indexPath)
+    }
+
+    struct CollectionViewCellPrototypes {
+        static let SecondCollectionCell = UICollectionView.CollectionViewCellPrototype(reuseIdentifier: "SecondCollectionCell")
+    }
+
+    func dequeueReusableSecondCollectionCell(collectionView : UICollectionView, forIndexPath indexPath : NSIndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(SecondViewController.CollectionViewCellPrototypes.SecondCollectionCell, forIndexPath : indexPath)
     }
 }
