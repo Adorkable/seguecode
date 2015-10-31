@@ -290,11 +290,43 @@
                                     <action selector="performBackToFirst:" destination="5Gf-YU-RpM" eventType="touchUpInside" id="lQG-C0-IzY"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8gH-QA-BgJ">
+                                <rect key="frame" x="0.0" y="144" width="320" height="424"/>
+                                <animations/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2pd-To-xUg">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SecondCollectionCell" id="mrC-q4-DcQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="5Gf-YU-RpM" id="LgL-EP-6mb"/>
+                                    <outlet property="delegate" destination="5Gf-YU-RpM" id="aEu-lf-2hV"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.98813183110000002" green="1" blue="0.74592510899999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="2Q6-AM-JNk" firstAttribute="top" secondItem="8gH-QA-BgJ" secondAttribute="bottom" id="6Xr-qS-xdn"/>
+                            <constraint firstItem="8gH-QA-BgJ" firstAttribute="leading" secondItem="5M0-b7-bih" secondAttribute="leading" id="7jc-hZ-pUm"/>
+                            <constraint firstAttribute="trailing" secondItem="8gH-QA-BgJ" secondAttribute="trailing" id="Igf-94-64j"/>
                             <constraint firstItem="GHr-yw-qwq" firstAttribute="top" secondItem="Ptl-BA-286" secondAttribute="bottom" constant="20" id="K2Y-Q7-Ch1"/>
+                            <constraint firstItem="8gH-QA-BgJ" firstAttribute="top" secondItem="GHr-yw-qwq" secondAttribute="bottom" constant="20" id="Q2j-5p-6CR"/>
                             <constraint firstItem="Ptl-BA-286" firstAttribute="top" secondItem="bNU-Xh-D18" secondAttribute="bottom" id="fR9-Qo-kS0"/>
                             <constraint firstItem="Ptl-BA-286" firstAttribute="centerX" secondItem="5M0-b7-bih" secondAttribute="centerX" id="nmW-Mc-4a7"/>
                             <constraint firstAttribute="centerX" secondItem="GHr-yw-qwq" secondAttribute="centerX" id="xrV-VG-OFs"/>
@@ -310,6 +342,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WAD-aS-FzW"/>
+        <segue reference="u3S-KG-G4y"/>
     </inferredMetricsTieBreakers>
 </document>

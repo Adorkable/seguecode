@@ -9,6 +9,10 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    
+    @IBAction func instanciateSecondSecond(sender : AnyObject) {
+        AppDelegate.sharedInstance().window?.rootViewController = self.storyboard?.instantiateViewController(SecondViewController.StoryboardInstances.SecondSecond)
+    }
 }
 
 extension SecondViewController : UITableViewDelegate, UITableViewDataSource {
@@ -19,8 +23,14 @@ extension SecondViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return self.dequeueReusableSecondTableCell(tableView, forIndexPath : indexPath)
     }
+}
+
+extension SecondViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
     
-    @IBAction func instanciateSecondSecond(sender : AnyObject) {
-        AppDelegate.sharedInstance().window?.rootViewController = self.storyboard?.instantiateViewController(SecondViewController.StoryboardInstances.SecondSecond)
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.dequeueReusableSecondCollectionCell(collectionView, forIndexPath: indexPath)
     }
 }
