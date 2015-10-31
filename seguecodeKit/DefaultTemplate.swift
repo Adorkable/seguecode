@@ -24,6 +24,13 @@ class DefaultTemplate: Template {
         struct ViewController {
             static let Name = "ViewControllerName"
             
+            static let StoryboardInstances = "StoryboardInstances"
+            struct StoryboardInstance
+            {
+                static let Identifier = "Identifier"
+                static let Value = "Value"
+            }
+            
             static let SegueCases = "SegueCases"
             struct SegueCase
             {
@@ -73,6 +80,21 @@ class DefaultTemplate: Template {
         "\n" +
         // TODO: copywrite and company info
         "//"
+    }
+    
+    static var storyboardInstances : String {
+        return "{% if viewController.\(Keys.ViewController.StoryboardInstances) %}" +
+        
+            "\n" +
+            "   struct StoryboardInstances {\n" +
+        "{% for storyboardInstance in viewController.\(Keys.ViewController.StoryboardInstances) %}" +
+        
+            "       static let {{ storyboardInstance.\(Keys.ViewController.StoryboardInstance.Identifier) }} = StoryboardInstance(identifier: \"{{ storyboardInstance.\(Keys.ViewController.StoryboardInstance.Value) }}\")\n" +
+            
+            "{% endfor %}" +
+            "    }\n" +
+            
+        "{% endif %}"
     }
 
     // TODO: no longer cases, rename
@@ -157,6 +179,7 @@ class DefaultTemplate: Template {
             
             "\n" +
             "extension {{ viewController.\(Keys.ViewController.Name) }} {\n" +
+            self.storyboardInstances +
             self.segueCases +
             self.performFunctions +
             self.tableViewCellPrototypes +
@@ -170,14 +193,16 @@ class DefaultTemplate: Template {
     
     static var sharedDefinitions : String {
         return self.sharedUIViewControllerDefinitions +
-        "\n" +
-        self.sharedUITableViewDefinitions
+            "\n" +
+            self.sharedUIStoryboardDefinitions +
+            "\n" +
+            self.sharedUITableViewDefinitions
     }
     
     static var sharedUIViewControllerDefinitions : String {
         return "extension UIViewController {\n" +
             
-            "    class Segue\n" +
+            "    class Segue : NSObject\n" +
             "    {\n" +
             "        let identifier : String\n" +
             "\n" +
@@ -190,13 +215,33 @@ class DefaultTemplate: Template {
             "    func performSegue(segue : Segue, sender : AnyObject?) {\n" + // TODO: validate that we're calling from the correct instance of the VC class for classes in multiple instances in storyboards
             "        self.performSegueWithIdentifier(segue.identifier, sender: sender)\n" +
             "    }\n" +
+            "\n" +
+            
+            "    class StoryboardInstance : NSObject\n" +
+            "    {\n" +
+            "        let identifier : String\n" +
+            "\n" +
+            "        init(identifier : String) {\n" +
+            "            self.identifier = identifier\n" +
+            "        }\n" +
+            "    }\n" +
             "}\n"
+    }
+    
+    static var sharedUIStoryboardDefinitions : String {
+        return "extension UIStoryboard {\n" +
+            
+        "    func instantiateViewController(instance : UIViewController.StoryboardInstance) -> UIViewController {\n" +
+        "\n" +
+        "        return self.instantiateViewControllerWithIdentifier(instance.identifier)\n" +
+        "    }\n" +
+        "}\n"
     }
     
     static var sharedUITableViewDefinitions : String {
         return "extension UITableView {\n" +
             
-        "    class TableViewCellPrototype\n" +
+        "    class TableViewCellPrototype : NSObject\n" +
         "    {\n" +
         "        let reuseIdentifier : String\n" +
         "\n" +

@@ -28,12 +28,21 @@ extension ViewControllerClassInfo
         let instances = self.instanceInfos
         if instances.count > 0
         {
+            let storyboardInstances = NSMutableOrderedSet()
             let segueInstances = NSMutableOrderedSet()
             var tableViewCellPrototypes = Array<TableViewInstanceInfo.TableViewCellPrototypeInfo>()
             for instance in instances
             {
                 if let instance = instance.value
                 {
+                    if let storyboardIdentifier = instance.storyboardIdentifier
+                    {
+                        if storyboardIdentifier.characters.count > 0
+                        {
+                            storyboardInstances.addObject(instance)
+                        }
+                    }
+                    
                     for segue in instance.segues
                     {
                         segueInstances.addObject(segue)
@@ -50,12 +59,39 @@ extension ViewControllerClassInfo
                 }
             }
             
-            if segueInstances.count > 0 || tableViewCellPrototypes.count > 0
+            if storyboardInstances.count > 0 || segueInstances.count > 0 || tableViewCellPrototypes.count > 0
             {
+                ViewControllerClassInfo.addStoryboardInstanceInfoStencilContexts(&contextDictionary, storyboardInstances: storyboardInstances)
+                
                 ViewControllerClassInfo.addSegueInfoStencilContexts(&contextDictionary, segueInstances: segueInstances)
                 ViewControllerClassInfo.addTableViewCellPrototypeStencilContexts(&contextDictionary, cellPrototypes: tableViewCellPrototypes)
                 
                 result = contextDictionary
+            }
+        }
+        
+        return result
+    }
+    
+    class func addStoryboardInstanceInfoStencilContexts(inout contextDictionary : [String : AnyObject], storyboardInstances : NSOrderedSet) {
+        let storyboardInstanceResults = self.storyboardInstanceInfoStencilContexts(storyboardInstances)
+        if storyboardInstanceResults.count > 0
+        {
+            contextDictionary[DefaultTemplate.Keys.ViewController.StoryboardInstances] = storyboardInstanceResults
+        }
+    }
+    
+    class func storyboardInstanceInfoStencilContexts(storyboardInstances : NSOrderedSet) -> [ [String : String] ] {
+        var result = [ [String : String] ]()
+        
+        for storyboardInstance in storyboardInstances
+        {
+            if let storyboardInstance = storyboardInstance as? ViewControllerInstanceInfo
+            {
+                if let storyboardInstanceStencilContext = storyboardInstance.storyboardInstanceStencilContext()
+                {
+                    result.append(storyboardInstanceStencilContext)
+                }
             }
         }
         
