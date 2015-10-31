@@ -9,6 +9,11 @@ import UIKit
 
 extension SecondViewController {
 
+   struct StoryboardInstances {
+       static let FirstSecond = StoryboardInstance(identifier: "FirstSecond")
+       static let SecondSecond = StoryboardInstance(identifier: "SecondSecond")
+    }
+
     struct Segues {
         static let FirstSecondBackToFirst = Segue(identifier: "BackTo")
         static let SecondSecondBackToFirst = Segue(identifier: "BackTo")
@@ -26,11 +31,11 @@ extension SecondViewController {
         static let SecondTableCell = UITableView.TableViewCellPrototype(reuseIdentifier: "SecondTableCell")
     }
 
-    func dequeueReusableSecondTableCell(tableView : UITableView) -> AnyObject? {
+    func dequeueReusableSecondTableCell(tableView : UITableView) -> UITableViewCell? {
         return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell)
     }
 
-    func dequeueReusableSecondTableCell(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> AnyObject {
+    func dequeueReusableSecondTableCell(tableView : UITableView, forIndexPath indexPath : NSIndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(SecondViewController.TableViewCellPrototypes.SecondTableCell, forIndexPath : indexPath)
     }
 }

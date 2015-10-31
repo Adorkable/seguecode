@@ -17,6 +17,10 @@ extension SecondViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return self.dequeueReusableSecondTableCell(tableView, forIndexPath : indexPath) as! UITableViewCell
+        return self.dequeueReusableSecondTableCell(tableView, forIndexPath : indexPath)
+    }
+    
+    @IBAction func instanciateSecondSecond(sender : AnyObject) {
+        AppDelegate.sharedInstance().window?.rootViewController = self.storyboard?.instantiateViewController(SecondViewController.StoryboardInstances.SecondSecond)
     }
 }
