@@ -20,6 +20,8 @@
 		3C6608661B8B6FB000F86FFD /* seguecode.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CAA72131B8A064F0028683D /* seguecode.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CAA721A1B8A07490028683D /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */; };
 		3CAA721F1B8A0B600028683D /* seguecode.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3CAA72131B8A064F0028683D /* seguecode.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3CF4E5761BFB828600D00C91 /* NSURL+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4E5751BFB828600D00C91 /* NSURL+Utility.m */; };
+		3CF4E5771BFB828600D00C91 /* NSURL+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4E5751BFB828600D00C91 /* NSURL+Utility.m */; };
 		3CFE5E331B8B68A800A4146D /* NSMutableDictionary+RunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,8 @@
 		3C4B54511A0EEA910041E9D0 /* seguecode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = seguecode.xcodeproj; sourceTree = "<group>"; };
 		3CAA72181B8A07490028683D /* NSMutableDictionary+RunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+RunConfig.h"; sourceTree = "<group>"; };
 		3CAA72191B8A07490028683D /* NSMutableDictionary+RunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+RunConfig.m"; sourceTree = "<group>"; };
+		3CF4E5711BFB826F00D00C91 /* NSURL+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Utility.h"; sourceTree = "<group>"; };
+		3CF4E5751BFB828600D00C91 /* NSURL+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,8 @@
 				3C4B54231A0EE8270041E9D0 /* NSNotification+Utility.m */,
 				3C4B54241A0EE8270041E9D0 /* NSObject+Utility.h */,
 				3C4B54251A0EE8270041E9D0 /* NSObject+Utility.m */,
+				3CF4E5711BFB826F00D00C91 /* NSURL+Utility.h */,
+				3CF4E5751BFB828600D00C91 /* NSURL+Utility.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4B54261A0EE8270041E9D0 /* NSNotification+Utility.m in Sources */,
+				3CF4E5761BFB828600D00C91 /* NSURL+Utility.m in Sources */,
 				3CAA721A1B8A07490028683D /* NSMutableDictionary+RunConfig.m in Sources */,
 				3C4B54271A0EE8270041E9D0 /* NSObject+Utility.m in Sources */,
 				3C4B541D1A0EE7FE0041E9D0 /* seguecodePlugin.m in Sources */,
@@ -334,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4B54611A0EEAC10041E9D0 /* NSNotification+Utility.m in Sources */,
+				3CF4E5771BFB828600D00C91 /* NSURL+Utility.m in Sources */,
 				3CFE5E331B8B68A800A4146D /* NSMutableDictionary+RunConfig.m in Sources */,
 				3C4B54631A0EEAC10041E9D0 /* NSObject+Utility.m in Sources */,
 				3C4B54651A0EEAC10041E9D0 /* seguecodePlugin.m in Sources */,

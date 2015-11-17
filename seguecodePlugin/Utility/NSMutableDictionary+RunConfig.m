@@ -8,18 +8,15 @@
 
 #import "NSMutableDictionary+RunConfig.h"
 
+#import "NSURL+Utility.h"
+
 NSString *const RunConfigSuffix = @".seguecode.json";
 
 @implementation NSMutableDictionary (RunConfig)
 
-+ (NSString *)runConfigPathForStoryboardAtPath:(NSString *)storyboardPath
++ (NSURL *)runConfigPathForStoryboardAtURL:(NSURL *)storyboardURL
 {
-    return [NSString stringWithFormat:@"%@%@", [storyboardPath stringByDeletingPathExtension], RunConfigSuffix];
-}
-
-+ (NSMutableDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path
-{
-    return [self dictionaryWithContentsOfJSONURL:[ [NSURL alloc] initFileURLWithPath:path] ];
+    return [NSURL URLWithFormat:@"%@%@", [storyboardURL URLByDeletingPathExtension], RunConfigSuffix];
 }
 
 + (NSMutableDictionary *)dictionaryWithContentsOfJSONURL:(NSURL *)url
@@ -44,14 +41,9 @@ NSString *const RunConfigSuffix = @".seguecode.json";
     return result;
 }
 
-+ (NSMutableDictionary *)runConfigForStoryboardAtPath:(NSString *)storyboardPath
++ (NSMutableDictionary *)runConfigForStoryboardAtURL:(NSURL *)storyboardURL
 {
-    return [NSMutableDictionary dictionaryWithContentsOfJSONFile:[self runConfigPathForStoryboardAtPath:storyboardPath] ];
-}
-
-- (BOOL)writeContentsToJSONFile:(NSString *)path
-{
-    return [self writeContentsToJSONURL:[ [NSURL alloc] initFileURLWithPath:path] ];
+    return [NSMutableDictionary dictionaryWithContentsOfJSONURL:[self runConfigPathForStoryboardAtURL:storyboardURL] ];
 }
 
 - (BOOL)writeContentsToJSONURL:(NSURL *)url
@@ -64,7 +56,7 @@ NSString *const RunConfigSuffix = @".seguecode.json";
                                                      error:&error];
     if (error)
     {
-        NSLog(@"Error when writing JSON config from %@", url);
+        NSLog(@"Error when serializing JSON config: %@", error);
     }
     
     if (data)
@@ -72,14 +64,19 @@ NSString *const RunConfigSuffix = @".seguecode.json";
         result = [data writeToURL:url
                           options:NSDataWritingAtomic
                             error:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error when writing JSON config to %@: %@", url, error);
+        }
     }
     
     return result;
 }
 
-- (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath
+- (BOOL)writeRunConfigForStoryboardAtURL:(NSURL *)storyboardURL
 {
-    return [self writeContentsToJSONFile:[NSMutableDictionary runConfigPathForStoryboardAtPath:storyboardPath] ];
+    return [self writeContentsToJSONURL:[NSMutableDictionary runConfigPathForStoryboardAtURL:storyboardURL] ];
 }
 
 + (NSString *)outputPathKey
@@ -143,7 +140,7 @@ NSString *const RunConfigSuffix = @".seguecode.json";
     if (projectName)
     {
         [self setObject:projectName
-                 forKey:[NSMutableDictionary outputPathKey]
+                 forKey:[NSMutableDictionary projectNameKey]
          ];
     } else
     {
@@ -156,9 +153,9 @@ NSString *const RunConfigSuffix = @".seguecode.json";
     return [self objectForKey:[NSMutableDictionary projectNameKey] ];
 }
 
-+ (BOOL)removeRunConfigForStoryboardAtPath:(NSString *)storyboardPath
++ (BOOL)removeRunConfigForStoryboardAtURL:(NSURL *)storyboardURL
 {
-    return [ [NSFileManager defaultManager] removeItemAtPath:[self runConfigPathForStoryboardAtPath:storyboardPath] error:nil];
+    return [ [NSFileManager defaultManager] removeItemAtURL:[self runConfigPathForStoryboardAtURL:storyboardURL] error:nil];
 }
 
 @end

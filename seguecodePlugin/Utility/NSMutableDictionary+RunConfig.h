@@ -10,20 +10,18 @@
 
 @interface NSMutableDictionary (RunConfig)
 
-+ (NSMutableDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path;
 + (NSMutableDictionary *)dictionaryWithContentsOfJSONURL:(NSURL *)url;
 
-+ (NSMutableDictionary *)runConfigForStoryboardAtPath:(NSString *)storyboardPath;
++ (NSMutableDictionary *)runConfigForStoryboardAtURL:(NSURL *)storyboardURL;
 
 @property (readwrite) NSString *outputPath;
 @property (readwrite) BOOL combine;
 
 @property (readwrite) NSString *projectName;
 
-- (BOOL)writeContentsToJSONFile:(NSString *)path;
 - (BOOL)writeContentsToJSONURL:(NSURL *)url;
-- (BOOL)writeRunConfigForStoryboardAtPath:(NSString *)storyboardPath;
+- (BOOL)writeRunConfigForStoryboardAtURL:(NSURL *)storyboardURL;
 
-+ (BOOL)removeRunConfigForStoryboardAtPath:(NSString *)storyboardPath;
++ (BOOL)removeRunConfigForStoryboardAtURL:(NSURL *)storyboardURL;
 
 @end

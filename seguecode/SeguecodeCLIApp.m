@@ -27,6 +27,26 @@
 
 @end
 
+@implementation NSString (SeguecodeCLIApp)
+
+- (NSString *)stringByRemovingEnclosingQuotes
+{
+    NSString *result = nil;
+    
+    if (self.length >= 2 &&
+        ([self characterAtIndex:0] == '\"' || [self characterAtIndex:0] == '\'') &&
+        [self characterAtIndex:self.length - 1] == [self characterAtIndex:0])
+    {
+        result = [ [self substringToIndex:self.length - 1] substringToIndex:0];
+    } else
+    {
+        result = self;
+    }
+    return result;
+}
+
+@end
+
 @implementation SeguecodeCLIApp
 
 - (void)application:(DDCliApplication *)app willParseOptions:(DDGetoptLongParser *)optionsParser
@@ -66,6 +86,7 @@
     BOOL result = NO;
     
     NSString *pathFileName;
+    fileName = [fileName stringByRemovingEnclosingQuotes];
     if ( [fileName length] > 0 && [fileName characterAtIndex:0] == '/' )
     {
         pathFileName = fileName;
@@ -77,6 +98,7 @@
     NSURL *storyboardPathFileNameUrl = [NSURL fileURLWithPath:pathFileName];
     
     NSString *outputPath;
+    self.outputPath = [self.outputPath stringByRemovingEnclosingQuotes];
     if ( [self.outputPath length] > 0 && [self.outputPath characterAtIndex:0] == '/' )
     {
         outputPath = self.outputPath;
@@ -129,3 +151,5 @@
 }
 
 @end
+
+
