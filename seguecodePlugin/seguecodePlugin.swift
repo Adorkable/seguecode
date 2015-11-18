@@ -10,6 +10,8 @@ import AppKit
 
 import CocoaLumberjack
 
+import seguecodeKit
+
 class seguecodePlugin: NSObject {
 
     private let bundle: NSBundle
@@ -18,22 +20,11 @@ class seguecodePlugin: NSObject {
     
     private var storyboardEnabledMenuItem : NSMenuItem? = nil
     
-    init?(bundle : NSBundle) {
+    init(bundle : NSBundle) {
         self.bundle = bundle
         
         super.init()
         
-        guard let urlToSeguecode = self.urlToSeguecode else {
-            DDLog.error("seguecode binary not found!")
-            return nil
-        }
-
-        if let path = urlToSeguecode.path {
-            DDLog.info("seguecode found at \(path)")
-        } else {
-            DDLog.info("seguecode found at \(urlToSeguecode)")
-        }
-    
         self.setupNotifications()
         self.setupMenu()
         
@@ -47,10 +38,6 @@ class seguecodePlugin: NSObject {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    var urlToSeguecode : NSURL? {
-        return self.bundle.URLForResource("seguecode.bundle/Contents/MacOS/seguecode", withExtension: nil)
     }
     
     func setupNotifications() {
@@ -226,65 +213,15 @@ extension seguecodePlugin {
     }
     
     func applyToStoryboard(storyboardUrl : NSURL, runConfig : RunConfig) -> Bool {
-        
-        // TODO: look into simplying
-        guard let urlToSeguecode = self.urlToSeguecode else {
-            // TODO:
-            return false
-        }
-        
-        guard let pathToSeguecode = urlToSeguecode.path else {
-            // TODO:
-            return false
-        }
-        
-        guard let storyboardDirectory = storyboardUrl.URLByDeletingLastPathComponent?.path else {
-            // TODO:
-            return false
-        }
-        
-        guard let storyboardPath = storyboardUrl.path else {
-            // TODO:
-            return false
-        }
-        
-        guard let currentDirectory = storyboardUrl.URLByDeletingLastPathComponent?.path else {
-            // TODO:
-            return false
-        }
-        
-        var arguments = [String]()
-        
-        arguments += ["--outputPath", "\"\(storyboardDirectory)/\(runConfig.outputPath)\""]
-        
-        if runConfig.combine {
-            arguments.append("--combine")
-        }
-        
-        if let projectName = runConfig.projectName {
-            arguments += ["--projectName", projectName]
-        }
-        
-        arguments.append(storyboardPath)
-        
-        let task = NSTask()
-        task.launchPath = pathToSeguecode
-        task.arguments = arguments;
-        task.currentDirectoryPath = currentDirectory
 
-        let output = NSPipe()
-        task.standardOutput = output;
-        task.launch()
-        task.waitUntilExit()
-
-        if let outputResult = output.fileHandleForReading.availableString {
+        guard let outputUrl = NSURL(string: runConfig.outputPath, relativeToURL: storyboardUrl) else {
             
-            if outputResult.characters.count > 0 {
-                NSLog("seguecode result:\n \(outputResult)")
-            }
+            DDLog.error("Output Path \"\(runConfig.outputPath)\" in Run Config is an invalid relative URL for storyboard file \"\(storyboardUrl)\"")
+            return false
         }
-        
-        return task.terminationStatus == 0
+
+        seguecode.parse(storyboardUrl, outputPath: outputUrl, projectName: runConfig.projectName, exportTogether: runConfig.combine, verboseLogging: false)
+        return true
     }
     
     func logXcodeNotification(notification : NSNotification) {

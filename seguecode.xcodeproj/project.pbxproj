@@ -33,7 +33,6 @@
 		3C7304441B8BB1ED0093F82A /* libddcli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7304411B8BB1B30093F82A /* libddcli.a */; };
 		3C7304471B8BB3830093F82A /* SeguecodeCLIApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7304461B8BB3830093F82A /* SeguecodeCLIApp.m */; };
 		3C8D08801BFC359800FD36CB /* NSObject+XcodePluginLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D087F1BFC359800FD36CB /* NSObject+XcodePluginLoad.swift */; };
-		3C8D08811BFC368200FD36CB /* seguecode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C1CE0881B8857B800DA379A /* seguecode.bundle */; };
 		3C8D08861BFC399D00FD36CB /* DDLog+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D08851BFC399D00FD36CB /* DDLog+Swift.swift */; };
 		3CC70BF31B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC70BF21B8EBD15002C4437 /* TableViewCellPrototype+seguecode.swift */; };
 		3CF4E5BA1BFBA80600D00C91 /* seguecodePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4E5B91BFBA80600D00C91 /* seguecodePlugin.swift */; };
@@ -70,6 +69,13 @@
 			remoteGlobalIDString = 3C1CE0A41B88598600DA379A;
 			remoteInfo = seguecodeKit;
 		};
+		3C4B321F1BFC43D200966E8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CCF86C11AF65DF600B7472E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C1CE0A41B88598600DA379A;
+			remoteInfo = seguecodeKit;
+		};
 		3C73043C1B8BB1B30093F82A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3C7304351B8BB1B30093F82A /* ddcli.xcodeproj */;
@@ -97,13 +103,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 55CCE92D0C137F7D00FA06C6;
 			remoteInfo = ddcli;
-		};
-		3CF4E5D41BFBCD7900D00C91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3CCF86C11AF65DF600B7472E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C1CE0871B8857B800DA379A;
-			remoteInfo = seguecodeBundle;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -388,9 +387,9 @@
 				3CF4E5B11BFBA61700D00C91 /* Info.plist */,
 				3C8D087F1BFC359800FD36CB /* NSObject+XcodePluginLoad.swift */,
 				3CF4E5B91BFBA80600D00C91 /* seguecodePlugin.swift */,
-				3CF4E5BB1BFBAC8C00D00C91 /* Utility */,
 				3CF4E5CA1BFBAE5200D00C91 /* RunConfig.swift */,
 				3CF4E5CC1BFBB55400D00C91 /* Constants.swift */,
+				3CF4E5BB1BFBAC8C00D00C91 /* Utility */,
 			);
 			path = seguecodePlugin;
 			sourceTree = "<group>";
@@ -536,7 +535,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3CF4E5D51BFBCD7900D00C91 /* PBXTargetDependency */,
+				3C4B32201BFC43D200966E8A /* PBXTargetDependency */,
 			);
 			name = seguecodePlugin;
 			productName = seguecodePlugin;
@@ -652,7 +651,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C8D08811BFC368200FD36CB /* seguecode.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,15 +859,15 @@
 			target = 3C1CE0A41B88598600DA379A /* seguecodeKit */;
 			targetProxy = 3C1CE0E41B88604800DA379A /* PBXContainerItemProxy */;
 		};
+		3C4B32201BFC43D200966E8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C1CE0A41B88598600DA379A /* seguecodeKit */;
+			targetProxy = 3C4B321F1BFC43D200966E8A /* PBXContainerItemProxy */;
+		};
 		3C7304431B8BB1E60093F82A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ddcli;
 			targetProxy = 3C7304421B8BB1E60093F82A /* PBXContainerItemProxy */;
-		};
-		3CF4E5D51BFBCD7900D00C91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3C1CE0871B8857B800DA379A /* seguecodeBundle */;
-			targetProxy = 3CF4E5D41BFBCD7900D00C91 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
