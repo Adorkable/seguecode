@@ -1,4 +1,12 @@
 PODS:
+  - CocoaLumberjack (2.0.3):
+    - CocoaLumberjack/Default (= 2.0.3)
+    - CocoaLumberjack/Extensions (= 2.0.3)
+  - CocoaLumberjack/Core (2.0.3)
+  - CocoaLumberjack/Default (2.0.3):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.3):
+    - CocoaLumberjack/Default
   - PathKit (0.5.0)
   - Stencil (0.3.0):
     - PathKit (~> 0.5.0)
@@ -7,11 +15,13 @@ PODS:
   - SWXMLHash (2.0.2)
 
 DEPENDENCIES:
+  - CocoaLumberjack (~> 2.0.0)
   - PathKit (~> 0.5)
   - Stencil (~> 0.3)
   - StoryboardKit (~> 0.5)
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: f58d8a19629f4d8379ae14bb3534def24161430e
   PathKit: 64e70cb924d6faed9251049f5f28662855524baf
   Stencil: 90ce766d6dba53380832692541403e27297337db
   StoryboardKit: 2c5f76934d897174852c3e4dab897b515bcf4b85

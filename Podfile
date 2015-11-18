@@ -21,6 +21,10 @@ target 'seguecodeKit' do
     pod 'Stencil', '~> 0.3'
 end
 
+target 'seguecodePlugin' do
+    pod 'CocoaLumberjack', '~> 2.0.0'
+end
+
 target 'iOSExample' do
 
 end
