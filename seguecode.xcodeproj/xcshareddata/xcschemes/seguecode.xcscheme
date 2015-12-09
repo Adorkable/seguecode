@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated/"
+            argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/repo/Example/iOS/Generated/"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -71,7 +71,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--storyboardFile /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Base.lproj/Main_iPhone.storyboard"
+            argument = "--storyboardFile /Users/ian/Documents/Adorkable/seguecode/repo/Example/iOS/Base.lproj/Main_iPhone.storyboard"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
