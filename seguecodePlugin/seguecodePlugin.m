@@ -10,6 +10,7 @@
 
 #import "NSObject+Utility.h"
 #import "NSNotification+Utility.h"
+#import "NSURL+Utility.h"
 
 #import "NSMutableDictionary+RunConfig.h"
 
@@ -19,7 +20,7 @@ static seguecodePlugin *sharedPlugin;
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
 
-@property (copy) NSString *currentlyEditingStoryboardFileName;
+@property (copy) NSURL *currentlyEditingStoryboardFileName;
 
 @property (weak, readwrite) NSMenuItem *storyboardEnabled;
 
@@ -89,23 +90,21 @@ static seguecodePlugin *sharedPlugin;
     if ( [notification isTransitionFromOneFileToAnother] )
     {
         NSURL *nextURL = [notification transitionFromOneFileToAnotherNextDocumentURL];
-        NSString *next = [nextURL description];
-        NSRange begin = [next rangeOfString:@"file://"];
+        NSRange begin = [nextURL rangeOfString:@"file://"];
         
-        if (begin.location != NSNotFound)
+        if (begin.location != NSNotFound && begin.length > 0)
         {
-            NSString *fullPath = [next substringFromIndex:begin.location + begin.length];
-            if ( [[fullPath pathExtension] isEqualToString:@"storyboard"] )
+            if ( [ [nextURL pathExtension] isEqualToString:@"storyboard"] )
             {
-                self.currentlyEditingStoryboardFileName = fullPath;
+                self.currentlyEditingStoryboardFileName = nextURL;
             } else
             {
                 self.currentlyEditingStoryboardFileName = nil;
-                NSLog(@"Ignoring %@", [fullPath pathExtension] );
+                NSLog(@"Ignoring %@", [nextURL pathExtension] );
             }
         } else
         {
-            NSLog(@"Unable to find file:// in %@", next);
+            NSLog(@"Unable to find file:// in %@", nextURL);
             self.currentlyEditingStoryboardFileName = nil;
         }
         
@@ -128,12 +127,12 @@ static seguecodePlugin *sharedPlugin;
         Class IBStoryboardDocument = NSClassFromString(@"IBStoryboardDocument");
         if ( [notificationObject isKindOfClass:IBStoryboardDocument] && self.currentlyEditingStoryboardFileName )
         {
-            NSMutableDictionary *runConfig = [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+            NSMutableDictionary *runConfig = [NSMutableDictionary runConfigForStoryboardAtURL:self.currentlyEditingStoryboardFileName];
             
             if (runConfig)
             {
                 NSLog(@"Applying to %@", self.currentlyEditingStoryboardFileName);
-                [self applyToStoryboardAtPath:self.currentlyEditingStoryboardFileName
+                [self applyToStoryboardAtURL:self.currentlyEditingStoryboardFileName
                                 withRunConfig:runConfig];
             } else
             {
@@ -151,22 +150,22 @@ static seguecodePlugin *sharedPlugin;
     }
 }
 
-- (BOOL)createDefaultRunConfigForStoryboardAtPath:(NSString *)storyboardPath
+- (BOOL)createDefaultRunConfigForStoryboardAtPath:(NSURL *)storyboardURL
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     result.combine = NO;
     result.outputPath = [NSString stringWithFormat:@"./Generated"];
-    return [result writeRunConfigForStoryboardAtPath:storyboardPath];
+    return [result writeRunConfigForStoryboardAtURL:storyboardURL];
 }
 
-- (BOOL)applyToStoryboardAtPath:(NSString *)storyboardPath withRunConfig:(NSMutableDictionary *)runConfig
+- (BOOL)applyToStoryboardAtURL:(NSURL *)storyboardURL withRunConfig:(NSMutableDictionary *)runConfig
 {
     NSPipe *pipe = [NSPipe pipe];
     
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [ [self pathToSegueCode] path];
 
-    NSString *outputFolder = [NSString stringWithFormat:@"%@/%@", [storyboardPath stringByDeletingLastPathComponent], runConfig.outputPath];
+    NSString *outputFolder = [NSString stringWithFormat:@"\"%@/%@\"", [ [storyboardURL URLByDeletingLastPathComponent] path], runConfig.outputPath];
     
     NSMutableArray *arguments = [NSMutableArray array];
     [arguments addObjectsFromArray:@[@"--outputPath", outputFolder] ];
@@ -178,10 +177,10 @@ static seguecodePlugin *sharedPlugin;
     {
         [arguments addObjectsFromArray:@[@"--projectName", runConfig.projectName] ];
     }
-    [arguments addObject:storyboardPath];
+    [arguments addObject:[NSString stringWithFormat:@"\"%@\"", [storyboardURL path] ] ];
     task.arguments = arguments;
     
-    task.currentDirectoryPath = [storyboardPath stringByDeletingLastPathComponent];
+    task.currentDirectoryPath = [ [storyboardURL URLByDeletingLastPathComponent] path];
     task.standardOutput = pipe;
     [task launch];
     [task waitUntilExit];
@@ -240,15 +239,16 @@ static seguecodePlugin *sharedPlugin;
             [self createDefaultRunConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
         } else
         {
-            [NSMutableDictionary removeRunConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+            [NSMutableDictionary removeRunConfigForStoryboardAtURL:self.currentlyEditingStoryboardFileName];
         }
         [self updateStoryboardEnabled];
     }
 }
 
-- (BOOL)enabledForStoryboardAtPath:(NSString *)storyboardPath
+- (BOOL)enabledForStoryboardAtPath:(NSURL *)storyboardURL
 {
-    return self.currentlyEditingStoryboardFileName && [NSMutableDictionary runConfigForStoryboardAtPath:self.currentlyEditingStoryboardFileName];
+    // TODO: why aren't we using the passed in value?
+    return self.currentlyEditingStoryboardFileName && [NSMutableDictionary runConfigForStoryboardAtURL:self.currentlyEditingStoryboardFileName];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem

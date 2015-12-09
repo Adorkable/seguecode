@@ -17,7 +17,21 @@ public class seguecode : NSObject
     public class func parse(storyboardFilePath : NSURL, outputPath : NSURL, projectName : String?, exportTogether : Bool, verboseLogging : Bool) {
         let application = ApplicationInfo()
         
-        NSLog("Writing to output path \(outputPath)")
+        if let path = storyboardFilePath.path
+        {
+            NSLog("Reading \(path)")
+        } else
+        {
+            NSLog("Reading \(storyboardFilePath)")
+        }
+        
+        if let path = outputPath.path
+        {
+            NSLog("Writing to output path \(path)")
+        } else
+        {
+            NSLog("Writing to output path \(outputPath)")
+        }
         if let projectName = projectName
         {
             NSLog("Using project name \"\(projectName)\"")
