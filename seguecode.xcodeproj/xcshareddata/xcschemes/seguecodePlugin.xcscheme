@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3CF4E5AE1BFBA61700D00C91"
-               BuildableName = "seguecodePlugin.xcplugin"
+               BuildableName = "seguecode.xcplugin"
                BlueprintName = "seguecodePlugin"
                ReferencedContainer = "container:seguecode.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3CF4E5AE1BFBA61700D00C91"
-            BuildableName = "seguecodePlugin.xcplugin"
+            BuildableName = "seguecode.xcplugin"
             BlueprintName = "seguecodePlugin"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>
@@ -78,7 +78,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3CF4E5AE1BFBA61700D00C91"
-            BuildableName = "seguecodePlugin.xcplugin"
+            BuildableName = "seguecode.xcplugin"
             BlueprintName = "seguecodePlugin"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>
