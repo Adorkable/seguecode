@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1CE07C1B88572900DA379A"
-               BuildableName = "seguecode"
-               BlueprintName = "seguecode"
+               BlueprintIdentifier = "3C1CE0871B8857B800DA379A"
+               BuildableName = "seguecode.bundle"
+               BlueprintName = "seguecodeBundle"
                ReferencedContainer = "container:seguecode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,7 +63,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Generated/"
+            argument = "--outputPath /Users/ian/Documents/Adorkable/seguecode/repo/Example/iOS/Generated"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-l"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -71,7 +75,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--storyboardFile /Users/ian/Documents/Adorkable/seguecode/Example/iOS/Base.lproj/Main_iPhone.storyboard"
+            argument = "-c"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/ian/Documents/Adorkable/seguecode/repo/Example/iOS/Base.lproj/Main_iPhone.storyboard"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -84,16 +92,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C1CE07C1B88572900DA379A"
-            BuildableName = "seguecode"
-            BlueprintName = "seguecode"
+            BlueprintIdentifier = "3C1CE0871B8857B800DA379A"
+            BuildableName = "seguecode.bundle"
+            BlueprintName = "seguecodeBundle"
             ReferencedContainer = "container:seguecode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
