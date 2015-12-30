@@ -16,10 +16,9 @@ This include exposing:
 ### Installation
 
 #### Alcatraz
-```json
-AT THE MOMENT ALCATRAZ INSTALLATION IS BROKEN DUE TO ALCATRAZ'S METHOD OF BUILDING AND INSTALLING. 
-UNTIL A COMPATIBLE WRAPPER PROJECT CAN BE REWRITTEN PLEASE USE THE MANUAL INSTALLATION STEPS BELOW.
-```
+**AT THE MOMENT ALCATRAZ INSTALLATION IS BROKEN DUE TO ALCATRAZ'S METHOD OF BUILDING AND INSTALLING. 
+UNTIL A COMPATIBLE WRAPPER PROJECT CAN BE REWRITTEN PLEASE USE THE [MANUAL INSTALLATION STEPS BELOW](https://github.com/Adorkable/seguecode/blob/master/README.md#manually).**
+
 The easiest way to get and use **seguecode** is through the wonderful Xcode plugin manager [Alcatraz](http://alcatraz.io/). The **seguecode** plugin, when enabled for a storyboard, will detect when you save your storyboard and automatically regenerate your **seguecode** source code.
 
 #### Manually 
