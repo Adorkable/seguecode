@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Adorkable/seguecode.png?label=ready&title=Ready)](https://waffle.io/Adorkable/seguecode)
 # seguecode
 
 [![Travis Build Status](http://img.shields.io/travis/Adorkable/seguecode.svg?style=flat)](https://travis-ci.org/Adorkable/seguecode)
